@@ -14,6 +14,7 @@ Cụm lab chính: **kind `lab`** — 3 node, stack Cilium kube-proxy-free + Meta
 | [runbook.md](runbook.md) | As-built cụm lab, cách truy cập (kubectl/k9s/Hubble UI), vòng đời dựng/xoá/dựng lại, gotcha |
 | [cluster/kind-lab.yaml](cluster/kind-lab.yaml) | Config kind 3-node (CNI mặc định tắt, kube-proxy tắt — nhường Cilium) |
 | [scripts/up.sh](scripts/up.sh) | Dựng lại cụm từ đầu một phát (kind + Cilium + Hubble + MetalLB, tự dò subnet) |
+| [notes/setup.md](notes/setup.md) | Hướng dẫn setup môi trường lab từ số 0 trên macOS |
 | `notes/` | Note theo ngày trong quá trình học, tên `YYMMDD-<chủ-đề>.md` |
 | `assets/` | Sơ đồ kiến trúc (`.excalidraw` nguồn + PNG/SVG đã render) |
 
