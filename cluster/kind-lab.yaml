@@ -1,0 +1,12 @@
+# Cụm kind lab — 1 control-plane + 2 worker (multi-node để luyện drain/topology)
+# disableDefaultCNI + kubeProxyMode=none → để Cilium đảm nhận CNI + thay kube-proxy
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+name: lab
+networking:
+  disableDefaultCNI: true      # tắt kindnet để tự cài Cilium
+  kubeProxyMode: none          # Cilium thay kube-proxy bằng eBPF
+nodes:
+  - role: control-plane        # 1 control-plane là đủ cho lab dev
+  - role: worker
+  - role: worker

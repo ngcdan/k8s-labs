@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1300 822" width="1300" height="822">
+<rect x="0" y="0" width="1300" height="822" fill="#ffffff"/>
+<text x="624.0" y="59.2" font-family="Menlo, 'Cascadia Code', monospace" font-size="24" fill="#1e40af" text-anchor="middle" opacity="1.0">Cụm K8s lab local — kind trên Docker Desktop (Mac M4)</text>
+<rect x="40" y="102" width="320" height="680" rx="12" fill="#dbe4ff" stroke="#3b82f6" stroke-width="2" opacity="0.3"/>
+<text x="64.0" y="130.4" font-family="Menlo, 'Cascadia Code', monospace" font-size="18" fill="#1e40af" text-anchor="start" opacity="1.0">macOS host (Mac M4)</text>
+<rect x="380" y="102" width="880" height="680" rx="12" fill="#e5dbff" stroke="#7048e8" stroke-width="2" opacity="0.3"/>
+<text x="414.0" y="130.4" font-family="Menlo, 'Cascadia Code', monospace" font-size="18" fill="#5f3dc4" text-anchor="start" opacity="1.0">Docker Desktop (Linux VM)</text>
+<rect x="410" y="162" width="820" height="350" rx="12" fill="#d3f9d8" stroke="#2f9e44" stroke-width="2" opacity="0.3"/>
+<text x="434.0" y="188.4" font-family="Menlo, 'Cascadia Code', monospace" font-size="18" fill="#2b8a3e" text-anchor="start" opacity="1.0">docker network &quot;kind&quot; — 172.18.0.0/16</text>
+<rect x="76" y="254" width="240" height="140" rx="12" fill="#94a3b8" stroke="#94a3b8" stroke-width="1" opacity="0.32"/>
+<rect x="70" y="247" width="240" height="140" rx="12" fill="#ffffff" stroke="#1971c2" stroke-width="2" opacity="1.0"/>
+<text x="195.0" y="269.4" font-family="Menlo, 'Cascadia Code', monospace" font-size="18" fill="#1e40af" text-anchor="middle" opacity="1.0">kubectl · k9s</text>
+<path d="M 94.0 287.0 L 286.0 287.0" fill="none" stroke="#1971c2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="1.0"/>
+<text x="94.0" y="311.8" font-family="Menlo, 'Cascadia Code', monospace" font-size="16" fill="#374151" text-anchor="start" opacity="1.0">context:</text>
+<text x="94.0" y="331.8" font-family="Menlo, 'Cascadia Code', monospace" font-size="16" fill="#374151" text-anchor="start" opacity="1.0">kind-lab</text>
+<text x="94.0" y="351.8" font-family="Menlo, 'Cascadia Code', monospace" font-size="16" fill="#374151" text-anchor="start" opacity="1.0">+ helm (cài chart)</text>
+<rect x="76" y="489" width="240" height="140" rx="12" fill="#94a3b8" stroke="#94a3b8" stroke-width="1" opacity="0.32"/>
+<rect x="70" y="482" width="240" height="140" rx="12" fill="#ffffff" stroke="#9c36b5" stroke-width="2" opacity="1.0"/>
+<text x="190.0" y="504.4" font-family="Menlo, 'Cascadia Code', monospace" font-size="18" fill="#862e9c" text-anchor="middle" opacity="1.0">Browser</text>
+<path d="M 94.0 522.0 L 286.0 522.0" fill="none" stroke="#9c36b5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="1.0"/>
+<text x="94.0" y="546.8" font-family="Menlo, 'Cascadia Code', monospace" font-size="16" fill="#374151" text-anchor="start" opacity="1.0">Hubble UI</text>
+<text x="94.0" y="566.8" font-family="Menlo, 'Cascadia Code', monospace" font-size="16" fill="#374151" text-anchor="start" opacity="1.0">localhost:12000</text>
+<rect x="446" y="254" width="270" height="205" rx="12" fill="#94a3b8" stroke="#94a3b8" stroke-width="1" opacity="0.32"/>
+<rect x="440" y="247" width="270" height="205" rx="12" fill="#ffffff" stroke="#1971c2" stroke-width="2" opacity="1.0"/>
+<text x="575.5" y="269.4" font-family="Menlo, 'Cascadia Code', monospace" font-size="18" fill="#1e40af" text-anchor="middle" opacity="1.0">control-plane</text>
+<path d="M 464.0 287.0 L 686.0 287.0" fill="none" stroke="#1971c2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="1.0"/>
+<text x="464.0" y="311.8" font-family="Menlo, 'Cascadia Code', monospace" font-size="16" fill="#374151" text-anchor="start" opacity="1.0">IP  172.18.0.3</text>
+<text x="464.0" y="331.8" font-family="Menlo, 'Cascadia Code', monospace" font-size="16" fill="#374151" text-anchor="start" opacity="1.0">static pod:</text>
+<text x="464.0" y="351.8" font-family="Menlo, 'Cascadia Code', monospace" font-size="16" fill="#374151" text-anchor="start" opacity="1.0">apiserver · etcd</text>
+<text x="464.0" y="371.8" font-family="Menlo, 'Cascadia Code', monospace" font-size="16" fill="#374151" text-anchor="start" opacity="1.0">scheduler · ctrl-mgr</text>
+<rect x="766" y="254" width="200" height="140" rx="12" fill="#94a3b8" stroke="#94a3b8" stroke-width="1" opacity="0.32"/>
+<rect x="760" y="247" width="200" height="140" rx="12" fill="#ffffff" stroke="#1971c2" stroke-width="2" opacity="1.0"/>
+<text x="860.5" y="269.4" font-family="Menlo, 'Cascadia Code', monospace" font-size="18" fill="#1e40af" text-anchor="middle" opacity="1.0">worker</text>
+<path d="M 784.0 287.0 L 936.0 287.0" fill="none" stroke="#1971c2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="1.0"/>
+<text x="784.0" y="311.8" font-family="Menlo, 'Cascadia Code', monospace" font-size="16" fill="#374151" text-anchor="start" opacity="1.0">IP  172.18.0.4</text>
+<text x="784.0" y="331.8" font-family="Menlo, 'Cascadia Code', monospace" font-size="16" fill="#374151" text-anchor="start" opacity="1.0">Pod 10.0.2.0/24</text>
+<rect x="1011" y="254" width="200" height="140" rx="12" fill="#94a3b8" stroke="#94a3b8" stroke-width="1" opacity="0.32"/>
+<rect x="1005" y="247" width="200" height="140" rx="12" fill="#ffffff" stroke="#1971c2" stroke-width="2" opacity="1.0"/>
+<text x="1105.0" y="269.4" font-family="Menlo, 'Cascadia Code', monospace" font-size="18" fill="#1e40af" text-anchor="middle" opacity="1.0">worker2</text>
+<path d="M 1029.0 287.0 L 1181.0 287.0" fill="none" stroke="#1971c2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="1.0"/>
+<text x="1029.0" y="311.8" font-family="Menlo, 'Cascadia Code', monospace" font-size="16" fill="#374151" text-anchor="start" opacity="1.0">IP  172.18.0.2</text>
+<text x="1029.0" y="331.8" font-family="Menlo, 'Cascadia Code', monospace" font-size="16" fill="#374151" text-anchor="start" opacity="1.0">Pod 10.0.0.0/24</text>
+<rect x="416" y="559" width="390" height="130" rx="12" fill="#94a3b8" stroke="#94a3b8" stroke-width="1" opacity="0.32"/>
+<rect x="410" y="552" width="390" height="130" rx="12" fill="#ffffff" stroke="#0c8599" stroke-width="2" opacity="1.0"/>
+<text x="605.0" y="574.4" font-family="Menlo, 'Cascadia Code', monospace" font-size="18" fill="#0b7285" text-anchor="middle" opacity="1.0">Cilium 1.19.6 — CNI eBPF</text>
+<path d="M 434.0 593.0 L 776.0 593.0" fill="none" stroke="#0c8599" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="1.0"/>
+<text x="434.0" y="617.8" font-family="Menlo, 'Cascadia Code', monospace" font-size="16" fill="#374151" text-anchor="start" opacity="1.0">kube-proxy-free (thay kube-proxy)</text>
+<text x="434.0" y="637.8" font-family="Menlo, 'Cascadia Code', monospace" font-size="16" fill="#374151" text-anchor="start" opacity="1.0">Pod 10.0.0.0/8 — /24 mỗi node</text>
+<rect x="846" y="559" width="390" height="130" rx="12" fill="#94a3b8" stroke="#94a3b8" stroke-width="1" opacity="0.32"/>
+<rect x="840" y="552" width="390" height="130" rx="12" fill="#ffffff" stroke="#e8590c" stroke-width="2" opacity="1.0"/>
+<text x="1035.0" y="574.4" font-family="Menlo, 'Cascadia Code', monospace" font-size="18" fill="#d9480f" text-anchor="middle" opacity="1.0">MetalLB 0.16.1 — L2 mode</text>
+<path d="M 864.0 593.0 L 1206.0 593.0" fill="none" stroke="#e8590c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="1.0"/>
+<text x="864.0" y="617.8" font-family="Menlo, 'Cascadia Code', monospace" font-size="16" fill="#374151" text-anchor="start" opacity="1.0">pool 172.18.255.200-250</text>
+<text x="864.0" y="637.8" font-family="Menlo, 'Cascadia Code', monospace" font-size="16" fill="#374151" text-anchor="start" opacity="1.0">Service LoadBalancer nhận IP thật</text>
+<text x="820.0" y="714.8" font-family="Menlo, 'Cascadia Code', monospace" font-size="16" fill="#374151" text-anchor="middle" opacity="1.0">Service CIDR 10.96.0.0/12 — kubernetes 10.96.0.1 · kube-dns 10.96.0.10</text>
+<path d="M 310.0 317.0 L 440.0 317.0" fill="none" stroke="#f59e0b" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" opacity="1.0"/>
+<path d="M 440.0 317.0 L 427.3 322.9" fill="none" stroke="#f59e0b" stroke-width="4" stroke-linecap="round" opacity="1.0"/>
+<path d="M 440.0 317.0 L 427.3 311.1" fill="none" stroke="#f59e0b" stroke-width="4" stroke-linecap="round" opacity="1.0"/>
+<text x="329.0" y="301.8" font-family="Menlo, 'Cascadia Code', monospace" font-size="16" fill="#b45309" text-anchor="start" opacity="1.0">API :6443</text>
+<path d="M 310.0 530.0 L 860.0 530.0 L 860.0 390.0" fill="none" stroke="#9c36b5" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="1.0" stroke-dasharray="10 7"/>
+<path d="M 860.0 390.0 L 865.9 402.7" fill="none" stroke="#9c36b5" stroke-width="3" stroke-linecap="round" opacity="1.0"/>
+<path d="M 860.0 390.0 L 854.1 402.7" fill="none" stroke="#9c36b5" stroke-width="3" stroke-linecap="round" opacity="1.0"/>
+<text x="874.0" y="452.8" font-family="Menlo, 'Cascadia Code', monospace" font-size="16" fill="#862e9c" text-anchor="start" opacity="1.0">port-forward :12000</text>
+</svg>
