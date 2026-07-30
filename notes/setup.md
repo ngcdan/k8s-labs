@@ -1,9 +1,5 @@
 # Setup môi trường lab K8s trên macOS (từ số 0)
 
-> Kết quả cuối: cụm kind `lab` 3-node chạy trong Docker Desktop, CNI Cilium
-> kube-proxy-free + Hubble, LoadBalancer thật bằng MetalLB. Toàn bộ ~15 phút,
-> phần lớn là thời gian tải image.
-
 ## 1. Cài công cụ (một lần)
 
 ```bash

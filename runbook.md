@@ -1,8 +1,5 @@
 # Runbook — cụm lab `lab` (kind trên Docker Desktop)
 
-> As-built chụp `2026-07-30` từ cụm đang chạy. Cụm là **disposable** — phá thoải mái,
-> dựng lại ~10 phút bằng [scripts/up.sh](scripts/up.sh).
-
 ## 1. Cụm là gì
 
 3 node kind (kubeadm thật chạy trong container) trên Docker Desktop:
