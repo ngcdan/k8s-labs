@@ -1,0 +1,6 @@
+package_update: true
+packages:
+  - docker.io
+runcmd:
+  - usermod -aG docker ubuntu
+  - systemctl enable --now docker
