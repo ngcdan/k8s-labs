@@ -62,7 +62,8 @@ bài này.
 |---|---|
 | [README.md](README.md) | Mục tiêu + tổng quan luồng |
 | `runbook.md` | Các bước chi tiết, bổ sung dần khi thực hành |
-| `notes/` | Nhật ký học theo ngày, tên `YYMMDD-<slug>.md` |
+| `notes.md` | Câu hỏi ôn tập recall (fold `<details>` + giải thích + hình) |
+| `assets/` | Ảnh screenshot các bước thực hành |
 
 ## Câu hỏi kiểm tra
 
