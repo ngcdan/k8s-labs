@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: cm-env
+spec:
+  containers:
+  - name: app
+    image: busybox
+    command: ["sh", "-c", "echo ENEMIES=$ENEMIES LIVES=$LIVES && sleep 3600"]
+    env:
+    - name: ENEMIES
+      valueFrom:
+        configMapKeyRef:
+          name: app-settings
+          key: ENEMIES
+    - name: LIVES
+      valueFrom:
+        configMapKeyRef:
+          name: app-settings
+          key: LIVES
