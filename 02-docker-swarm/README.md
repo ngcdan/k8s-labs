@@ -14,16 +14,16 @@ và vì sao đây là gốc của Kubernetes.
 Mục tiêu học cụ thể:
 
 1. **Ảo hóa multi-node** — dựng các VM bằng Multipass + cloud-init (không dùng blueprint
-   `docker` đã deprecated và kẹt sàn RAM 4 GB); hiểu vì sao mỗi VM có nhiều IPv4 và vì sao
-   `--advertise-addr` là bắt buộc khi init swarm.
+ `docker` đã deprecated và kẹt sàn RAM 4 GB); hiểu vì sao mỗi VM có nhiều IPv4 và vì sao
+ `--advertise-addr` là bắt buộc khi init swarm.
 2. **Kiến trúc cụm** — phân biệt manager vs worker, vai trò raft/quorum, và `drain` manager
-   để giữ sạch control plane.
+ để giữ sạch control plane.
 3. **Imperative — `docker service`** — create/scale; chứng minh ingress routing mesh
-   (gọi vào manager đã drain vẫn tới app) và self-healing cấp container (giết container →
-   reconciliation loop dựng bù).
+ (gọi vào manager đã drain vẫn tới app) và self-healing cấp container (giết container →
+ reconciliation loop dựng bù).
 4. **Declarative — `docker stack`** — deploy stack 2 service (`web-fe` + `redis`) từ một file
-   YAML với image có sẵn trên registry; hiểu vì sao worker phải pull được từ registry; sửa
-   `replicas` trong YAML rồi re-deploy thay cho `docker service scale` (tư duy GitOps).
+ YAML với image có sẵn trên registry; hiểu vì sao worker phải pull được từ registry; sửa
+ `replicas` trong YAML rồi re-deploy thay cho `docker service scale` (tư duy GitOps).
 5. **Self-healing cấp node** — xoá một node → replica tự dồn sang node còn sống.
 6. **Rút ra nguyên lý** — declarative + desired-state reconciliation là gốc của Kubernetes.
 
@@ -45,10 +45,10 @@ Máy ít RAM hơn thì giảm còn 3 node (1 manager + 2 worker).
 1. Cài Multipass trên máy lab.
 2. Tạo 5 VM bằng cloud-init.
 3. Init swarm trên node1 (`--advertise-addr` IP mạng Multipass), join manager + worker,
-   drain 3 manager.
+ drain 3 manager.
 4. Imperative: `docker service create` + scale + thí nghiệm giết container.
 5. Declarative: `docker stack deploy` từ image có sẵn → sửa YAML re-deploy → mô phỏng
-   chết node.
+ chết node.
 6. Dọn: `docker stack rm` + `multipass delete` toàn bộ VM.
 
 ## Ngoài phạm vi
@@ -71,5 +71,5 @@ bài này.
 2. Vì sao gọi vào IP của manager (đã drain, không chạy container nào) vẫn tới được app?
 3. Nếu không push image lên registry mà chỉ build trên node1, `docker stack deploy` hỏng ở đâu?
 4. Sửa `replicas` trong file rồi deploy lại — khác gì `docker service scale` về kết quả và
-   về vận hành?
+ về vận hành?
 5. Xoá node5 xong, replica dồn hết sang node4. Nếu xoá luôn node4 thì sao?

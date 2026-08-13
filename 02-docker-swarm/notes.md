@@ -162,9 +162,9 @@ credential đã login ở node1 xuống worker.)
 **Kết quả** giống nhau (đổi số replica). Nhưng **vận hành** khác:
 
 - `docker service scale` = lệnh imperative, thay đổi trực tiếp trên cụm, file config **không còn
-  khớp** thực tế.
+ khớp** thực tế.
 - Sửa YAML rồi `docker stack deploy` lại = declarative, file luôn là **source of truth** khớp môi
-  trường thật (để trong version control).
+ trường thật (để trong version control).
 
 Kubernetes y hệt — mọi thay đổi đi qua YAML. Đây là gốc của **GitOps**.
 

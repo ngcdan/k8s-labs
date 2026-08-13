@@ -17,23 +17,23 @@ df -h / | tail -1
 
 Kết quả khảo sát trên máy lab tham chiếu:
 
-| Hạng mục   | Kết quả                       |
+| Hạng mục | Kết quả |
 | ---------- | ----------------------------- |
-| OS / arch  | macOS 15.6, `arm64`           |
-| RAM / CPU  | 24 GB / 10 cores              |
-| Đĩa        | 123 GB trống / 460 GB         |
-| Docker     | 28.5.1 + Compose v2.40.0      |
+| OS / arch | macOS 15.6, `arm64` |
+| RAM / CPU | 24 GB / 10 cores |
+| Đĩa | 123 GB trống / 460 GB |
+| Docker | 28.5.1 + Compose v2.40.0 |
 | brew / git | có sẵn (`/opt/homebrew/bin/`) |
-| Multipass  | chưa cài → Bước 1             |
+| Multipass | chưa cài → Bước 1 |
 
 
 Chọn số node theo RAM (mỗi VM đặt `--memory 2G`):
 
-| RAM máy    | Số node                                            |
+| RAM máy | Số node |
 | ---------- | -------------------------------------------------- |
-| ≥ 32 GB    | 5 (3 manager + 2 worker)                           |
-| 16–24 GB   | 5 với `--memory 2G`, hoặc 3 (1 manager + 2 worker) |
-| &lt; 16 GB | 2–3 node, hoặc swarm 1 node trên Docker sẵn có     |
+| ≥ 32 GB | 5 (3 manager + 2 worker) |
+| 16–24 GB | 5 với `--memory 2G`, hoặc 3 (1 manager + 2 worker) |
+| &lt; 16 GB | 2–3 node, hoặc swarm 1 node trên Docker sẵn có |
 
 
 24 GB: chốt 5 node × 2 GB = 10 GB, cộng macOS ~6 GB = 16 GB / 24 GB, dư ~8 GB.
@@ -70,7 +70,7 @@ Blueprint `docker` của Multipass không dùng được: sàn RAM 4 GB/VM
 
 - macOS ~6 GB = 26 GB &gt; 24 GB. Blueprint cũng đã deprecated. Thay bằng Ubuntu 24.04 +
 
-  cloud-init tự cài Docker, tự do đặt RAM.
+ cloud-init tự cài Docker, tự do đặt RAM.
 
 Trên host — tạo file cloud-init (docker-node.yaml):
 
@@ -298,7 +298,7 @@ cat compose.yml
 - `deploy: replicas: 10` — khối `deploy` chỉ swarm hiểu, `docker compose` bỏ qua.
 - `image: nigelpoulton/gsd:swarm2023` — không có `build:`. Stack KHÔNG build on-the-fly;
 
-  image phải có sẵn trên registry trước khi deploy.
+ image phải có sẵn trên registry trước khi deploy.
 - `counter-vol` mount vào `web-fe:/app`, còn `redis` (nơi giữ số đếm thật) không có volume.
 
 ### 5.2 Deploy stack
@@ -389,33 +389,33 @@ Muốn giữ cụm, chỉ cần `docker stack rm counter`. Muốn bỏ swarm mà
 ## Bảng lệnh sống còn
 
 
-| Việc                 | Lệnh                                                                  |
+| Việc | Lệnh |
 | -------------------- | --------------------------------------------------------------------- |
-| Tạo VM               | `multipass launch 24.04 --name nodeN --cloud-init ~/docker-node.yaml` |
-| Xem IP               | `multipass info nodeN | grep IPv4`                                    |
-| Vào VM               | `multipass shell nodeN`                                               |
-| Khởi tạo swarm       | `docker swarm init --advertise-addr <IP>`                             |
-| Token mời            | `docker swarm join-token manager|worker`                              |
-| Xem node cụm         | `docker node ls`                                                      |
-| Cấm app trên manager | `docker node update --availability drain nodeN`                       |
-| Tạo service          | `docker service create --name X -p H:C --replicas N <image>`          |
-| Xem replica toàn cụm | `docker service ps X` (không phải `container ls`)                     |
-| Scale imperative     | `docker service scale X=N`                                            |
-| Deploy stack         | `docker stack deploy -c compose.yml <tên>`                            |
-| Soi stack            | `docker stack ls|services|ps`                                         |
-| Xoá VM               | `multipass delete nodeN && multipass purge`                           |
+| Tạo VM | `multipass launch 24.04 --name nodeN --cloud-init ~/docker-node.yaml` |
+| Xem IP | `multipass info nodeN | grep IPv4` |
+| Vào VM | `multipass shell nodeN` |
+| Khởi tạo swarm | `docker swarm init --advertise-addr <IP>` |
+| Token mời | `docker swarm join-token manager|worker` |
+| Xem node cụm | `docker node ls` |
+| Cấm app trên manager | `docker node update --availability drain nodeN` |
+| Tạo service | `docker service create --name X -p H:C --replicas N <image>` |
+| Xem replica toàn cụm | `docker service ps X` (không phải `container ls`) |
+| Scale imperative | `docker service scale X=N` |
+| Deploy stack | `docker stack deploy -c compose.yml <tên>` |
+| Soi stack | `docker stack ls|services|ps` |
+| Xoá VM | `multipass delete nodeN && multipass purge` |
 
 
 ## Lỗi hay gặp
 
 
-| Triệu chứng                                 | Nguyên nhân                                                        |
+| Triệu chứng | Nguyên nhân |
 | ------------------------------------------- | ------------------------------------------------------------------ |
-| `cannot connect to the multipass socket`    | daemon chưa chạy                                                   |
-| `This node is not a swarm manager`          | đang đứng ở worker; `service`/`stack`/`node` chỉ chạy trên manager |
-| `no suitable node (scheduling constraints)` | drain hết node mà không còn worker                                 |
-| Replica kẹt `Preparing`/`Rejected`          | worker không pull được image — chưa push, sai `<DHUB_USER>`, hoặc repo Private thiếu `--with-registry-auth` |
-| `container ls` trống mà service vẫn 10/10   | đúng thiết kế — đang ở manager đã drain, dùng `docker service ps`  |
+| `cannot connect to the multipass socket` | daemon chưa chạy |
+| `This node is not a swarm manager` | đang đứng ở worker; `service`/`stack`/`node` chỉ chạy trên manager |
+| `no suitable node (scheduling constraints)` | drain hết node mà không còn worker |
+| Replica kẹt `Preparing`/`Rejected` | worker không pull được image — chưa push, sai `<DHUB_USER>`, hoặc repo Private thiếu `--with-registry-auth` |
+| `container ls` trống mà service vẫn 10/10 | đúng thiết kế — đang ở manager đã drain, dùng `docker service ps` |
 | `the attribute version is obsolete` (cảnh báo) | `version: '3.8'` đầu file nay bị Compose bỏ — chỉ cảnh báo, không chặn; xoá dòng đó cho sạch |
 | `port '8080' is already in use by service 'web'` | đã có service cùng tên/port từ lần trước (service swarm bền, không tự mất) — `docker service rm web` rồi tạo lại, hoặc `docker service update --image ... web` |
 
