@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="936" height="507" viewBox="0 0 936 507"><rect width="936" height="507" fill="#ffffff"/>
+<text x="465.0" y="33.7" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="24" fill="#1e40af" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">4 pattern multi-container Pod</text>
+<text x="465.0" y="63.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">cùng Pod  →  chung network/localhost + volume</text>
+<rect x="36" y="97" width="420" height="170" rx="12" fill="#94a3b8" fill-opacity="0.32" stroke="#94a3b8" stroke-width="1" stroke-opacity="0.32"/>
+<rect x="30" y="90" width="420" height="170" rx="12" fill="#ffffff" fill-opacity="1.0" stroke="#1e40af" stroke-width="2" stroke-opacity="1.0"/>
+<text x="54.0" y="118.4" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="20" fill="#1e40af" fill-opacity="1.0" text-anchor="start" xml:space="preserve">Init</text>
+<polyline points="54,132 426,132" fill="none" stroke="#1e40af" stroke-width="2" stroke-opacity="1.0"/>
+<text x="54.0" y="157.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">chạy TRƯỚC, tuần tự, xong rồi thoát</text>
+<text x="54.0" y="177.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">vd: chờ DB/migrate</text>
+<rect x="476" y="97" width="420" height="170" rx="12" fill="#94a3b8" fill-opacity="0.32" stroke="#94a3b8" stroke-width="1" stroke-opacity="0.32"/>
+<rect x="470" y="90" width="420" height="170" rx="12" fill="#ffffff" fill-opacity="1.0" stroke="#0d9488" stroke-width="2" stroke-opacity="1.0"/>
+<text x="494.0" y="118.4" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="20" fill="#0d9488" fill-opacity="1.0" text-anchor="start" xml:space="preserve">Sidecar</text>
+<polyline points="494,132 866,132" fill="none" stroke="#0d9488" stroke-width="2" stroke-opacity="1.0"/>
+<text x="494.0" y="157.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">chạy SONG SONG suốt đời app</text>
+<text x="494.0" y="177.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">vd: log shipper, proxy</text>
+<rect x="36" y="297" width="420" height="170" rx="12" fill="#94a3b8" fill-opacity="0.32" stroke="#94a3b8" stroke-width="1" stroke-opacity="0.32"/>
+<rect x="30" y="290" width="420" height="170" rx="12" fill="#ffffff" fill-opacity="1.0" stroke="#7c3aed" stroke-width="2" stroke-opacity="1.0"/>
+<text x="54.0" y="318.4" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="20" fill="#7c3aed" fill-opacity="1.0" text-anchor="start" xml:space="preserve">Adapter</text>
+<polyline points="54,332 426,332" fill="none" stroke="#7c3aed" stroke-width="2" stroke-opacity="1.0"/>
+<text x="54.0" y="357.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">chuẩn hoá output app</text>
+<text x="54.0" y="377.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">vd: format log/metrics</text>
+<rect x="476" y="297" width="420" height="170" rx="12" fill="#94a3b8" fill-opacity="0.32" stroke="#94a3b8" stroke-width="1" stroke-opacity="0.32"/>
+<rect x="470" y="290" width="420" height="170" rx="12" fill="#ffffff" fill-opacity="1.0" stroke="#b45309" stroke-width="2" stroke-opacity="1.0"/>
+<text x="494.0" y="318.4" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="20" fill="#b45309" fill-opacity="1.0" text-anchor="start" xml:space="preserve">Ambassador</text>
+<polyline points="494,332 866,332" fill="none" stroke="#b45309" stroke-width="2" stroke-opacity="1.0"/>
+<text x="494.0" y="357.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">proxy kết nối ra ngoài</text>
+<text x="494.0" y="377.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">vd: đại diện tới DB/cache</text>
+</svg>

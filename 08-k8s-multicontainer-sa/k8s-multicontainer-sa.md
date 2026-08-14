@@ -1,7 +1,5 @@
 # 08 · Multi-container Pod patterns & ServiceAccount
 
-> **Chặng 2** — trước: Volume/PV/PVC/StorageClass · kế tiếp: Chiến lược deploy
-
 **Mục tiêu:** Nắm 4 pattern multi-container Pod (init / sidecar / adapter / ambassador); hiểu cơ chế Pod chia sẻ network namespace + volume; tạo và gán ServiceAccount; hiểu luồng AuthN → AuthZ → RBAC cơ bản (Role / RoleBinding); biết token projected ≥1.24 khác gì token Secret cũ.
 **Nền:** Đã làm lab Chặng 1 (Pod, probe, `kubectl` cơ bản). Init container và sidecar đều sống trong Pod — cần chắc khái niệm Pod-as-execution-environment trước.
 
@@ -13,7 +11,7 @@ kubectl get nodes # 1 node STATUS=Ready
 
 ---
 
-![[multicontainer-patterns.excalidraw]]
+![4 pattern multi-container Pod](assets/multicontainer-patterns.png)
 
 ## 1. Pod Theory — tại sao multi-container?
 
@@ -49,6 +47,31 @@ kubectl explain pod.spec --recursive | grep -E 'initContainers|containers|volume
 ---
 
 ## 2. Init Pattern
+
+> **initContainers vs containers — hai "loại chỗ đứng" trong Pod (đọc trước khi vào chi tiết):**
+> Một Pod chứa nhiều container, nhưng K8s cho khai báo ở **2 danh sách khác nhau**, và **danh sách nào quyết định container đó chạy kiểu gì**:
+> ```yaml
+> spec:
+>   initContainers:      # DANH SÁCH 1: chạy TRƯỚC, xong thì BIẾN MẤT
+>   - name: chuan-bi
+>   containers:          # DANH SÁCH 2: chạy CHÍNH, sống DÀI HẠN
+>   - name: app
+> ```
+> Cùng cú pháp (image/command/volumeMounts), nhưng **đặt ở `initContainers` hay `containers` khác nhau hoàn toàn về vòng đời**.
+>
+> **`initContainers` = công nhân chuẩn bị công trường.** Chạy TRƯỚC mọi app container · tuần tự (từng cái xong hẳn mới tới cái kế) · phải `exit 0` rồi **chết luôn** (không sống tiếp) · chỉ khi TẤT CẢ init xong app mới được khởi · fail → Pod restart, chạy lại init từ đầu. Dùng cho **điều kiện tiên quyết**: chờ DB/DNS lên, clone code, set quyền file. *Ẩn dụ: tốp công nhân dọn nền + đổ móng, xong thì rời đi; nhà (app) chỉ xây sau khi họ xong.*
+>
+> **`containers` = người thuê ở dài hạn.** Chạy SONG SONG · sống DÀI HẠN (app phục vụ thật: nginx/API/DB + sidecar) · chết thì kubelet restart để giữ sống. *Ẩn dụ: gia đình dọn vào ở lâu dài, không "xong việc rồi đi".*
+>
+> | | `initContainers` | `containers` |
+> |---|---|---|
+> | Chạy khi nào | TRƯỚC, xong mới tới app | app chính, chạy ngay |
+> | Thứ tự | tuần tự (từng cái) | song song |
+> | Vòng đời | làm xong → **chết** | sống **dài hạn** |
+> | Chết thì | phải exit 0; fail → Pod restart từ đầu | kubelet restart để giữ sống |
+> | Dùng cho | chuẩn bị: chờ DB/DNS, clone code, set quyền | app phục vụ thật + sidecar |
+>
+> **Nối lab:** Pod `init-demo` có `wait-for-svc` (trong `initContainers`) lặp `nslookup my-svc` — DNS chưa có → chưa exit 0 → cứ treo → `app` (nginx, trong `containers`) **bị chặn ngoài cửa**. Vì thế `get pod` hiện `Init:0/1` (kẹt ở init 0/1, app chưa bật). Tạo Service `my-svc` → `nslookup` resolve được → `wait-for-svc` exit 0 → rời đi → nginx mới khởi → Pod `Running 1/1`.
 
 **Chốt:** init container khai báo trong `spec.initContainers[]` — chạy **tuần tự trước** mọi app container, phải `exit 0` mới tiếp; nếu fail Pod restart và chạy lại từ đầu nên code phải **idempotent**.
 
@@ -116,6 +139,17 @@ waiting
 ... ← loop cho đến khi my-svc lên DNS
 ```
 → **Verify:** thấy `Init:0/1` → `PodInitializing` → `Running` đúng trình tự.
+
+> **Gotcha thực chạy — busybox `nslookup` + search domain (bài học FQDN):** dùng `nslookup my-svc` (tên ngắn),
+> Pod kẹt `Init:0/1` **mãi không lên** dù đã `kubectl create service my-svc`. Log init container in liên tục
+> `** server can't find my-svc.svc.cluster.local: NXDOMAIN` — chú ý nó hỏi `my-svc.svc.cluster.local`,
+> **thiếu `.default.`**. Service nằm ở namespace `default` nên tên thật là `my-svc.default.svc.cluster.local`.
+> busybox (musl libc) **không iterate search domain đầy đủ** như glibc → không tự thử biến thể có `.default.`
+> → mãi NXDOMAIN. Chẩn đoán: `kubectl run dnstest --image=busybox --rm -it -- nslookup
+> my-svc.default.svc.cluster.local` resolve **được** ngay (ra ClusterIP) → chứng minh DNS ổn, chỉ do tên ngắn.
+> **Fix:** init container dùng **FQDN** `my-svc.default.svc.cluster.local` → unblock trong ~5s. Bài học:
+> **trong Pod, dùng FQDN cho DNS, đừng dựa search domain — nhất là image busybox/musl.** (Phụ: CoreDNS còn
+> cache NXDOMAIN ~30s nên kể cả tên đúng cũng có thể trễ tới 30s sau khi tạo Service.)
 
 ---
 
@@ -315,6 +349,26 @@ AuthN vs AuthZ — hay nhầm:
 
 **Dùng / không:** luôn phải hiểu đúng để debug. **Phản đề** hay gặp: nhầm `401` với `403` — 401 = token hết hạn / sai SA; 403 = SA đúng nhưng thiếu RoleBinding.
 
+> **kubeconfig — "địa chỉ cụm + chứng minh thư của bạn" (danh tính con người):** khi admin cấp cho bạn một file
+> kubeconfig để thao tác trên một cụm, đó chính là **credential AuthN** của bạn. File gồm **3 khối** ghép bằng
+> `context`:
+> ```yaml
+> clusters:   # ① nối tới ĐÂU: server (API server url) + certificate-authority-data (verify server)
+> users:      # ② bạn là AI + chứng minh bằng gì: client-certificate/key HOẶC token/OIDC
+> contexts:   # ③ ghép cluster + user + namespace mặc định thành 1 "hồ sơ"
+> current-context:   # đang dùng context nào
+> ```
+> **Cơ chế** khi gõ `kubectl get pods`: kubectl đọc kubeconfig → `current-context` cho biết server + credential
+> + namespace → mở HTTPS tới API server (verify cert server bằng CA, đính credential user) → API server chạy
+> **AuthN** (bạn là ai) → **AuthZ/RBAC** (được làm gì) → trả kết quả. kubectl là client "trần": **mọi tri thức về
+> cụm nằm trong kubeconfig**; không có nó kubectl không biết gõ đi đâu.
+> **kubeconfig KHÔNG chứa quyền** — quyền (RBAC) nằm trong cụm, admin gán cho danh tính `user` của bạn.
+> **Bảo mật:** `client-key`/`token` là credential sống → ai cầm file = đóng vai bạn (trong giới hạn RBAC). Không
+> commit vào git, `chmod 600`, lộ thì phải rotate. Nhiều cụm → `kubectl config get-contexts` +
+> `use-context <tên>`; luôn `kubectl config current-context` trước khi thao tác để không gõ nhầm cụm.
+> **Kiểm quyền được cấp:** `kubectl auth whoami` (mình là ai) · `kubectl auth can-i --list -n <ns>` (liệt kê toàn
+> bộ verb×resource được phép — biết mình "chỉ đọc" hay "sửa được").
+
 **Làm:**
 ```bash
 # Xem user identity trong kubeconfig (AuthN của bạn)
@@ -363,6 +417,31 @@ no ← SA default không có RoleBinding → deny
 | Nhận biết | `kubectl get secret` thấy `default-token-xxxxx` | Không thấy Secret đó |
 
 **Vì sao:** SA không có = anonymous; anonymous bị từ chối hầu hết mọi thứ. SA là bước đầu để cấp quyền có kiểm soát — tạo SA riêng cho mỗi workload thay vì dùng SA `default` (nguyên tắc least privilege).
+
+> **ServiceAccount vs User — người dùng SA hay không? (chỗ hay nhầm nhất):** ServiceAccount **KHÔNG dành cho con
+> người**. K8s tách danh tính thành 2 nhóm:
+>
+> | | **User** (con người) | **ServiceAccount** (máy/workload) |
+> |---|---|---|
+> | Dành cho | developer, admin | Pod, CI/CD, controller, operator |
+> | Là object trong K8s? | **KHÔNG** (K8s không quản user) | **CÓ** (`kubectl get sa`, trong namespace) |
+> | AuthN bằng | client cert, **OIDC** (Google/Okta/Azure AD), cloud IAM | JWT token mount trong Pod |
+> | Ai tạo | admin cấp ngoài K8s (cert/IdP) | `kubectl create serviceaccount` |
+> | Ví dụ danh tính | `alice@company.com` | `system:serviceaccount:default:service-reader` |
+>
+> K8s **không có bảng "users"** — không `kubectl create user` được; con người xác thực qua hệ thống ngoài
+> (cert/OIDC) rồi K8s chỉ nhìn "username" mà hệ thống đó khẳng định.
+>
+> **Cấp quyền cho developer trên từng namespace** → vẫn RBAC (Role/RoleBinding) y hệt, chỉ đổi `subject.kind`:
+> ```yaml
+> subjects:
+> - kind: User          # developer (con người)   — thay vì kind: ServiceAccount
+>   name: alice@company.com
+> # - kind: Group       # cả nhóm OIDC (vd team-backend) một lần
+> ```
+> Kết hợp **namespace** (ranh giới cô lập) + **RoleBinding** (scope 1 ns) = "alice có `edit` trong `ns-a`, không
+> đụng `ns-b`". `ClusterRoleBinding` = quyền toàn cluster. Nguyên tắc: **người → User/OIDC; máy → ServiceAccount**;
+> cả hai cùng bị RBAC gác, cùng dùng namespace để cô lập.
 
 **Cơ chế:** kubelet request token từ API server (TokenRequest API) với audience và thời hạn cụ thể → mount vào `/var/run/secrets/kubernetes.io/serviceaccount/token` dưới dạng projected volume. Token này là JWT với `iss`, `aud`, `exp` — API server verify chữ ký và expiry trước khi accept.
 
@@ -520,6 +599,16 @@ $ kubectl exec sa-rbac-demo -c main -- curl -s http://localhost:8001/api/v1/name
  "message": "pods is forbidden: User \"system:serviceaccount:default:service-reader\" cannot list resource \"pods\"..."
 ```
 → **Verify:** `can-i` yes/no khớp với kết quả curl; services trả về, pods Forbidden → RBAC hoạt động đúng.
+
+> **Thực chạy (capstone, OrbStack):** SA `service-reader` chỉ có Role đọc `services`. Pod `sa-rbac-demo` chạy
+> dưới SA đó + container `ambassador` (`kubectl proxy --port=8001`); container `main` (curl) **chỉ gọi
+> `localhost:8001`**, không cầm token, không biết địa chỉ API server.
+> - `curl .../services` → `{ "kind": "ServiceList", ... }` = **allow** (Role cấp `services`). Ambassador đính SA
+>   token giùm → đây là **ambassador pattern thật** (request đi RA, khác adapter đọc output ĐẾN).
+> - `curl .../pods` → `"pods is forbidden: User \"system:serviceaccount:default:service-reader\" cannot list
+>   resource \"pods\"..."` → **403** (Role không cấp `pods`).
+> Cả module gói trong 1 Pod: **SA (danh tính) → AuthN → Role/RoleBinding (quyền) → AuthZ → allow/403**. `auth
+> can-i --as=system:serviceaccount:default:service-reader` khớp y hệt kết quả curl (yes services / no pods).
 
 ---
 

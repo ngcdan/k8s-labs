@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: sidecar-demo
+spec:
+  volumes:
+  - name: shared-html
+    emptyDir: {}
+  containers:
+  # app chính: nginx serve file từ shared volume
+  - name: nginx
+    image: nginx:alpine
+    volumeMounts:
+    - name: shared-html
+      mountPath: /usr/share/nginx/html
+  # sidecar: ghi timestamp mỗi 5s vào shared volume (kiểu git-sync/content-writer)
+  - name: content-writer
+    image: busybox
+    command: ['sh', '-c', 'while true; do echo "<h1>$(date)</h1>" > /html/index.html; sleep 5; done']
+    volumeMounts:
+    - name: shared-html
+      mountPath: /html

@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: sa-rbac-demo
+spec:
+  serviceAccountName: service-reader       # Pod chạy dưới danh tính SA này (không phải default)
+  containers:
+  # app chính: chỉ gọi localhost, không cần biết địa chỉ/token API server
+  - name: main
+    image: curlimages/curl:latest
+    command: ['sh', '-c', 'sleep 3600']
+  # ambassador: kubectl proxy nhận localhost:8001 → forward tới API server kèm SA token
+  - name: ambassador
+    image: bitnami/kubectl:latest
+    command: ['kubectl', 'proxy', '--port=8001']

@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: adapter-demo
+spec:
+  containers:
+  - name: web
+    image: nginx:alpine
+    ports:
+    - containerPort: 80
+  # adapter: mô phỏng đọc localhost:80, ghi metrics format Prometheus
+  - name: metrics-adapter
+    image: busybox
+    command: ['sh', '-c', 'while true; do echo "nginx_up 1" > /tmp/metrics; sleep 10; done']
