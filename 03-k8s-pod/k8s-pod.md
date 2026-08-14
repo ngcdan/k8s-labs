@@ -4,11 +4,8 @@ Trước: Multi-stage & registry · kế tiếp: ReplicaSet & Deployment.
 
 **Mục tiêu:** hiểu Pod là gì và tính chất cốt lõi; tạo Pod cả imperative lẫn declarative; thạo bộ lệnh `kubectl` soi/debug (`get`/`describe`/`logs`/`exec`/`port-forward`/`delete`); thấy tận mắt "Pod trần chết là mất" (không có controller); và viết liveness/readiness probe.
 **Nền:** đã đúc & chạy được image (2 lab Docker) — Pod chính là thứ *bọc* image đó để K8s quản. Lab `docker-swarm` đã cho trực giác desired-state/self-healing; giờ dịch sang `kubectl`.
-**⏱** 60–75 phút · **Sân:** host local (OrbStack Kubernetes).
 
-> Mỗi mục: **Chốt → Vì sao → Cơ chế → Dùng/không → Làm → Kết quả** (output để đối chiếu). Đọc để *hiểu*, gõ để *thấy*.
-
-## Tiền đề (1 lần)
+## Tiền đề
 Bật cụm k8s local: **OrbStack → Settings → Kubernetes → Enable** (đợi ~1 phút). Kiểm tra:
 ```bash
 kubectl config use-context orbstack
@@ -341,11 +338,10 @@ kubectl delete pod web my-nginx live --ignore-not-found
 
 ---
 
-## Đủ khi (nói trơn bằng lời mình)
+## Đủ khi
 ① Pod là gì + vì sao container cùng Pod chung IP/localhost · ② imperative vs declarative, khi nào dùng cái nào · ③ 4 lệnh kubectl để soi 1 Pod lỗi, theo thứ tự · ④ vì sao Pod trần xóa là mất (ownerReferences/controller) · ⑤ liveness vs readiness khác gì + phản đề probe nặng.
 
-## Recall — tự kiểm (cuối buổi)
-
+## Recall
 1. Pod là gì? Nhiều container trong 1 Pod chia sẻ những gì?
 2. Pod có span nhiều node không? Nhận loại IP gì?
 3. `kubectl run` vs `kubectl apply -f` — khác gì, khi nào dùng cái nào?

@@ -2,11 +2,8 @@
 
 **Mục tiêu:** hiểu tại sao cần tách data khỏi Pod; phân biệt emptyDir vs hostPath vs PV/PVC; biết cách dùng StorageClass với dynamic provisioning; thực hành tạo PVC trên OrbStack, mount vào Pod, xoá Pod rồi tạo lại thấy data vẫn còn; hiểu CSI là lớp plugin nằm giữa K8s và hệ thống lưu trữ ngoài.
 **Nền:** đã biết Pod là ephemeral — xoá Pod là mất container filesystem. Lab này giải quyết câu hỏi "vậy data bền vững đặt ở đâu?".
-**⏱** 60–75 phút · **Sân:** host local (OrbStack Kubernetes).
 
-> Mỗi mục: **Chốt → Vì sao → Cơ chế → Dùng/không → Làm → Kết quả**. Đọc để *hiểu*, gõ để *thấy*.
-
-## Tiền đề (1 lần)
+## Tiền đề
 ```bash
 kubectl config use-context orbstack
 kubectl get nodes # 1 node STATUS=Ready
@@ -383,10 +380,10 @@ kubectl delete pod shared-vol --ignore-not-found
 
 ---
 
-## Đủ khi (nói trơn bằng lời mình)
+## Đủ khi
 ① emptyDir vs hostPath khác gì, khi nào dùng cái nào · ② tại sao cần tách data ra PV/PVC thay vì để trong container · ③ PV vs PVC khác gì, ai tạo cái nào · ④ accessModes RWO/RWX/ROX nghĩa là gì, block vs file hỗ trợ chế độ nào · ⑤ Retain vs Delete reclaim policy khi nào nên dùng · ⑥ StorageClass + dynamic provisioning giải quyết vấn đề gì của static provisioning · ⑦ CSI là gì, thay thế in-tree driver như thế nào.
 
-## Recall — tự kiểm (cuối buổi)
+## Recall
 Tự trả lời trước, xong hết mới cuộn xuống Đáp án.
 
 **Nhóm cơ bản:**

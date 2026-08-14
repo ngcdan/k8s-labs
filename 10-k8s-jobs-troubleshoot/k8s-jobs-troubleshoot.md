@@ -4,11 +4,8 @@
 
 **Mục tiêu:** biết khi nào dùng Job thay vì Deployment; viết YAML cho Job (completions/parallelism/backoffLimit) và CronJob (schedule cron); hiểu HPA tự scale theo CPU; thạo luồng chẩn đoán vàng `describe → logs --previous → get events`; đọc được Prometheus/Grafana dashboard cơ bản.
 **Nền:** đã thạo Deployment/ReplicaSet (chặng 2) — Job và CronJob đặt trên nền Pod template giống hệt, chỉ khác controller.
-**⏱** 75–90 phút · **Sân:** host local (OrbStack Kubernetes).
 
-> Mỗi mục: **Chốt → Vì sao → Cơ chế → Dùng/không → Làm → Kết quả** (output để đối chiếu). Đọc để *hiểu*, gõ để *thấy*.
-
-## ⚙️ Tiền đề (1 lần)
+## Tiền đề
 ```bash
 kubectl config use-context orbstack
 kubectl get nodes   # 1 node STATUS=Ready
@@ -460,10 +457,10 @@ kubectl delete pod bad-image crash debug --ignore-not-found
 
 ---
 
-## ✅ Đủ khi (nói trơn bằng lời mình)
+## Đủ khi
 ① Job vs Deployment khác gì về mục đích · ② 3 field chính của Job (completions/parallelism/backoffLimit) và restartPolicy · ③ 5 trường cron + 3 giá trị concurrencyPolicy · ④ HPA cần Metrics Server, công thức tính desiredReplicas · ⑤ 3 tầng monitoring làm gì khác nhau · ⑥ luồng chẩn đoán 5 bước theo thứ tự · ⑦ ErrImagePull và CrashLoopBackOff → lệnh tiếp theo là gì.
 
-## 🧠 Recall — tự kiểm (cuối buổi)
+## Recall
 Tự trả lời trước, xong hết mới cuộn xuống Đáp án.
 
 1. Job và Deployment khác gì nhau về mục đích sử dụng?

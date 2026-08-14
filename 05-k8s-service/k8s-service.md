@@ -4,11 +4,8 @@ Trước: [04 · ReplicaSet & Deployment](../04-k8s-deployment/k8s-deployment.md
 
 **Mục tiêu:** hiểu vì sao Service là lớp địa chỉ cần thiết khi Pod đổi IP liên tục; nắm label selector nối Service → Pod; phân biệt rõ 4 loại Service; tạo được ClusterIP + NodePort cả `kubectl expose` lẫn YAML; tra `endpoints`, test gọi bằng DNS nội bộ.
 **Nền:** đã có Deployment chạy được — Service là thứ cho phép gọi vào các Pod của Deployment đó mà không cần biết IP.
-**⏱** 50–65 phút · **Sân:** host local (OrbStack Kubernetes).
 
-> Mỗi mục: **Chốt → Vì sao → Cơ chế → Dùng/không → Làm → Kết quả** (output để đối chiếu). Đọc để *hiểu*, gõ để *thấy*.
-
-## Tiền đề (1 lần)
+## Tiền đề
 ```bash
 kubectl config use-context orbstack
 kubectl get nodes    # 1 node STATUS=Ready
@@ -287,10 +284,10 @@ rm -f /tmp/web-clusterip.yml /tmp/web-nodeport.yml
 
 ---
 
-## Đủ khi (nói trơn bằng lời mình)
+## Đủ khi
 ① vì sao không thể dùng IP Pod làm địa chỉ liên lạc · ② label selector hoạt động thế nào, xem Endpoints ở đâu · ③ 4 loại Service, mỗi loại dùng khi nào · ④ `port` vs `targetPort` vs `nodePort` khác nhau thế nào · ⑤ DNS nội bộ: gọi Service bằng tên, không cần IP.
 
-## Recall — tự kiểm (cuối buổi)
+## Recall
 Tự trả lời trước, xong hết mới cuộn xuống Đáp án.
 
 1. Pod có thể thay đổi IP khi nào? Tại sao không dùng IP Pod làm địa chỉ gọi?

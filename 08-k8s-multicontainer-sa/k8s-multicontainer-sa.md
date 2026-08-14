@@ -4,11 +4,8 @@
 
 **Mục tiêu:** Nắm 4 pattern multi-container Pod (init / sidecar / adapter / ambassador); hiểu cơ chế Pod chia sẻ network namespace + volume; tạo và gán ServiceAccount; hiểu luồng AuthN → AuthZ → RBAC cơ bản (Role / RoleBinding); biết token projected ≥1.24 khác gì token Secret cũ.
 **Nền:** Đã làm lab Chặng 1 (Pod, probe, `kubectl` cơ bản). Init container và sidecar đều sống trong Pod — cần chắc khái niệm Pod-as-execution-environment trước.
-**⏱** 75–90 phút · **Sân:** host local (OrbStack Kubernetes).
 
-> Mỗi mục: **Chốt → Vì sao → Cơ chế → Dùng/không → Làm → Kết quả** (output để đối chiếu). Đọc để *hiểu*, gõ để *thấy*.
-
-## Tiền đề (1 lần)
+## Tiền đề
 ```bash
 kubectl config use-context orbstack
 kubectl get nodes # 1 node STATUS=Ready
@@ -537,10 +534,10 @@ kubectl delete serviceaccount service-reader --ignore-not-found
 
 ---
 
-## Đủ khi (nói trơn bằng lời mình)
+## Đủ khi
 ① Pod chia sẻ gì giữa các container — localhost và volume, tại sao không phải PID · ② Init container khác sidecar: khai báo ở đâu, vòng đời thế nào, vì sao code phải idempotent · ③ Adapter vs ambassador — cái nào đọc output của app, cái nào proxy request ra ngoài · ④ AuthN vs AuthZ — câu hỏi khác nhau, error code khác nhau · ⑤ SA là gì, ai tạo cho Pod nếu mình không khai báo, token mount ở đâu · ⑥ Token SA từ 1.24 thay đổi gì — projected vs Secret · ⑦ Role + RoleBinding — khai báo cái gì, gán cho ai, scope ra sao.
 
-## Recall — tự kiểm (cuối buổi)
+## Recall
 Tự trả lời trước, xong hết mới cuộn xuống Đáp án.
 
 **Vòng 1 — Multi-container**

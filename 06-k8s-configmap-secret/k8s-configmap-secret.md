@@ -4,11 +4,8 @@
 
 **Mục tiêu:** hiểu vì sao phải tách config/secret khỏi image; biết tạo ConfigMap và Secret bằng nhiều cách; dùng được hai kỹ thuật tiêu thụ (env var và volume mount); nắm rõ điểm khác biệt quan trọng giữa hai kỹ thuật đó; và tránh bẫy "base64 không phải mã hoá".
 **Nền:** đã biết Pod, Deployment, Service — ConfigMap/Secret là resource K8s thêm vào, Pod tham chiếu qua tên.
-**⏱** 60–75 phút · **Sân:** host local (OrbStack Kubernetes).
 
-> Mỗi mục: **Chốt → Vì sao → Cơ chế → Dùng/không → Làm → Kết quả** (output để đối chiếu). Đọc để *hiểu*, gõ để *thấy*.
-
-## Tiền đề (1 lần)
+## Tiền đề
 ```bash
 kubectl config use-context orbstack
 kubectl get nodes            # 1 node STATUS=Ready
@@ -312,10 +309,10 @@ kubectl delete secret db-passwords --ignore-not-found
 
 ---
 
-## Đủ khi (nói trơn bằng lời mình)
+## Đủ khi
 ① Vì sao tách config khỏi image — 12-factor + multi-env + multi-node · ② 4 cách tạo ConfigMap và kết quả `data` khác nhau thế nào (`--from-file` vs `--from-env-file`) · ③ env var vs volume mount — cập nhật động hay phải restart · ④ base64 ≠ mã hoá — hệ quả với Secret manifest trong git thường · ⑤ `secretKeyRef` vs `configMapKeyRef`; vì sao cần SealedSecrets trong GitOps.
 
-## Recall — tự kiểm (cuối buổi)
+## Recall
 Tự trả lời trước, xong hết mới cuộn xuống Đáp án.
 
 **ConfigMap:**

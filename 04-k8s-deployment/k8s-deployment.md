@@ -4,12 +4,8 @@ Trước: [03 · Pod](../03-k8s-pod/k8s-pod.md) · kế tiếp: Service.
 
 **Mục tiêu:** hiểu tại sao Deployment ra đời thay thế Pod trần; nắm chuỗi Deployment → ReplicaSet → Pod; tạo và quản Deployment bằng YAML + kubectl; tự tay scale, rolling update, rollout undo — thấy zero-downtime hoạt động thật.
 **Nền:** lab Pod đã cho thấy "Pod trần xóa là mất" (`ownerReferences` rỗng). Lab này lắp controller vào để cái chết của 1 Pod không còn là vấn đề.
-**⏱** 60–75 phút · **Sân:** host local (OrbStack Kubernetes).
 
-> Mỗi mục: **Chốt → Vì sao → Cơ chế → Dùng/không → Làm → Kết quả** (output để đối chiếu). Đọc để *hiểu*, gõ để *thấy*.
-
-## Tiền đề (1 lần)
-
+## Tiền đề
 ```bash
 kubectl config use-context orbstack
 kubectl get nodes    # 1 node STATUS=Ready
@@ -446,12 +442,10 @@ kubectl get all    # xác nhận sạch (chỉ còn kubernetes service)
 
 ---
 
-## Đủ khi (nói trơn bằng lời mình)
-
+## Đủ khi
 ① ReplicaSet làm gì khi Pod chết, vì sao nó là nguồn của "self-healing" · ② Chuỗi 3 tầng Deployment → ReplicaSet → Pod và vai trò từng tầng · ③ Viết YAML Deployment từ đầu, giải thích vì sao `selector.matchLabels` phải khớp `template.metadata.labels` · ④ Scale cả hai cách (imperative + declarative) và biết khi nào dùng cái nào · ⑤ Mô tả rolling update xảy ra thế nào bước-từng-bước · ⑥ Dùng `rollout status`, `rollout history`, `rollout undo` đúng lúc · ⑦ Giải thích vì sao production luôn chọn declarative.
 
-## Recall — tự kiểm (cuối buổi)
-
+## Recall
 Tự trả lời trước, xong hết mới cuộn xuống Đáp án.
 
 1. ReplicaSet làm gì khi 1 Pod trong nhóm nó quản bị xóa?

@@ -26,7 +26,6 @@ Kết quả khảo sát trên máy lab tham chiếu:
 | brew / git | có sẵn (`/opt/homebrew/bin/`) |
 | Multipass | chưa cài → Bước 1 |
 
-
 Chọn số node theo RAM (mỗi VM đặt `--memory 2G`):
 
 | RAM máy | Số node |
@@ -34,7 +33,6 @@ Chọn số node theo RAM (mỗi VM đặt `--memory 2G`):
 | ≥ 32 GB | 5 (3 manager + 2 worker) |
 | 16–24 GB | 5 với `--memory 2G`, hoặc 3 (1 manager + 2 worker) |
 | &lt; 16 GB | 2–3 node, hoặc swarm 1 node trên Docker sẵn có |
-
 
 24 GB: chốt 5 node × 2 GB = 10 GB, cộng macOS ~6 GB = 16 GB / 24 GB, dư ~8 GB.
 
@@ -388,7 +386,6 @@ Muốn giữ cụm, chỉ cần `docker stack rm counter`. Muốn bỏ swarm mà
 
 ## Bảng lệnh sống còn
 
-
 | Việc | Lệnh |
 | -------------------- | --------------------------------------------------------------------- |
 | Tạo VM | `multipass launch 24.04 --name nodeN --cloud-init ~/docker-node.yaml` |
@@ -405,9 +402,7 @@ Muốn giữ cụm, chỉ cần `docker stack rm counter`. Muốn bỏ swarm mà
 | Soi stack | `docker stack ls|services|ps` |
 | Xoá VM | `multipass delete nodeN && multipass purge` |
 
-
 ## Lỗi hay gặp
-
 
 | Triệu chứng | Nguyên nhân |
 | ------------------------------------------- | ------------------------------------------------------------------ |
@@ -418,7 +413,6 @@ Muốn giữ cụm, chỉ cần `docker stack rm counter`. Muốn bỏ swarm mà
 | `container ls` trống mà service vẫn 10/10 | đúng thiết kế — đang ở manager đã drain, dùng `docker service ps` |
 | `the attribute version is obsolete` (cảnh báo) | `version: '3.8'` đầu file nay bị Compose bỏ — chỉ cảnh báo, không chặn; xoá dòng đó cho sạch |
 | `port '8080' is already in use by service 'web'` | đã có service cùng tên/port từ lần trước (service swarm bền, không tự mất) — `docker service rm web` rồi tạo lại, hoặc `docker service update --image ... web` |
-
 
 ## Bẫy đã dính
 

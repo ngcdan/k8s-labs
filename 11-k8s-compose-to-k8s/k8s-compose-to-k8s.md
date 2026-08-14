@@ -4,12 +4,8 @@
 
 **Mục tiêu:** hiểu tại sao Compose không thay thế được K8s ở production; thạo mapping `service → Deployment+Service+ConfigMap+PVC`; dùng Kompose convert 1 compose.yml; hiểu vòng lặp phát triển cục bộ của Skaffold; nắm Kustomize overlay và Helm chart ở mức "đọc/chỉnh được"; hiểu Argo CD GitOps.  
 **Nền:** đã qua Deployment, Service, ConfigMap, Secret, Storage (Chặng 1–3).  
-**⏱** 90–120 phút · **Sân:** host local (OrbStack Kubernetes).
 
-> Mỗi mục: **Chốt → Vì sao → Cơ chế → Dùng/không → Làm → Kết quả** (output để đối chiếu).
-
-## ⚙️ Tiền đề (1 lần)
-
+## Tiền đề
 ```bash
 kubectl config use-context orbstack
 kubectl get nodes          # STATUS=Ready
@@ -677,10 +673,10 @@ kubectl delete namespace guestbook argocd --ignore-not-found
 
 ---
 
-## ✅ Đủ khi (nói trơn bằng lời mình)
+## Đủ khi
 ① Compose vs K8s — mỗi thứ giải quyết vấn đề gì, không phải thay thế nhau · ② 1 `service` Compose → những K8s resource nào, vì sao tách · ③ `kompose convert` sinh gì, cần làm gì trước khi commit YAML đó lên Git · ④ Skaffold `dev` vs `run` khác gì, vì sao `dev` chậm với Angular/React · ⑤ Kustomize base/overlay — overlay chỉ chứa phần khác biệt, base thay đổi overlay tự hưởng lợi · ⑥ Helm chart/values/release — `install`, `upgrade`, `rollback`, khác Kustomize điểm nào · ⑦ Argo CD Application source/destination, auto-sync + selfHeal là gì.
 
-## 🧠 Recall — tự kiểm (cuối buổi)
+## Recall
 Tự trả lời trước khi cuộn xuống Đáp án.
 
 1. Compose container chết khác gì K8s Pod chết?

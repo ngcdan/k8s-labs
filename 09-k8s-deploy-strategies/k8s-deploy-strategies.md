@@ -4,11 +4,8 @@
 
 **Mục tiêu:** hiểu 4 chiến lược triển khai (Rolling, Recreate, Canary, Blue-Green); thạo lệnh `rollout status/history/undo`; mô phỏng canary và blue-green bằng label + Service selector trên OrbStack; biết khi nào chọn chiến lược nào.
 **Nền:** đã làm lab Deployment/ReplicaSet — biết `kubectl apply`, label, selector, Service LoadBalancer.
-**⏱** 60–80 phút · **Sân:** host local (OrbStack Kubernetes).
 
-> Mỗi mục: **Chốt → Vì sao → Cơ chế → Dùng/không → Làm → Kết quả** (output để đối chiếu). Đọc để *hiểu*, gõ để *thấy*.
-
-## Tiền đề (1 lần)
+## Tiền đề
 ```bash
 kubectl config use-context orbstack
 kubectl get nodes # 1 node STATUS=Ready
@@ -484,10 +481,10 @@ kubectl delete svc myapp-svc nginx-public nginx-green-test --ignore-not-found
 
 ---
 
-## Đủ khi (nói trơn bằng lời mình)
+## Đủ khi
 ① rolling update hoạt động thế nào, maxSurge/maxUnavailable kiểm soát gì · ② rollback bằng lệnh nào, revision history là gì · ③ canary chia traffic bằng cơ chế nào (label + replicas ratio) · ④ blue-green khác canary chỗ nào (user không thấy cả hai, chi phí 2x) · ⑤ khi nào dùng Recreate thay Rolling.
 
-## Recall — tự kiểm (cuối buổi)
+## Recall
 Tự trả lời trước, xong hết mới cuộn xuống Đáp án.
 
 **Danh sách A — khái niệm:**

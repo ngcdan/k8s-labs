@@ -4,9 +4,6 @@ Chương 1/2 của module Docker images. Kế tiếp: [02 · Multi-stage & regis
 
 **Mục tiêu:** tự đúc image từ Dockerfile, hiểu **vì sao** image bất biến & layer-cache khiến build nhanh, chạy container có port + logs, dùng volume giữ data.
 **Nền:** lab `docker-swarm` bạn dùng image dựng sẵn; buổi này lùi xuống nền — **tự đúc ra image đó**. Image chính là thứ Pod chạy ở các chặng K8s sau.
-**⏱** 60–75 phút · **Sân:** host local (OrbStack), không cần cloud.
-
-> Mỗi mục: **Chốt → Vì sao → Cơ chế → Dùng/không → Làm → Kết quả** (output để đối chiếu). Đọc để *hiểu*, gõ để *thấy*.
 
 ---
 
@@ -331,10 +328,10 @@ docker rmi nodeapp crashapp 2>/dev/null
 
 ---
 
-## Đủ khi (nói trơn bằng lời mình)
+## Đủ khi
 ① image vs container (+ vì sao không phải VM) · ② layer-cache + vì sao thứ tự Dockerfile quyết định tốc độ · ③ image immutable, "update" = tag mới · ④ tag vs digest · ⑤ exit 137 nghĩa gì · ⑥ `docker logs` khi `ps` trống · ⑦ volume dev vs prod + vì sao container là cattle.
 
-## Recall — tự kiểm (cuối buổi)
+## Recall
 Tự trả lời trước, xong hết mới cuộn xuống Đáp án.
 
 1. Container khác VM ở điểm cốt lõi nào, vì sao bật nhanh hơn nhiều?

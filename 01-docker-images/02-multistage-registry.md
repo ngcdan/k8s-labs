@@ -4,9 +4,6 @@ Chương 2/2 của module Docker images. Trước: [01 · Docker first app](01-f
 
 **Mục tiêu:** hiểu vì sao image production phải nhỏ & sạch; đọc được quan hệ layer↔size (kể cả bẫy "xóa file không giảm size"); dùng **multi-stage build** để tách builder nặng khỏi runtime gọn; sắp xếp Dockerfile cho build-cache hiệu quả; và phân biệt **tag vs digest** khi kéo image từ registry.
 **Nền:** tiếp lab *Docker first app* (đã biết build/run/layer-cache cơ bản). Đây là "nâng cấp" cách đúc image sao cho gọn + an toàn — chuẩn để build image cho catalog sau này.
-**⏱** 60–75 phút · **Sân:** host local (OrbStack).
-
-> Mỗi mục: **Chốt → Vì sao → Cơ chế → Dùng/không → Làm → Kết quả** (output để đối chiếu). Đọc để *hiểu*, gõ để *thấy*.
 
 ---
 
@@ -319,10 +316,10 @@ rm -f ~/dev/k8s-labs/01-docker-images/app/multistage/{waste,bad,good,cache,one,m
 
 ---
 
-## Đủ khi (nói trơn bằng lời mình)
+## Đủ khi
 ① `RUN rm` layer sau không giảm size — vì sao (whiteout) · ② 3 cách giảm size (base nhỏ · gộp RUN+dọn · .dockerignore) · ③ cache vỡ tại đâu thì chạy lại từ đó — vì sao tách `COPY` dep giúp cache · ④ multi-stage tách builder/runtime: `FROM … AS`, `COPY --from`, `--target` · ⑤ tag vs digest — vì sao prod pin digest.
 
-## Recall — tự kiểm (cuối buổi)
+## Recall
 Tự trả lời trước, xong hết mới cuộn xuống Đáp án.
 
 1. `RUN rm /big` ở layer sau có làm image nhỏ lại không? Vì sao?
