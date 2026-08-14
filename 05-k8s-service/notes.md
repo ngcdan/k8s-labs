@@ -135,3 +135,60 @@ ClusterIP + tên DNS; traffic ngoài vào qua LoadBalancer (cloud/MetalLB cấp 
 | NodePort/LoadBalancer | lộ traffic ra ngoài cluster |
 | `<none>` endpoints = selector sai | bước debug đầu tiên |
 </details>
+
+## Ôn tập — đào sâu
+
+<details>
+<summary>13. Ai VIẾT EndpointSlice, ai ĐỌC nó? (đừng gộp controller với kube-proxy)</summary>
+
+Đây là chỗ hay lẫn nhất. Có **3 object/thành phần khác nhau**, KHÔNG phải một:
+
+```
+Service (bạn tạo)  ──selector: app=web──►  EndpointSlice (tự sinh)  ──►  [Pod .24, Pod .25, ...]
+   - có ClusterIP + selector                   - danh sách IP:port các Pod KHỚP selector VÀ Ready
+```
+
+| Thành phần | Vai trò | Làm gì với EndpointSlice |
+|---|---|---|
+| **endpointslice-controller** (trong kube-controller-manager) | **TẠO & cập nhật** | Quét Pod khớp selector + Ready → ghi IP vào slice; Pod chết → gỡ IP; Pod mới Ready → thêm IP |
+| **kube-proxy** | **ĐỌC** | Đọc slice → dịch thành iptables/ipvs rule trên mỗi node để DNAT |
+
+→ **controller VIẾT bảng, kube-proxy ĐỌC bảng, Service chỉ trỏ tới bảng.** EndpointSlice KHÔNG phải "object
+service" và KHÔNG do kube-proxy tạo. iptables/ipvs rule là **sản phẩm của kube-proxy**, không phải nội dung
+của EndpointSlice.
+</details>
+
+<details>
+<summary>14. ClusterIP là IP "ma" — vậy <code>curl ClusterIP:port</code> chạy được nhờ đâu? (DNAT / iptables / ipvs cho người không rành mạng)</summary>
+
+**ClusterIP là IP không gắn vào card mạng nào cả** — không máy/Pod nào thực sự "cầm" nó. Gói tin tới ClusterIP
+chạy được là nhờ **kernel Linux chặn lại giữa đường và tráo địa chỉ đích** sang IP Pod thật.
+
+**NAT = Network Address Translation** = đổi địa chỉ trên gói tin (như lá thư có địa-chỉ-gửi & địa-chỉ-nhận):
+- **DNAT (Destination NAT)** = sửa **địa chỉ NHẬN** (đích). Đây là cái Service dùng.
+- **SNAT (Source NAT)** = sửa địa chỉ GỬI (nguồn).
+
+```
+Trước DNAT:  [đích = 10.96.0.50:8080]   ← ClusterIP ma + port Service
+Sau  DNAT:   [đích = 10.244.1.25:80 ]   ← IP Pod thật + targetPort container
+```
+
+DNAT vừa đổi **IP** (ClusterIP→PodIP) vừa đổi **port** (`port`→`targetPort`) — chính là chỗ `8080→80` xảy ra.
+
+**iptables** và **ipvs** = 2 cơ chế CÓ SẴN trong kernel Linux (không phải của K8s) để lọc/định tuyến/biến đổi
+gói tin. kube-proxy dùng một trong hai để **viết luật DNAT**. Coi cả hai là "sổ luật DNAT trong kernel";
+iptables mặc định (cụm nhỏ/vừa), ipvs tối ưu cho cụm lớn hàng nghìn Service (iptables chậm dần khi luật quá
+nhiều).
+
+**Load balancing** đến từ đây: Service có 3 Pod → EndpointSlice liệt kê 3 IP → kube-proxy viết luật "bốc ngẫu
+nhiên 1 trong 3 Pod IP để DNAT" → kernel tự cân tải, **không cần phần mềm load balancer riêng**.
+
+Chuỗi trách nhiệm đầy đủ (khi gõ `curl 10.96.0.50:8080`):
+1. **endpointslice-controller** quét Pod Ready → viết danh sách IP vào EndpointSlice.
+2. **kube-proxy** đọc slice → viết luật DNAT vào iptables/ipvs của kernel mỗi node.
+3. **kernel Linux** thực thi: gói tới ClusterIP → DNAT sang một Pod IP thật (cân tải ngẫu nhiên).
+
+3 lớp: **controller biết-ai → kube-proxy dịch-thành-luật → kernel thực-thi.** ClusterIP "ma" hoạt động được
+nhờ tầng kernel tráo địa chỉ, chứ bản thân IP đó không có thật.
+</details>
+

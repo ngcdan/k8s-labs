@@ -110,3 +110,27 @@ container nhận **plaintext** cả qua env var lẫn volume file. Lab thật: `
 | base64 ≠ mã hoá | SealedSecrets/Vault cho GitOps |
 | Secret chỉ tới node cần + tmpfs | giảm attack surface |
 </details>
+
+## Ôn tập — đào sâu
+
+<details>
+<summary>12. Đổi ConfigMap mà inject qua env var — làm sao ép Pod đọc giá trị mới? (<code>kubectl rollout restart</code>)</summary>
+
+Env var **đóng băng lúc container start** (kernel không sửa được biến môi trường của process đang chạy). Muốn
+env đọc giá trị mới → phải có **Pod mới**. Cách chuẩn, không downtime:
+
+```
+kubectl edit configmap game-config              # sửa giá trị
+kubectl rollout restart deployment/game         # ép thay toàn bộ Pod bằng Pod mới sạch
+kubectl rollout status deployment/game          # chờ rolling xong
+```
+
+`rollout restart` = **rolling update giả**: kubectl chèn một annotation timestamp
+(`kubectl.kubernetes.io/restartedAt`) vào pod-template → Deployment nghĩ "có bản mới" → đẻ RS mới, thay Pod
+từng cái một (luôn còn Pod phục vụ). Pod mới start → đọc lại ConfigMap → có env mới. Chi tiết cơ chế: notes
+module 04, câu 17.
+
+Đối chiếu với **volume mount**: KHÔNG cần restart — kubelet tự sync file sau ~30–60s (atomic swap symlink,
+câu 5). Chỉ **env var** mới cần `rollout restart`.
+</details>
+

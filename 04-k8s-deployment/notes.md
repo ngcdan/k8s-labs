@@ -141,3 +141,78 @@ vào Pod đang khởi động chưa ổn định (đặc biệt quan trọng tro
 | RS cũ `replicas=0` làm checkpoint | `rollout undo` rollback tức thì |
 | declarative + Git | GitOps, Git là nguồn sự thật |
 </details>
+
+## Ôn tập — đào sâu
+
+<details>
+<summary>15. Rolling update chạy qua <b>2 ReplicaSet song song</b> — hình dung từng bước</summary>
+
+Deployment KHÔNG sửa Pod cũ. Nó tạo **RS mới** rồi **dịch dần**: tăng replicas RS mới, giảm replicas RS cũ,
+từng Pod một:
+
+```
+Trước:   RS-cũ (nginx:1.25) = 3 Pod        RS-mới (1.26) = 0 Pod
+                    ↓ rolling, dịch dần từng bước ↓
+Giữa:    RS-cũ = 2                          RS-mới = 1
+         RS-cũ = 1                          RS-mới = 2
+Sau:     RS-cũ (1.25) = 0 Pod              RS-mới (1.26) = 3 Pod
+```
+
+`maxSurge`/`maxUnavailable` khống chế "được dư/thiếu mấy Pod trong lúc dịch" → luôn còn Pod phục vụ →
+**không downtime**. RS cũ **không bị xoá**, chỉ scale về 0 và nằm lại — chính là checkpoint để rollback nhanh.
+</details>
+
+<details>
+<summary>16. Revision vs ReplicaSet — tách biệt: revision ĐẺ MỚI, RS TÁI DÙNG</summary>
+
+**Revision = số thứ tự đánh dấu từng "phiên bản cấu hình" (template) trong lịch sử Deployment**, tiến đơn điệu
+(chỉ tăng). Mỗi đổi template → một mốc mới, gắn với RS tương ứng. Xem: `kubectl rollout history deployment/<tên>`.
+
+```
+revision 1 → RS-A (1.25) [chạy]
+đổi 1.26:   revision 2 → RS-B (1.26) [chạy];  RS-A scale 0, nằm lại
+undo:       revision 3 → RS-A (1.25) [chạy]   ← revision MỚI = 3, nhưng RS thì TÁI DÙNG RS-A cũ!
+```
+
+Hai điều khắc cốt:
+1. **Content về 1.25, nhưng revision KHÔNG về 1 — nhảy tới 3.** "Về bản cũ" vẫn là "một hành động mới" nên +1.
+2. **RS tái dùng** (RS-A chỉ được scale 0→3 lại, khỏi tạo mới → rollback nhanh) trong khi **revision đẻ nhãn
+ mới** trỏ lại RS-A. Ẩn dụ: revision = lịch sử commit git (chỉ thêm); RS = object git tái dùng —
+ `git revert` tạo commit mới nhưng nội dung có thể y hệt bản cũ.
+</details>
+
+<details>
+<summary>17. <code>kubectl rollout restart</code> — "rolling update giả" để thay toàn bộ Pod không downtime</summary>
+
+```
+kubectl rollout restart deployment/<tên>
+```
+
+KHÔNG phải "tắt rồi bật tại chỗ". Nó **kích hoạt một rolling update** (y hệt đổi image) nhưng **không đổi
+image/config gì cả** — bằng cách chèn một annotation timestamp vào template:
+
+```yaml
+spec:
+  template:
+    metadata:
+      annotations:
+        kubectl.kubernetes.io/restartedAt: "2026-08-14T10:30:00Z"   # kubectl tự chèn
+```
+
+Template đổi → Deployment nghĩ "có bản mới" → đẻ RS mới, rolling từng Pod → toàn bộ Pod được thay bằng Pod
+**mới sạch**, luôn còn Pod phục vụ (không downtime), và **sinh revision mới** (undo được).
+
+Dùng chính cho: **ép Pod đọc lại ConfigMap/Secret khi inject qua env var** (env đóng băng lúc start — xem module
+06). Khác `kubectl delete pod` (thô bạo, xoá phựt, có thể hụt Pod, không revision) — `rollout restart` là cách
+chuẩn production.
+
+| | `rollout restart` | `delete pod` |
+|---|---|---|
+| Cách chạy | Rolling từng Pod, chờ Ready mới xoá cũ | Xoá phựt, RS đẻ bù |
+| Downtime | Không | Có thể hụt Pod giây lát |
+| Revision mới / undo được | Có | Không |
+| Đúng cách production | ✅ | ❌ (chỉ debug) |
+
+Lệnh đi kèm: `rollout status` (theo tiến trình), `rollout history` (thấy revision mới), `rollout undo` (lỡ tay quay lại).
+</details>
+

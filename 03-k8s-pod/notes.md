@@ -171,3 +171,46 @@ container fail lặp lại **mà không tự lành**; kubelet giãn dần khoả
 | liveness restart / readiness no-traffic | rolling update không downtime |
 | YAML + `apply` idempotent | GitOps, mọi thay đổi qua Git |
 </details>
+
+## Ôn tập — đào sâu
+
+<details>
+<summary>16. VÌ SAO phải tách liveness & readiness — kịch bản nào chứng minh gộp lại là sai?</summary>
+
+Hai probe trả lời **2 câu hỏi khác nhau**: liveness = "còn *sống* không hay treo cứng?" (fail → **restart**,
+để CHỮA); readiness = "đã *sẵn sàng nhận việc* chưa?" (fail → **ngắt traffic**, để BẢO VỆ user).
+
+Kịch bản chứng minh — app **warmup 20s** (nạp cache/kết nối DB): lúc này nó **sống nhưng chưa sẵn sàng**.
+- Chỉ có liveness → probe fail lúc warmup → K8s tưởng chết → **restart** → warmup lại từ đầu → **restart-loop
+ vĩnh viễn**, không bao giờ lên.
+- Đúng: readiness fail lúc warmup (chỉ ngắt traffic, chờ), liveness nới lỏng để không giết oan → xong warmup
+ → readiness pass → mới nhận traffic.
+
+Ngược lại, app **treo deadlock** (còn process, không xử lý): chỉ liveness (restart) mới cứu; readiness một
+mình sẽ để nó "ngắt traffic" nằm đó mãi, không ai chữa. → **Một cái CHỮA, một cái BẢO VỆ; gộp thì hoặc giết
+oan, hoặc không chữa.**
+</details>
+
+<details>
+<summary>17. Bẫy timing: <code>initialDelaySeconds</code> KHÔNG tính vào thời gian phát hiện "app treo giữa chừng"</summary>
+
+`initialDelaySeconds` chỉ áp dụng **một lần lúc container mới start** (ân hạn app bật lên). Khi app đang chạy
+ngon rồi **mới treo**, kubelet đã probe đều đặn — không còn initialDelay → **không cộng** vào thời gian phát
+hiện chết.
+
+Thời gian tệ nhất từ lúc treo → bị kết luận chết (`periodSeconds: 5`, `failureThreshold: 3`):
+
+```
+app treo ────┐
+             │ (tới ~5s trôi qua trước khi probe kế chạy — độ trễ bắt fail đầu)
+   probe#1 FAIL  ← +5s   (fail 1/3)
+   probe#2 FAIL  ← +5s   (fail 2/3)
+   probe#3 FAIL  ← +5s   (fail 3/3) → RESTART
+```
+
+- Từ **fail đầu → bị kết luận chết** = `(failureThreshold − 1) × periodSeconds` = `(3−1)×5 = 10s`.
+- Cộng tối đa 1 `periodSeconds` (~5s) độ trễ bắt được fail đầu (treo ngay sau probe vừa pass) → **tệ nhất
+ ~15–20s**. Con số "detection = failureThreshold × periodSeconds" (câu 13) là ước lượng nhanh; công thức chính
+ xác cho "treo giữa chừng" là `(threshold−1)×period` + tối đa 1 period độ trễ.
+</details>
+
