@@ -128,3 +128,50 @@ driver out-of-tree, cấp block storage (RADOS Block Device) truy cập được
 | StorageClass + dynamic | self-service, không cần ticket admin |
 | CSI driver (local-path) | Ceph RBD / cloud disk, cùng một YAML |
 </details>
+
+## Ôn tập — đào sâu
+
+<details>
+<summary>13. hostPath — vì sao nguy hiểm không chỉ vì "gắn 1 node"?</summary>
+
+Nói "hostPath gắn 1 node" mới là hiện tượng; **cơ chế nguy hiểm** là: khi Pod **reschedule sang node khác**
+(node cũ chết/drain/scale), Pod mới chạy trên node B nhìn vào `hostPath` path đó **trên node B** — nơi đó
+**trống hoặc chứa data của app khác**. Data cũ vẫn nằm ở node A nhưng Pod **không tới được** → "biến mất".
+Tệ hơn: 2 Pod ở 2 node cùng path → mỗi thằng thấy một bản khác nhau, tưởng chung mà không chung. An toàn chỉ
+khi cluster 1 node hoặc khóa Pod vào đúng node bằng Node Affinity.
+</details>
+
+<details>
+<summary>14. 3 điều kiện bind PVC↔PV, và 2 chi tiết tinh tế (thực chạy)</summary>
+
+Bind khi khớp **cả 3**: ① capacity PV ≥ PVC xin · ② accessModes cùng mode · ③ storageClassName cùng tên.
+Lệch 1 → PVC treo **`Pending`** (lỗi debug số 1). Ai ghép: **PersistentVolumeController** quét PVC `Pending`
++ PV `Available`, khớp → `Bound`.
+- **Exclusive + chiếm cả PV:** lab thật PVC xin 5Gi bind PV 10Gi → `CAPACITY` hiện **10Gi**, PVC nuốt trọn,
+ 5Gi dư bị phí, không PVC khác dùng được. Một PV phục vụ đúng một PVC.
+- **Không bao giờ bind PV nhỏ hơn:** xin 5Gi mà chỉ có PV 1Gi → `Pending`.
+</details>
+
+<details>
+<summary>15. WaitForFirstConsumer — vì sao K8s cố tình ĐỢI mới tạo PV?</summary>
+
+Để **đặt volume đúng node với Pod**. Storage **node-local** (local-path/hostPath): data nằm trên disk một
+node. Nếu tạo PV ngay (`Immediate`) lúc chưa biết Pod đậu node nào → có thể tạo volume ở node A nhưng
+scheduler đặt Pod lên node B → Pod không tới được. `WaitForFirstConsumer` **đợi biết Pod schedule node nào
+rồi mới tạo volume đúng node đó**. Vì thế PVC `Pending` một lúc = đang đợi Pod, **không phải lỗi**. Ngược lại
+storage **networked** (Ceph) truy cập từ mọi node → dùng `Immediate`, tạo trước lúc nào cũng được. Quy tắc:
+**node-local → phải đợi; networked → tạo ngay tuỳ ý.**
+</details>
+
+<details>
+<summary>16. In-tree vs out-of-tree — "tree" là gì? CSI thuộc loại nào?</summary>
+
+**"tree" = cây mã nguồn K8s** (repo `kubernetes/kubernetes`). **In-tree** (cũ): code driver storage nằm
+BÊN TRONG repo K8s → K8s maintainer phải maintain, vendor fix bug phải chờ K8s release (~3 tháng), bug vendor
+có thể crash cả cluster. **CSI / out-of-tree** (mới): driver nằm NGOÀI, vendor tự giữ + tự release bất cứ lúc
+nào, cô lập khỏi core. CSI là **hợp đồng chuẩn** (interface gRPC: `CreateVolume`/`DeleteVolume`/
+`NodePublishVolume`…) — K8s gọi theo hợp đồng, vendor tự viết phần sau (như cổng USB-C). `rook-ceph.rbd.csi.
+ceph.com` (chữ `.csi.` là dấu hiệu) = một CSI driver **out-of-tree**, cấp block storage RBD từ Ceph; app chỉ
+thấy PVC/PV chuẩn, chi tiết Ceph ẩn hết.
+</details>
+
