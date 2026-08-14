@@ -1,0 +1,42 @@
+# ── Object 1: PersistentVolume — "kho storage" do admin tạo (cluster-scoped, không namespace)
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: my-pv                              # tên PV, PVC sẽ bind vào cái này
+spec:
+  capacity:
+    storage: 10Gi                          # dung lượng PV cung cấp (điều kiện bind #1: phải >= PVC xin)
+  accessModes: [ReadWriteOnce]             # RWO = 1 node mount read/write (điều kiện bind #2: phải khớp PVC)
+  persistentVolumeReclaimPolicy: Retain    # PVC bị xoá → PV giữ lại data (Released), KHÔNG tự xoá. An toàn cho prod.
+  storageClassName: local-storage          # "nhãn lớp" tự đặt (điều kiện bind #3: PVC phải cùng tên nhãn này)
+  hostPath:                                # backend thật: thư mục trên node (chỉ hợp lab 1 node)
+    path: /tmp/k8s-data
+---
+# ── Object 2: PersistentVolumeClaim — "đơn xin storage" do developer tạo (namespace-scoped)
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: my-pvc                             # tên PVC, Pod sẽ tham chiếu cái này
+spec:
+  accessModes: [ReadWriteOnce]             # phải khớp accessMode của PV (RWO = RWO)
+  resources:
+    requests:
+      storage: 5Gi                         # xin tối thiểu 5Gi → bind PV có capacity >= 5Gi (ở đây PV 10Gi, dư 5Gi không dùng)
+  storageClassName: local-storage          # phải trùng nhãn PV → mới ghép được đúng "kho"
+---
+# ── Object 3: Pod — dùng PVC như một volume, container không biết gì về backend
+apiVersion: v1
+kind: Pod
+metadata:
+  name: static-app
+spec:
+  volumes:
+  - name: data-vol                         # đặt tên volume ở cấp Pod
+    persistentVolumeClaim:                 # ← thay cho emptyDir: {}; nguồn volume là 1 PVC
+      claimName: my-pvc                     # trỏ tới PVC ở trên
+  containers:
+  - name: app
+    image: nginx:alpine
+    volumeMounts:
+    - name: data-vol                       # nối bằng name (giống emptyDir): gắn volume "data-vol"...
+      mountPath: /data                     # ...vào /data bên trong container

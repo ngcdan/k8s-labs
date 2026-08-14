@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="690" viewBox="0 0 900 690"><rect width="900" height="690" fill="#ffffff"/>
+<text x="452.0" y="52.0" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="22" fill="#1e40af" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">emptyDir — 2 container share chung 1 file</text>
+<rect x="40" y="90" width="820" height="560" rx="12" fill="#dbe4ff" fill-opacity="0.3" stroke="#3b82f6" stroke-width="2" stroke-opacity="0.3" stroke-dasharray="8 6"/>
+<text x="60.0" y="114.8" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="18" fill="#1e40af" fill-opacity="1.0" text-anchor="start" xml:space="preserve">Pod: shared-vol</text>
+<rect x="260" y="135" width="380" height="120" rx="12" fill="#c3fae8" fill-opacity="1.0" stroke="#0c8599" stroke-width="2" stroke-opacity="1.0"/>
+<text x="450.0" y="166.8" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="18" fill="#0b7285" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">emptyDir  ·  name: html</text>
+<text x="450.0" y="199.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">1 thư mục THẬT trên node</text>
+<text x="450.0" y="219.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">một bản duy nhất, chứa index.html</text>
+<polyline points="350,255 245,405" fill="none" stroke="#0c8599" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="245" y1="405" x2="246.2" y2="391.1" stroke="#0c8599" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="245" y1="405" x2="257.7" y2="399.1" stroke="#0c8599" stroke-width="2" stroke-opacity="1.0"/>
+<polyline points="550,255 655,405" fill="none" stroke="#0c8599" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="655" y1="405" x2="642.3" y2="399.1" stroke="#0c8599" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="655" y1="405" x2="653.8" y2="391.1" stroke="#0c8599" stroke-width="2" stroke-opacity="1.0"/>
+<text x="66.0" y="331.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#0b7285" fill-opacity="1.0" text-anchor="start" xml:space="preserve">mount:</text>
+<text x="66.0" y="351.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#0b7285" fill-opacity="1.0" text-anchor="start" xml:space="preserve">/usr/share/nginx/html</text>
+<text x="624.0" y="331.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#0b7285" fill-opacity="1.0" text-anchor="start" xml:space="preserve">mount:</text>
+<text x="624.0" y="351.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#0b7285" fill-opacity="1.0" text-anchor="start" xml:space="preserve">/html</text>
+<rect x="80" y="410" width="320" height="160" rx="12" fill="#a5d8ff" fill-opacity="1.0" stroke="#1971c2" stroke-width="2" stroke-opacity="1.0"/>
+<text x="241.0" y="444.8" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="18" fill="#1971c2" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">container: nginx</text>
+<text x="120.0" y="481.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">đọc (readOnly):</text>
+<text x="120.0" y="501.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">/usr/share/nginx/html/</text>
+<text x="120.0" y="521.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">    index.html</text>
+<rect x="500" y="410" width="320" height="160" rx="12" fill="#b2f2bb" fill-opacity="1.0" stroke="#2f9e44" stroke-width="2" stroke-opacity="1.0"/>
+<text x="660.5" y="444.8" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="18" fill="#2f9e44" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">container: updater</text>
+<text x="540.0" y="481.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">ghi mỗi 5s:</text>
+<text x="540.0" y="501.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">/html/index.html</text>
+<text x="540.0" y="521.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">date &gt;&gt; index.html</text>
+<text x="458.5" y="611.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#f59e0b" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">Hai mountPath khác tên nhưng trỏ về CÙNG một thư mục thật — hai cửa sổ, một phòng</text>
+</svg>

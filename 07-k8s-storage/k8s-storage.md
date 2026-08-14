@@ -1,7 +1,5 @@
 # 07 · Volume / PV / PVC / StorageClass — tách data ra khỏi vòng đời Pod
 
-> **Chặng 2** — trước: ConfigMap/Secret & Probes · kế tiếp: Multi-container & ServiceAccount
-
 **Mục tiêu:** hiểu tại sao cần tách data khỏi Pod; phân biệt emptyDir vs hostPath vs PV/PVC; biết cách dùng StorageClass với dynamic provisioning; thực hành tạo PVC trên OrbStack, mount vào Pod, xoá Pod rồi tạo lại thấy data vẫn còn; hiểu CSI là lớp plugin nằm giữa K8s và hệ thống lưu trữ ngoài.
 **Nền:** đã biết Pod là ephemeral — xoá Pod là mất container filesystem. Lab này giải quyết câu hỏi "vậy data bền vững đặt ở đâu?".
 **⏱** 60–75 phút · **Sân:** host local (OrbStack Kubernetes).
@@ -30,6 +28,22 @@ kubectl get storageclass # xem StorageClass mặc định (OrbStack tự tạo)
 **Cơ chế:** `emptyDir` được tạo lần đầu khi Pod landing trên node và bị xoá khi kubelet xoá Pod — không có gì được lưu ra ngoài node. `hostPath` gắn bind-mount kernel từ path node vào container; nếu Pod được scheduler đẩy sang node khác (reschedule), nó thấy path đó trên node mới — có thể trống hoặc có nội dung khác.
 
 > **Ẩn dụ:** `emptyDir` = bảng trắng trong phòng họp — có thể ghi thoải mái trong buổi họp, ai cũng dùng chung được, nhưng ai xoá phòng thì mất. `hostPath` = tủ khóa ở sảnh tầng 3 cụ thể — bạn phải về đúng tầng 3 mới lấy được đồ.
+
+> **Cách 2 container mount chung 1 file — nối qua `name` (áp dụng cho MỌI loại volume):**
+> Volume và mount là **hai việc tách rời**, nối nhau bằng trường `name`.
+> ① Khai báo **một** ổ đĩa ở cấp Pod: `spec.volumes[]` có `name: html` + loại (`emptyDir: {}`).
+> ② Mỗi container gắn ổ đĩa đó vào chỗ của nó: `spec.containers[].volumeMounts[]` trỏ **cùng `name: html`**,
+> chọn `mountPath` tùy container (`nginx` → `/usr/share/nginx/html` vì đó là web-root mặc định; `updater` → `/html` cho gọn).
+> Có **đúng một thư mục vật lý** trên node; hai `mountPath` khác tên chỉ là **hai cửa sổ nhìn vào cùng một phòng** →
+> updater ghi `/html/index.html`, nginx đọc `/usr/share/nginx/html/index.html` = **cùng file**. Đổi `name` lệch nhau → mount 2 volume khác → hết share.
+> Bộ khung `volumes` + `volumeMounts` này **không đổi** khi lên PVC — chỉ thay `emptyDir: {}` bằng `persistentVolumeClaim: {claimName: ...}`.
+
+![emptyDir share chung giữa 2 container](assets/emptydir-shared-volume.png)
+
+> **Thực chạy — 502 warmup (teachable moment):** `port-forward ... & curl` ngay lập tức → lần curl **đầu** ra `502 Bad Gateway`
+> (body có `nginx/1.29.5` → chính nginx sinh ra). Lý do: lúc `t=0` emptyDir còn **rỗng** (updater `sleep 5` xong mới ghi lần đầu) +
+> tunnel port-forward chưa ổn định → request rớt vào khe hở. Vài giây sau curl ra timestamp bình thường. Đây đúng là lý do tồn tại của
+> **readinessProbe** (module 03): nếu có readiness gác cửa, Pod chưa phục vụ được sẽ không nhận traffic → client không bao giờ thấy 502 warmup.
 
 | | emptyDir | hostPath |
 |---|---|---|
@@ -94,7 +108,7 @@ $ kubectl exec shared-vol -c nginx -- ls /usr/share/nginx/html
 
 ## 2. Tại sao cần PV/PVC — tách vòng đời data khỏi Pod
 
-![[pv-pvc-flow.excalidraw]]
+![Luồng Pod → PVC → StorageClass → PV → backend](assets/pv-pvc-flow.png)
 
 **Chốt:** `emptyDir` mất khi Pod xoá, `hostPath` mất khi reschedule — cả hai đều không đủ cho stateful app. **PersistentVolume (PV)** và **PersistentVolumeClaim (PVC)** tách data ra thành object K8s riêng, sống độc lập khỏi Pod.
 
@@ -346,6 +360,16 @@ NAME PROVISIONER RECLAIMPOLICY VOLUMEBINDINGMODE ALLOWVOLUMEEXPANSION
 storageclass.storage.k8s.io/local-path rancher.io/local-path Delete WaitForFirstConsumer false
 ```
 → **Verify:** PVC `Bound`, PV được dynamic provisioning tạo tự động, `hello persistent` vẫn còn sau khi xoá và tạo lại Pod.
+
+> **Thực chạy (OrbStack, 2 loại provisioning cạnh nhau):** sau khi làm cả static lẫn dynamic, `kubectl get pv` in **2 PV** đối lập rõ:
+> ```text
+> NAME                                       CAPACITY  RECLAIM   STATUS  CLAIM              STORAGECLASS
+> my-pv                                      10Gi      Retain    Bound   default/my-pvc     local-storage   ← static: mình đặt tên, Retain
+> pvc-aa0a6f8a-6a04-486c-b53d-1783902c772a   1Gi       Delete    Bound   default/test-pvc   local-path      ← dynamic: K8s sinh tên UUID, Delete
+> ```
+> Static = mình nặn PV tay + tự đặt tên + `Retain`; dynamic = provisioner đẻ PV, tên UUID, `Delete`. Chi tiết bind: PVC xin 5Gi nhưng `CAPACITY` hiện **10Gi** — PVC chiếm **cả** PV, phần dư 5Gi bị phí.
+>
+> **Chứng minh persist tách vòng đời Pod:** ghi `hello persistent - Fri Aug 14 08:36:42` vào `/data/test.txt` → `kubectl delete pod writer` (PVC báo `unchanged`, chỉ Pod bị xoá) → `apply` lại → Pod mới `cat` **vẫn ra đúng `08:36:42`**. Đối chiếu bước 1: cùng thao tác xoá-tạo-lại Pod, `emptyDir` mất sạch (timestamp reset), PVC giữ nguyên. Đó là toàn bộ lý do PV/PVC tồn tại.
 
 ---
 

@@ -1,0 +1,28 @@
+# PVC KHÔNG khai báo storageClassName → dùng StorageClass mặc định (local-path).
+# Không cần tạo PV tay: provisioner sẽ tự đẻ PV khi có Pod dùng.
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: test-pvc
+spec:
+  accessModes: [ReadWriteOnce]
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: writer
+spec:
+  volumes:
+  - name: data
+    persistentVolumeClaim:
+      claimName: test-pvc
+  containers:
+  - name: app
+    image: alpine
+    command: ["/bin/sh", "-c", "sleep 3600"]
+    volumeMounts:
+    - name: data
+      mountPath: /data

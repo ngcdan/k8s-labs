@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1220" height="410" viewBox="0 0 1220 410"><rect width="1220" height="410" fill="#ffffff"/>
+<text x="630.0" y="49.7" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="24" fill="#1e40af" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">Storage: Pod → PVC → StorageClass → PV → backend</text>
+<rect x="60" y="180" width="200" height="100" rx="12" fill="#a5d8ff" fill-opacity="1.0" stroke="#1e40af" stroke-width="2" stroke-opacity="1.0"/>
+<text x="160.0" y="218.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#1e3a5f" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">Pod</text>
+<text x="160.0" y="238.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#1e3a5f" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">(volumeMounts)</text>
+<polyline points="260,230 290,230" fill="none" stroke="#374151" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="290" y1="230" x2="277.9" y2="237.0" stroke="#374151" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="290" y1="230" x2="277.9" y2="223.0" stroke="#374151" stroke-width="2" stroke-opacity="1.0"/>
+<rect x="290" y="180" width="200" height="100" rx="12" fill="#d0bfff" fill-opacity="1.0" stroke="#6b21a8" stroke-width="2" stroke-opacity="1.0"/>
+<text x="390.0" y="211.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#3b0764" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">PVC</text>
+<text x="390.0" y="231.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#3b0764" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">(size,</text>
+<text x="390.0" y="251.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#3b0764" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">accessMode)</text>
+<polyline points="490,230 520,230" fill="none" stroke="#374151" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="520" y1="230" x2="507.9" y2="237.0" stroke="#374151" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="520" y1="230" x2="507.9" y2="223.0" stroke="#374151" stroke-width="2" stroke-opacity="1.0"/>
+<rect x="520" y="180" width="200" height="100" rx="12" fill="#ffd8a8" fill-opacity="1.0" stroke="#92400e" stroke-width="2" stroke-opacity="1.0"/>
+<text x="620.0" y="218.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#451a03" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">StorageClass</text>
+<text x="620.0" y="238.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#451a03" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">(provisioner)</text>
+<polyline points="720,230 750,230" fill="none" stroke="#374151" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="750" y1="230" x2="737.9" y2="237.0" stroke="#374151" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="750" y1="230" x2="737.9" y2="223.0" stroke="#374151" stroke-width="2" stroke-opacity="1.0"/>
+<rect x="750" y="180" width="200" height="100" rx="12" fill="#b2f2bb" fill-opacity="1.0" stroke="#065f46" stroke-width="2" stroke-opacity="1.0"/>
+<text x="850.0" y="218.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#052e16" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">PV</text>
+<text x="850.0" y="238.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#052e16" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">(tự tạo động)</text>
+<polyline points="950,230 980,230" fill="none" stroke="#374151" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="980" y1="230" x2="967.9" y2="237.0" stroke="#374151" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="980" y1="230" x2="967.9" y2="223.0" stroke="#374151" stroke-width="2" stroke-opacity="1.0"/>
+<rect x="980" y="180" width="200" height="100" rx="12" fill="#c3fae8" fill-opacity="1.0" stroke="#be123c" stroke-width="2" stroke-opacity="1.0"/>
+<text x="1083.0" y="218.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">Storage backend</text>
+<text x="1083.0" y="238.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">(Ceph RBD/disk)</text>
+<text x="630.0" y="343.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">PVC bind PV; xóa Pod → PV/PVC còn → data không mất.</text>
+<text x="630.0" y="363.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">reclaim: Retain vs Delete.</text>
+</svg>
