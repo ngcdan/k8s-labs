@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web
+spec:
+  replicas: 1
+  selector:
+    matchLabels: { app: web }
+  template:
+    metadata:
+      labels: { app: web }
+    spec:
+      containers:
+      - name: web
+        image: nginx:alpine
+        resources:
+          requests:
+            cpu: "100m"                     # HPA tính % DỰA TRÊN request này (bắt buộc có)
+          limits:
+            cpu: "200m"

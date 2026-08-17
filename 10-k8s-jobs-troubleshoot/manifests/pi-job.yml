@@ -1,0 +1,18 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: pi-counter
+spec:
+  completions: 4                           # cần 4 Pod succeed thì Job mới Done
+  parallelism: 2                           # nhưng chỉ 2 Pod chạy cùng lúc → 2 đợt
+  backoffLimit: 3                           # fail quá 3 lần retry → Job Failed
+  activeDeadlineSeconds: 240               # trần thời gian toàn Job — quá thì kill hết
+  template:
+    metadata:
+      name: pi-counter
+    spec:
+      restartPolicy: Never                 # Job chỉ được Never hoặc OnFailure (không Always)
+      containers:
+      - name: pi
+        image: alpine
+        command: ["sh", "-c", "echo 'scale=500; 4*a(1)' | bc -l && sleep 2"]

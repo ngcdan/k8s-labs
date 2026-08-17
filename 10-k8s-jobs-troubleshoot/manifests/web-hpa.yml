@@ -1,0 +1,18 @@
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: web-hpa
+spec:
+  scaleTargetRef:                          # HPA điều khiển replicas của Deployment nào
+    apiVersion: apps/v1
+    kind: Deployment
+    name: web
+  minReplicas: 1                           # không scale xuống dưới 1
+  maxReplicas: 5                           # không scale lên quá 5
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 50             # giữ CPU trung bình ~50% request → vượt thì scale out

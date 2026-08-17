@@ -1,0 +1,16 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: pi-cron
+spec:
+  schedule: "*/1 * * * *"                  # mỗi 1 phút (cron 5 trường: phút giờ ngày tháng thứ)
+  concurrencyPolicy: Forbid                # nếu Job cũ chưa xong → bỏ qua lịch mới (không chạy chồng)
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+          - name: pi
+            image: alpine
+            command: ["sh", "-c", "echo 'scale=100; 4*a(1)' | bc -l"]

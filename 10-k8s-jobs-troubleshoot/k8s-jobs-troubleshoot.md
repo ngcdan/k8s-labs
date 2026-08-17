@@ -1,7 +1,5 @@
 # 10 · Job, CronJob, HPA & Troubleshooting — chạy-tới-hoàn-thành, lịch tự động, tự scale, chẩn đoán Pod lỗi
 
-> **Chặng 3** — trước: Chiến lược deploy · kế tiếp: Compose → Kubernetes
-
 **Mục tiêu:** biết khi nào dùng Job thay vì Deployment; viết YAML cho Job (completions/parallelism/backoffLimit) và CronJob (schedule cron); hiểu HPA tự scale theo CPU; thạo luồng chẩn đoán vàng `describe → logs --previous → get events`; đọc được Prometheus/Grafana dashboard cơ bản.
 **Nền:** đã thạo Deployment/ReplicaSet (chặng 2) — Job và CronJob đặt trên nền Pod template giống hệt, chỉ khác controller.
 
@@ -27,7 +25,7 @@ kubectl get nodes   # 1 node STATUS=Ready
 
 **Cơ chế:** Job controller poll trạng thái Pod liên tục. Mỗi khi Pod succeed (`Completed`), bộ đếm `succeeded` tăng 1; khi đủ `completions` → Job `Complete`. Nếu Pod fail và vượt `backoffLimit` → Job `Failed`. `activeDeadlineSeconds` đặt trần thời gian toàn bộ Job — quá hạn, mọi Pod đang chạy bị kill ngay cả khi chưa đủ completions.
 
-> 💡 **Ẩn dụ:** Job như dây chuyền lắp ráp có mục tiêu rõ — "lắp đủ 4 sản phẩm rồi tắt máy"; Deployment như máy chạy 24/7 không bao giờ tắt.
+> **Ẩn dụ:** Job như dây chuyền lắp ráp có mục tiêu rõ — "lắp đủ 4 sản phẩm rồi tắt máy"; Deployment như máy chạy 24/7 không bao giờ tắt.
 
 | Field | Ý nghĩa | Mặc định |
 |---|---|---|
@@ -99,6 +97,11 @@ $ kubectl describe job pi-counter | grep -A3 "^Status"
 ```
 → **Verify:** `COMPLETIONS = 4/4`; Pod trạng thái `Completed`; `kubectl logs <pod>` in chữ số pi.
 
+> **Thực chạy (OrbStack):** `completions:4, parallelism:2` → `COMPLETIONS` nhảy `0/4 → 2/4 → 4/4` (2 Pod mỗi
+> đợt). Bằng chứng "2 đợt" ở cột `AGE` của Pod: 2 Pod **AGE 24s** (đợt 1) + 2 Pod **AGE 16s** (đợt 2) — chênh 8s.
+> STATUS Job: `Running → SuccessCriteriaMet → Complete`. 4 Pod `Completed`, `READY 0/1` (container đã exit, nằm
+> lại không tự xoá). `kubectl delete job pi-counter` → 4 Pod bị xoá theo (ownerReference Job→Pod).
+
 ---
 
 ## 2. CronJob — lịch tự động
@@ -131,7 +134,7 @@ $ kubectl describe job pi-counter | grep -A3 "^Status"
 ```
 Ví dụ nhanh: `0 22 * * 1` = 22:00 mỗi thứ Hai · `1 0 1 * *` = 00:01 ngày đầu mỗi tháng · `*/5 * * * *` = mỗi 5 phút · `@daily` = tương đương `0 0 * * *`.
 
-> 💡 **Ẩn dụ:** CronJob = đồng hồ báo thức gắn với dây chuyền (Job) — báo thức reo thì dây chuyền khởi động một lần, xong thì nghỉ, hôm sau báo thức reo lại.
+> **Ẩn dụ:** CronJob = đồng hồ báo thức gắn với dây chuyền (Job) — báo thức reo thì dây chuyền khởi động một lần, xong thì nghỉ, hôm sau báo thức reo lại.
 
 **Dùng / không:** backup DB đêm, gửi report định kỳ, dọn file log cũ, sync dữ liệu theo giờ. **Phản đề:** không dùng CronJob cho việc cần phản hồi real-time hoặc trigger theo event — đó là message queue (Kafka, NATS) + Deployment consumer. Nếu interval < 1 phút, cân nhắc worker trong Deployment vòng lặp sleep thay vì CronJob (K8s CronJob không hỗ trợ sub-minute).
 
@@ -193,6 +196,13 @@ $ kubectl logs pi-cron-28991760-r5xk7
 ```
 → **Verify:** `LAST SCHEDULE` cập nhật mỗi phút; Job name có suffix timestamp; Pod `Completed`.
 
+> **Thực chạy — CronJob tự dọn Job cũ (teachable moment):** chạy mỗi phút, Job tên `pi-cron-<unix-minute>`
+> (số phút Unix liên tiếp: `...604, ...605, ...606`). Sau vài phút `get jobs` **chỉ còn 3 Job** — CronJob tự GC,
+> mặc định giữ `successfulJobsHistoryLimit: 3` (+ `failedJobsHistoryLimit: 1`). Nên `kubectl logs job/<tên cũ>`
+> báo `NotFound` nếu Job đã bị dọn — lấy Job mới nhất bằng
+> `kubectl logs job/$(kubectl get jobs -o jsonpath='{.items[-1:].metadata.name}')`. Nếu không có giới hạn này,
+> chạy mỗi phút → 1440 Job rác/ngày. `delete cj` → xoá cả Job + Pod con (ownerReference dây chuyền CronJob→Job→Pod).
+
 ---
 
 ## 3. HPA — Horizontal Pod Autoscaler *(bổ sung theo roadmap)*
@@ -217,7 +227,7 @@ desiredReplicas = ceil(currentReplicas × currentMetric / targetMetric)
 
 Sau đó cập nhật `spec.replicas` của Deployment → ReplicaSet tạo/xoá Pod. Scale out nhanh (phát hiện → ~30s); scale in chậm hơn (cooldown mặc định 5 phút) để tránh flapping.
 
-> 💡 **Ẩn dụ:** HPA như người điều phối ca làm việc — khi đơn hàng tăng, gọi thêm người; khi vắng, cho về; nhưng phải có bảng giờ (Metrics Server) mới biết đơn hàng nhiều hay ít.
+> **Ẩn dụ:** HPA như người điều phối ca làm việc — khi đơn hàng tăng, gọi thêm người; khi vắng, cho về; nhưng phải có bảng giờ (Metrics Server) mới biết đơn hàng nhiều hay ít.
 
 | Field | Ý nghĩa |
 |---|---|
@@ -312,6 +322,21 @@ web-hpa   Deployment/web   55%/50%    1         5         3
 ```
 → **Verify:** `TARGETS` vượt ngưỡng → `REPLICAS` tăng; dừng tải → replica giảm về 1 sau ~5 phút.
 
+> **Thực chạy (OrbStack cần cài Metrics Server trước):** cụm OrbStack **không có sẵn** Metrics Server →
+> `kubectl top` báo `Metrics API not available`, HPA hiện `<unknown>`. Cài:
+> ```bash
+> kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+> kubectl patch deployment metrics-server -n kube-system --type=json \
+>   -p='[{"op":"add","path":"/spec/template/spec/containers/0/args/-","value":"--kubelet-insecure-tls"}]'
+> ```
+> (`--kubelet-insecure-tls` bắt buộc vì kubelet OrbStack/kind dùng self-signed cert). ~30s sau `kubectl top nodes`
+> chạy được.
+>
+> **HPA đạt cân bằng (không phải kẹt):** 1 load generator (`wget` loop) → 1 Pod CPU **68%** → HPA tính
+> `ceil(1×68/50)=2` → scale lên 2. Sau đó tải chia đôi → mỗi Pod **35%** → `ceil(2×35/50)=2` → **giữ nguyên 2**
+> (35% < 50% ngưỡng). Đây là mục tiêu HPA: giữ CPU quanh 50%, dùng đúng số Pod cần. Muốn lên 3-5 phải thêm load
+> generator. Scale out nhanh (~30s), scale in chậm (cooldown ~5 phút) tránh flapping.
+
 ---
 
 ## 4. Monitoring — Metrics Server, Prometheus, Grafana
@@ -327,7 +352,7 @@ web-hpa   Deployment/web   55%/50%    1         5         3
 
 **Cơ chế:** Metrics Server ←scrape kubelet mỗi 15s → expose API `/metrics.k8s.io`; HPA và `kubectl top` đọc API này. Prometheus ←scrape kube-state-metrics + Metrics Server endpoint định kỳ → lưu vào storage time-series riêng → Grafana query PromQL → vẽ đồ thị. Hai pipeline độc lập: Metrics Server (real-time, ngắn hạn) và Prometheus (lưu lâu dài, alerting).
 
-> 💡 **Ẩn dụ:** Metrics Server như đồng hồ dashboard xe (nhìn tốc độ hiện tại); Prometheus như hộp đen máy bay (ghi lại mọi thứ theo thời gian); Grafana như màn hình phân tích sau chuyến bay.
+> **Ẩn dụ:** Metrics Server như đồng hồ dashboard xe (nhìn tốc độ hiện tại); Prometheus như hộp đen máy bay (ghi lại mọi thứ theo thời gian); Grafana như màn hình phân tích sau chuyến bay.
 
 **Dùng / không:** mọi cluster production cần cả ba. **Phản đề:** lab nhỏ/học thì chỉ Metrics Server đủ; Prometheus + Grafana tốn thêm RAM/CPU và cần cấu hình alerting — không nên dựng nếu chưa có nhu cầu alert thực sự.
 
@@ -361,7 +386,7 @@ web-6d7f8b9c4-xkp2n    2m           5Mi
 
 ## 5. Troubleshooting — luồng chẩn đoán vàng
 
-![[diagnostic-flow.excalidraw]]
+![Luồng chẩn đoán vàng](assets/diagnostic-flow.png)
 
 **Chốt:** khi Pod/Deployment lỗi, đi theo thứ tự `get pods → describe → logs --previous → get events` — dừng lại ở bước nào tìm manh mối thì xử lý ngay, không nhảy cóc.
 
@@ -374,7 +399,7 @@ web-6d7f8b9c4-xkp2n    2m           5Mi
 
 **Cơ chế:** K8s ghi Events cho mọi object (Pod, Node, PVC…) trong 1 giờ. `describe` tổng hợp Events của đúng Pod đó. `logs` đọc stdout/stderr của container process (ghi vào log driver). `--previous` đọc log của container **đã chết**, lưu tạm trên node (mất sau khi node restart hoặc Pod bị evict). `exec` mở pseudoterminal trực tiếp vào namespace của container — test DNS/curl từ đây phản ánh đúng network view của Pod.
 
-> 💡 **Ẩn dụ:** `get pods` = nhìn đèn báo lỗi trên xe; `describe` = đọc mã lỗi OBD; `logs` = nghe tiếng động cơ; `logs --previous` = xem camera hành trình lúc tai nạn; `exec` = chui xuống gầm xe kiểm tra trực tiếp.
+> **Ẩn dụ:** `get pods` = nhìn đèn báo lỗi trên xe; `describe` = đọc mã lỗi OBD; `logs` = nghe tiếng động cơ; `logs --previous` = xem camera hành trình lúc tai nạn; `exec` = chui xuống gầm xe kiểm tra trực tiếp.
 
 **Các STATUS thường gặp và hướng xử lý:**
 
@@ -444,9 +469,17 @@ $ kubectl describe pod crash | grep -A5 "Last State"
 ```
 → **Verify:** `ErrImagePull` → Events nói rõ tag không tồn tại; `CrashLoopBackOff` → `--previous` + `describe` cho exit code.
 
+> **Thực chạy — `logs --previous` KHÔNG phải lúc nào cũng có (bài học quan trọng):** với CrashLoopBackOff restart
+> nhanh, `kubectl logs --previous crash` thường báo `unable to retrieve container logs for docker://...` — vì
+> container instance cũ đã bị **containerd GC** (mỗi restart tạo container ID mới, log cũ bị dọn). Khi đó
+> **`describe` là phương án dự phòng chắc chắn**: `Last State: Terminated / Reason: Error / Exit Code: 1`, và
+> `Started`↔`Finished` cách 2s (khớp `sleep 2` trong lệnh) → biết app chạy 2s rồi tự thoát mã 1 = lỗi *bên trong
+> app*. Đó là lý do luồng vàng đặt `describe` **trước** `logs`: describe luôn có, log có thể mất. Phụ: typo trong
+> `command` (vd `exit1` dính) **không bị bắt lúc apply** — chỉ nổ runtime, thấy qua describe/logs.
+
 ---
 
-## 🧹 Dọn dẹp
+## Dọn dẹp
 ```bash
 kubectl delete job pi-counter --ignore-not-found
 kubectl delete cj pi-cron --ignore-not-found
@@ -487,6 +520,6 @@ Tự trả lời trước, xong hết mới cuộn xuống Đáp án.
 9. Prometheus scrape metrics (từ kube-state-metrics, Metrics Server, app…) và lưu dạng time-series; Grafana kết nối Prometheus làm data source, dựng dashboard/biểu đồ và alert rule.
 10. "Insufficient cpu" / "Insufficient memory" (không đủ tài nguyên node) hoặc "no nodes are available that match all of the following predicates" (taint/toleration mismatch, PVC không bound…).
 
-## 📎 Nguồn & xem lại
+## Nguồn & xem lại
 - **HPA docs:** kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/
 - **crontab.guru** — test cron expression online.
