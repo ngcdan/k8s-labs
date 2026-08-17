@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-nginx
+spec:
+  replicas: 4
+  revisionHistoryLimit: 5                  # giữ tối đa 5 RS cũ để rollback
+  strategy:
+    type: RollingUpdate                    # mặc định — thay từng Pod, không downtime
+    rollingUpdate:
+      maxSurge: 1                           # được phép dư tối đa 1 Pod (tổng 5) trong lúc update
+      maxUnavailable: 1                     # được phép thiếu tối đa 1 Pod (tối thiểu 3 phục vụ)
+  selector:
+    matchLabels: { app: nginx }
+  template:
+    metadata:
+      labels: { app: nginx }
+    spec:
+      containers:
+      - name: web
+        image: nginx:1.16.1-alpine         # v1 — sẽ update lên 1.17.8 để trigger rolling
+        ports: [{ containerPort: 80 }]

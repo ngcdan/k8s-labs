@@ -1,7 +1,5 @@
 # 09 · Chiến lược triển khai: Rolling · Canary · Blue-Green + Rollback
 
-> **Chặng 3** — trước: Multi-container & ServiceAccount · kế tiếp: Jobs/CronJob, HPA & troubleshoot
-
 **Mục tiêu:** hiểu 4 chiến lược triển khai (Rolling, Recreate, Canary, Blue-Green); thạo lệnh `rollout status/history/undo`; mô phỏng canary và blue-green bằng label + Service selector trên OrbStack; biết khi nào chọn chiến lược nào.
 **Nền:** đã làm lab Deployment/ReplicaSet — biết `kubectl apply`, label, selector, Service LoadBalancer.
 
@@ -82,7 +80,7 @@ spec:
  image: nginx:1.16.1-alpine
  ports: [{ containerPort: 80 }]
 EOF
-kubectl apply -f /tmp/rolling.yml --save-config
+kubectl apply -f /tmp/rolling.yml
 
 # Xem trạng thái ban đầu
 kubectl rollout status deployment/my-nginx
@@ -458,11 +456,28 @@ nginx/1.17.8 ← cutover tức thì, user thấy green
 ```
 → **Verify:** trước switch: `localhost` = 1.16 (blue), `localhost:9001` = 1.17 (green). Sau `set selector`: `localhost` = 1.17, tức thì, không mixing.
 
+> **Thực chạy (OrbStack) — số liệu cả 4 chiến lược:**
+> - **Rolling** (`replicas:4, maxSurge:1, maxUnavailable:1`): `set image 1.16→1.17` → `rollout status` in
+>   `N out of 4 new updated → 1 old pending termination → 3 of 4 available → successfully rolled out`. `get rs`:
+>   RS cũ `688bcdbbf4` AGE 83s về `0/0/0`, RS mới `786bb6d56b` AGE 11s `4/4/4` — **2 RS song song**.
+> - **Rollback**: `rollout undo` → `Image: nginx:1.16.1-alpine`; `get rs` vẫn **2 RS** (không đẻ mới), RS
+>   `688bcdbbf4` **AGE 7m15s** bật lại `4/4/4` → bằng chứng **RS tái dùng** (AGE cũ = RS gốc, không phải mới tạo).
+> - **Canary** (4 stable + 1 canary, cùng `app:myapp`): `curl -sI http://<lb-ip>` ×20 → **16 nginx/1.16.1 + 4
+>   nginx/1.17.8** = đúng 80/20 = tỉ lệ replicas. Promote: `scale canary=4` (tạm 8 Pod) + `delete stable` →
+>   100% 1.17.8. Version nginx nằm ở **header `Server:`** (dùng `curl -sI`), không nằm trong body.
+> - **Blue-Green**: blue (2 Pod) + green (2 Pod) song song; public `:80` = 1.16, test `:9001` = 1.17 (cô lập).
+>   `set selector svc/nginx-public role=green` → `:80` nhảy 1.16→**1.17 tức thì**, EndpointSlice đổi từ IP blue
+>   sang IP green, **0 Pod thay đổi**. Rollback = `set selector role=blue`.
+>
+> **Gotcha OrbStack:** 2 Service LoadBalancer chung `EXTERNAL-IP 192.168.139.2` nhưng khác cổng (80 vs 9001) —
+> OrbStack map mọi LB lên 1 IP host, phân biệt bằng port; `CLUSTER-IP` mới là danh tính thật (mỗi Service một IP
+> ảo riêng). Trên cloud/MetalLB mỗi LB thường có external IP riêng.
+
 ---
 
 ## 5. So sánh — khi nào dùng chiến lược nào
 
-![[strategies.excalidraw]]
+![3 chiến lược triển khai](assets/strategies.png)
 
 | Chiến lược | Traffic mixing | Downtime | Tài nguyên | Rollback | Dùng khi |
 |---|---|---|---|---|---|

@@ -1,0 +1,16 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-stable
+spec:
+  replicas: 4                              # 4/5 tổng Pod → ~80% traffic
+  selector:
+    matchLabels: { app: myapp }
+  template:
+    metadata:
+      labels: { app: myapp, track: stable }   # app:myapp = label CHUNG (Service bắt); track = nhãn phụ để lọc
+    spec:
+      containers:
+      - name: web
+        image: nginx:1.16.1-alpine         # bản stable
+        ports: [{ containerPort: 80 }]

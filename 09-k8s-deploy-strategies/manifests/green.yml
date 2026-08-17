@@ -1,0 +1,16 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-green
+spec:
+  replicas: 2
+  selector:
+    matchLabels: { app: nginx, role: green }
+  template:
+    metadata:
+      labels: { app: nginx, role: green }  # role: green = môi trường mới, chạy song song blue
+    spec:
+      containers:
+      - name: web
+        image: nginx:1.17.8-alpine         # phiên bản mới
+        ports: [{ containerPort: 80 }]

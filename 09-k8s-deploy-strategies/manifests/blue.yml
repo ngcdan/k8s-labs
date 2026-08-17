@@ -1,0 +1,16 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-blue
+spec:
+  replicas: 2
+  selector:
+    matchLabels: { app: nginx, role: blue }
+  template:
+    metadata:
+      labels: { app: nginx, role: blue }   # role: blue = nhãn để Service "chọn" đúng môi trường
+    spec:
+      containers:
+      - name: web
+        image: nginx:1.16.1-alpine         # production hiện tại
+        ports: [{ containerPort: 80 }]

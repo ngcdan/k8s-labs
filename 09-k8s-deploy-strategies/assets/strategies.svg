@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1220" height="835" viewBox="0 0 1220 835"><rect width="1220" height="835" fill="#ffffff"/>
+<text x="600.0" y="39.7" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="24" fill="#1e40af" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">3 chiến lược triển khai</text>
+<rect x="20" y="75" width="1160" height="200" rx="12" fill="#dbe4ff" fill-opacity="0.3" stroke="#3b82f6" stroke-width="2" stroke-opacity="0.3"/>
+<text x="26.0" y="96.8" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="18" fill="#1e40af" fill-opacity="1.0" text-anchor="start" xml:space="preserve">Rolling</text>
+<rect x="140" y="110" width="90" height="60" rx="12" fill="#a5d8ff" fill-opacity="1.0" stroke="#3b82f6" stroke-width="2" stroke-opacity="1.0"/>
+<text x="187.0" y="145.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#1e40af" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">Pod v1</text>
+<rect x="280" y="110" width="90" height="60" rx="12" fill="#a5d8ff" fill-opacity="1.0" stroke="#3b82f6" stroke-width="2" stroke-opacity="1.0"/>
+<text x="327.0" y="145.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#1e40af" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">Pod v1</text>
+<polyline points="235,140 275,140" fill="none" stroke="#f59e0b" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="275" y1="140" x2="262.9" y2="147.0" stroke="#f59e0b" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="275" y1="140" x2="262.9" y2="133.0" stroke="#f59e0b" stroke-width="2" stroke-opacity="1.0"/>
+<rect x="420" y="110" width="90" height="60" rx="12" fill="#b2f2bb" fill-opacity="1.0" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<text x="467.0" y="145.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#15803d" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">Pod v2</text>
+<polyline points="375,140 415,140" fill="none" stroke="#f59e0b" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="415" y1="140" x2="402.9" y2="147.0" stroke="#f59e0b" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="415" y1="140" x2="402.9" y2="133.0" stroke="#f59e0b" stroke-width="2" stroke-opacity="1.0"/>
+<rect x="560" y="110" width="90" height="60" rx="12" fill="#b2f2bb" fill-opacity="1.0" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<text x="607.0" y="145.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#15803d" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">Pod v2</text>
+<polyline points="515,140 555,140" fill="none" stroke="#f59e0b" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="555" y1="140" x2="542.9" y2="147.0" stroke="#f59e0b" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="555" y1="140" x2="542.9" y2="133.0" stroke="#f59e0b" stroke-width="2" stroke-opacity="1.0"/>
+<rect x="700" y="110" width="90" height="60" rx="12" fill="#b2f2bb" fill-opacity="1.0" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<text x="747.0" y="145.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#15803d" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">Pod v2</text>
+<polyline points="655,140 695,140" fill="none" stroke="#f59e0b" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="695" y1="140" x2="682.9" y2="147.0" stroke="#f59e0b" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="695" y1="140" x2="682.9" y2="133.0" stroke="#f59e0b" stroke-width="2" stroke-opacity="1.0"/>
+<text x="820.0" y="131.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">thay từng Pod, zero-downtime</text>
+<text x="820.0" y="151.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">v1 giảm dần, v2 tăng dần</text>
+<rect x="20" y="310" width="1160" height="220" rx="12" fill="#e5dbff" fill-opacity="0.3" stroke="#9333ea" stroke-width="2" stroke-opacity="0.3"/>
+<text x="26.0" y="332.8" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="18" fill="#6d28d9" fill-opacity="1.0" text-anchor="start" xml:space="preserve">Canary</text>
+<rect x="140" y="355" width="110" height="60" rx="12" fill="#d0bfff" fill-opacity="1.0" stroke="#9333ea" stroke-width="2" stroke-opacity="1.0"/>
+<text x="195.0" y="390.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">Service</text>
+<polyline points="255,365 365,335" fill="none" stroke="#3b82f6" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="365" y1="335" x2="355.1" y2="344.9" stroke="#3b82f6" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="365" y1="335" x2="351.5" y2="331.4" stroke="#3b82f6" stroke-width="2" stroke-opacity="1.0"/>
+<polyline points="255,395 365,425" fill="none" stroke="#f59e0b" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="365" y1="425" x2="351.5" y2="428.6" stroke="#f59e0b" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="365" y1="425" x2="355.1" y2="415.1" stroke="#f59e0b" stroke-width="2" stroke-opacity="1.0"/>
+<rect x="370" y="318" width="200" height="70" rx="12" fill="#a5d8ff" fill-opacity="1.0" stroke="#3b82f6" stroke-width="2" stroke-opacity="1.0"/>
+<text x="470.0" y="358.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#1e40af" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">stable v1 (80%)</text>
+<rect x="370" y="408" width="200" height="70" rx="12" fill="#ffd8a8" fill-opacity="1.0" stroke="#d97706" stroke-width="2" stroke-opacity="1.0"/>
+<text x="470.0" y="448.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#92400e" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">canary v2 (20%)</text>
+<text x="610.0" y="361.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">chia traffic theo tỉ lệ replica,</text>
+<text x="610.0" y="381.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">cùng label</text>
+<rect x="20" y="565" width="1160" height="230" rx="12" fill="#d3f9d8" fill-opacity="0.3" stroke="#15803d" stroke-width="2" stroke-opacity="0.3"/>
+<text x="26.0" y="586.8" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="18" fill="#15803d" fill-opacity="1.0" text-anchor="start" xml:space="preserve">Blue-Green</text>
+<rect x="140" y="615" width="140" height="60" rx="12" fill="#c3fae8" fill-opacity="1.0" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<text x="235.0" y="650.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">Service selector</text>
+<polyline points="285,645 400,645" fill="none" stroke="#3b82f6" stroke-width="3" stroke-opacity="1.0"/>
+<line x1="400" y1="645" x2="387.9" y2="652.0" stroke="#3b82f6" stroke-width="3" stroke-opacity="1.0"/>
+<line x1="400" y1="645" x2="387.9" y2="638.0" stroke="#3b82f6" stroke-width="3" stroke-opacity="1.0"/>
+<polyline points="285,700 400,745" fill="none" stroke="#15803d" stroke-width="2" stroke-opacity="1.0" stroke-dasharray="8 6"/>
+<line x1="400" y1="745" x2="386.2" y2="747.1" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="400" y1="745" x2="391.3" y2="734.1" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<rect x="405" y="608" width="150" height="70" rx="12" fill="#a5d8ff" fill-opacity="1.0" stroke="#3b82f6" stroke-width="2" stroke-opacity="1.0"/>
+<text x="480.0" y="648.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#1e40af" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">blue (v1)</text>
+<text x="480.0" y="666.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#1e40af" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">[đang chạy]</text>
+<rect x="405" y="708" width="150" height="70" rx="12" fill="#b2f2bb" fill-opacity="1.0" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<text x="480.0" y="743.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#15803d" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">green (v2)</text>
+<text x="480.0" y="763.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#15803d" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">[sẵn sàng]</text>
+<text x="610.0" y="651.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">đổi selector → chuyển 100% tức thì,</text>
+<text x="610.0" y="671.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">rollback nhanh</text>
+</svg>

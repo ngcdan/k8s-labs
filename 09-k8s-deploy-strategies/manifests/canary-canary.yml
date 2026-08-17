@@ -1,0 +1,16 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-canary
+spec:
+  replicas: 1                              # 1/5 tổng Pod → ~20% traffic
+  selector:
+    matchLabels: { app: myapp }
+  template:
+    metadata:
+      labels: { app: myapp, track: canary }   # cùng app:myapp → Service coi như cùng backend
+    spec:
+      containers:
+      - name: web
+        image: nginx:1.17.8-alpine         # bản mới thử nghiệm
+        ports: [{ containerPort: 80 }]
