@@ -1,4 +1,7 @@
 # Chỉ dẫn local cho Claude Code — không đưa lên git
 CLAUDE.md
 
+# Client log growth (gắn hạ tầng everyday riêng + ADMIN_TOKEN) — local-only, KHÔNG public
+bin/klog
+
 .DS_Store
