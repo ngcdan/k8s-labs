@@ -28,7 +28,7 @@ Mỗi thư mục đánh số là một module học tập độc lập (runbook 
 | 17 | [17-k8s-cluster-upgrade](17-k8s-cluster-upgrade/) | Cluster upgrade + node maintenance (drain/PDB) |
 | 18 | [18-k8s-troubleshooting](18-k8s-troubleshooting/) | Troubleshooting cụm (node/control-plane/network) |
 | 19 | [19-k8s-ingress-stack](19-k8s-ingress-stack/) | Ingress stack — MetalLB + ingress-nginx + cert-manager |
-| 20 | [20-k8s-longhorn](20-k8s-longhorn/) | Longhorn — block storage phân tán |
+| 20 | [20-k8s-distributed-storage](20-k8s-distributed-storage/) | Distributed storage — Longhorn & Rook-Ceph (block/file/object) |
 | 21 | [21-k8s-minio](21-k8s-minio/) | MinIO — S3 object storage (erasure coding) |
 | 22 | [22-k8s-cloudnativepg](22-k8s-cloudnativepg/) | Operator/CRD + CloudNativePG (Postgres HA) |
 | 23 | [23-k8s-argocd-gitops](23-k8s-argocd-gitops/) | Argo CD / GitOps — App-of-Apps |

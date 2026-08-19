@@ -1,12 +1,19 @@
-# 20 · Longhorn — block storage phân tán
+# 20 · Distributed storage — Longhorn & Rook-Ceph
 
 > **Chặng Platform · ◻ chưa mở** — [◈ Bảng tiến độ](../../wiki/notebook/k8s/sessions/learning-plan.md) · trước: Ingress stack production · kế tiếp: MinIO — S3 object storage · [course-catalog](../../wiki/notebook/k8s/course-catalog.md)
 
-**Mục tiêu:** hiểu Longhorn là gì và tại sao nó giải quyết bài toán block storage trên bare-metal/edge mà cloud-provider volume không làm được; cài Longhorn lên kind-lab 3-node; tạo StorageClass, PVC, kiểm replica trải đều; thực hành snapshot; và nắm được GOLDEN LESSON về double-replicate khi kết hợp với database tự replicate.
+**Mục tiêu:** nắm hai lời giải hàng đầu cho block storage phân tán trên bare-metal/edge — **Longhorn** (đơn giản, K8s-native) và **Rook-Ceph** (unified block + file + object, scale enterprise). Với Longhorn: cài lên kind-lab 3-node, tạo StorageClass/PVC, kiểm replica trải đều, snapshot, và GOLDEN LESSON double-replicate. Với Rook-Ceph: hiểu kiến trúc Ceph (RADOS/MON/MGR/OSD/CRUSH), cài Rook operator + CephCluster, tạo RBD block (RWO) và CephFS (RWX — cái Longhorn không làm được), và biết **khi nào chọn cái nào**.
 
-**Nền:** đã quen PV/PVC/StorageClass (lab 07), đã biết dynamic provisioning qua CSI. Lab này thay provisioner `rancher.io/local-path` bằng `driver.longhorn.io` và thấy volume tự nhân bản qua nhiều node.
+**Nền:** đã quen PV/PVC/StorageClass (lab 07), đã biết dynamic provisioning qua CSI. Lab này thay provisioner `rancher.io/local-path` bằng `driver.longhorn.io` / `rook-ceph.rbd.csi.ceph.com` và thấy volume tự nhân bản qua nhiều node.
 
-> ⚠ **Lưu ý:** chạy trên **kind-lab 3-node** (nhẹ, hợp Mac Mini M4 24 GB — không cần multipass như lab 15-18). **Output là MẪU chuẩn theo hành vi thật — CHƯA chạy trên máy bạn; verify khi cài thật.**
+> ⚠ **Lưu ý:** chạy trên **kind-lab 3-node** (nhẹ, hợp Mac Mini M4 24 GB — không cần multipass như lab 15-18). Rook-Ceph nặng hơn Longhorn nhiều (nhiều daemon MON/MGR/OSD, cần raw block device cho OSD) — trên kind cần gắn thêm disk. **Output là MẪU chuẩn theo hành vi thật — CHƯA chạy trên máy bạn; verify khi cài thật.**
+
+**Bản đồ module:**
+
+| Phần | Mục | Học gì |
+|---|---|---|
+| I — Longhorn | 1–5 | Distributed block K8s-native, replica trải node, snapshot/backup, GOLDEN LESSON replica-1 cho DB |
+| II — Rook-Ceph | 6–10 | Ceph là gì, cài Rook operator + CephCluster, RBD (RWO), CephFS (RWX), bảng quyết định Longhorn vs Ceph |
 
 ---
 
@@ -530,6 +537,479 @@ pvc-9b3e7f2a-1d4c-5b8e-c3f2-0a7d8e9b1c2d-r-8f1e2a3b            kind-worker  runn
 
 ---
 
+# Phần II — Rook-Ceph
+
+## 6. Rook-Ceph là gì — Ceph chạy trong Kubernetes
+
+**Chốt:** **Ceph** là hệ lưu trữ phân tán hợp nhất (unified) cung cấp cả **block, file và object** trên một nền RADOS duy nhất; **Rook** là Kubernetes operator biến Ceph thành CRD — bạn khai báo `CephCluster`/`CephBlockPool`/`CephFilesystem`, operator lo triển khai và vận hành các daemon Ceph.
+
+- **RADOS** (*Reliable Autonomic Distributed Object Store*) — lớp nền của Ceph. Mọi thứ (RBD block, CephFS file, RGW object) đều lưu dưới dạng object trong RADOS. Không có single point of failure.
+- **MON (Monitor)** — giữ **cluster map** (monmap, osdmap, pgmap, crushmap) và đồng thuận qua Paxos. Thường **3 MON** (số lẻ) để có quorum; MON quyết định "trạng thái đúng" của cluster, không lưu data.
+- **MGR (Manager)** — thu thập metrics runtime, chạy dashboard, module (Prometheus, balancer, autoscaler PG). Thường 2 (active/standby).
+- **OSD (Object Storage Daemon)** — **1 OSD ứng với 1 disk** (BlueStore quản lý raw block device trực tiếp, không qua filesystem). OSD lưu data thật, tự xử lý replication, recovery, rebalancing. Đây là nơi cần **raw device**.
+- **MDS (Metadata Server)** — chỉ cần cho **CephFS**: lưu cây thư mục, inode, quyền POSIX. Không nằm trên đường data (data đi thẳng client ↔ OSD).
+- **RGW (RADOS Gateway)** — cổng **S3/Swift** object, dựng object storage tương thích S3 (thay thế được MinIO ở lab 21 nếu muốn dùng chung Ceph).
+- **CRUSH** — thuật toán placement không cần bảng tra cứu trung tâm: client tự tính object nằm ở OSD nào từ crushmap. **Failure domain** (host/rack/row) đảm bảo các bản sao không rơi cùng một điểm hỏng.
+- **Pool + PG (Placement Group)** — pool là phân vùng logic của RADOS (có `size=3` replication hoặc erasure coding); PG là nhóm trung gian giữa object và OSD, giảm số mapping phải theo dõi.
+
+**Vì sao:** Longhorn chỉ làm **block RWO**. Khi bạn cần **một** hệ lo cả ba — volume block cho DB (RBD), filesystem chia sẻ nhiều Pod (CephFS RWX), và S3 object (RGW) — thay vì ghép 3 công nghệ, Ceph gộp hết trên một cluster. Đổi lại: phức tạp hơn hẳn, cần hiểu MON/OSD/CRUSH và tốn RAM/CPU.
+
+**Cơ chế:** Rook operator (Deployment trong namespace `rook-ceph`) watch các CRD. Khi bạn apply `CephCluster`, operator: (1) sinh MON pods, chờ quorum; (2) chạy MGR; (3) discover disk theo `storage` spec → khởi động một OSD pod cho mỗi device; (4) cập nhật cluster map. Khi bạn apply `CephBlockPool`/`CephFilesystem`, operator tạo pool trong RADOS và (với CephFS) sinh MDS. Ceph-CSI driver (`rook-ceph.rbd.csi.ceph.com`, `rook-ceph.cephfs.csi.ceph.com`) map RBD image / mount CephFS vào Pod khi PVC bound.
+
+> 💡 **Ẩn dụ:** Longhorn như một tủ đông chuyên giữ từng khối thịt (block) — đơn giản, một chức năng. Ceph như một tổng kho logistics: có khu pallet (block/RBD), khu kệ chung nhiều người lấy (file/CephFS), khu bưu kiện gửi đi (object/RGW) — cùng một hệ điều phối (RADOS + CRUSH). Mạnh và linh hoạt, nhưng vận hành phức tạp hơn nhiều cái tủ đông.
+
+| Khái niệm Ceph | Vai trò | Số lượng điển hình |
+|---|---|---|
+| MON | Giữ cluster map, quorum Paxos | 3 (số lẻ) |
+| MGR | Metrics, dashboard, module | 2 (active/standby) |
+| OSD | Lưu data thật, 1/disk | = số disk (≥3 cho HA) |
+| MDS | Metadata cho CephFS | 1 active (+ standby) |
+| RGW | Cổng S3/Swift object | ≥1 |
+
+**Dùng/KHÔNG:** chọn Rook-Ceph khi cần **unified storage** (block + file RWX + object) hoặc scale lớn (hàng trăm node, PB). **Phản đề:** cluster nhỏ chỉ cần block RWO cho vài stateful app → Longhorn nhẹ hơn, dễ vận hành hơn nhiều; đừng kéo cả Ceph vào homelab chỉ để chạy một Postgres.
+
+![[rook-ceph-arch.excalidraw]]
+
+---
+
+## 7. Cài Rook operator + CephCluster
+
+**Chốt:** cài **Rook operator** bằng Helm vào namespace `rook-ceph`; sau đó apply **CephCluster** CR để operator dựng MON/MGR/OSD; OSD cần **raw block device** (BlueStore) — trên kind phải gắn thêm disk cho mỗi node vì rootfs container không dùng làm OSD được.
+
+- **Rook operator** — Deployment watch CRD, không tự lưu data; là "bộ não" triển khai Ceph.
+- **CephCluster** — CR mô tả toàn cluster: số MON, node/device nào làm OSD, phiên bản Ceph image.
+- **rook-ceph-tools** — Pod tiện ích chứa CLI `ceph`, `rbd`, `rados` để chẩn đoán (`ceph status`, `ceph osd tree`).
+- **Raw device trên kind:** node kind là container, không có disk trống. Gắn thêm loop device / extra volume vào từng node rồi cho Rook `useAllDevices` hoặc `deviceFilter`.
+
+**Vì sao:** BlueStore (OSD backend mặc định từ Ceph Luminous) quản lý **trực tiếp raw block device**, bỏ qua lớp filesystem để tối ưu I/O và checksum toàn phần. Vì vậy OSD cần device chưa format — khác Longhorn (dùng thư mục trên filesystem có sẵn `/var/lib/longhorn`). Đây là rào cản prerequisite lớn nhất khi thử Ceph trên kind/Docker.
+
+**Cơ chế:** operator đọc `CephCluster.spec.storage` → với mỗi device khớp filter, sinh một `rook-ceph-osd-<id>` Deployment chạy `ceph-osd`. MON được đặt trên các node khác nhau (anti-affinity) để một node chết không mất quorum. `ceph-CSI` provisioner/attacher/nodeplugin được deploy để phục vụ PVC.
+
+> 💡 **Ẩn dụ:** cài Rook operator như thuê một quản đốc kho biết dựng kho Ceph. Bạn đưa bản vẽ (`CephCluster`: "3 chốt bảo vệ MON, dùng mọi ổ cứng trống làm kệ OSD") — quản đốc tự gọi thợ dựng, không cần bạn chỉ tay từng viên gạch.
+
+**Làm:**
+
+```bash
+# Bước 0 (kind-only): gắn raw disk cho mỗi node — OSD cần block device trống.
+# Tạo file-backed loop device 10Gi trong từng node container.
+for node in kind-control-plane kind-worker kind-worker2; do
+  docker exec "$node" bash -c '
+    dd if=/dev/zero of=/var/lib/ceph-osd.img bs=1M count=10240 2>/dev/null &&
+    losetup -fP /var/lib/ceph-osd.img &&
+    losetup -j /var/lib/ceph-osd.img'
+done
+```
+
+```text
+# mỗi node in ra loop device được cấp
+/dev/loop8: [...] (/var/lib/ceph-osd.img)
+```
+
+> ⚠ Loop device không bền qua restart container. Trên bare-metal thật thì đây là ổ NVMe/SSD trống — bỏ hẳn Bước 0.
+
+```bash
+# Bước 1: cài Rook operator bằng Helm
+helm repo add rook-release https://charts.rook.io/release
+helm repo update
+helm install rook-ceph rook-release/rook-ceph \
+  --namespace rook-ceph --create-namespace \
+  --version v1.15.6
+kubectl -n rook-ceph rollout status deploy/rook-ceph-operator
+```
+
+```text
+"rook-release" has been added to your repositories
+NAME: rook-ceph
+STATUS: deployed
+deployment "rook-ceph-operator" successfully rolled out
+```
+
+```bash
+# Bước 2: apply CephCluster — dùng mọi device trống (loop) làm OSD
+cat > /tmp/ceph-cluster.yml <<'EOF'
+apiVersion: ceph.rook.io/v1
+kind: CephCluster
+metadata:
+  name: rook-ceph
+  namespace: rook-ceph
+spec:
+  cephVersion:
+    image: quay.io/ceph/ceph:v18.2.4
+  dataDirHostPath: /var/lib/rook
+  mon:
+    count: 3
+    allowMultiplePerNode: false
+  mgr:
+    count: 2
+  dashboard:
+    enabled: true
+  storage:
+    useAllNodes: true
+    useAllDevices: false
+    deviceFilter: "^loop8"
+EOF
+kubectl apply -f /tmp/ceph-cluster.yml
+```
+
+```text
+cephcluster.ceph.rook.io/rook-ceph created
+```
+
+```bash
+# Bước 3: đợi cluster hình thành (~5-8 phút — MON → MGR → OSD lần lượt Ready)
+kubectl -n rook-ceph get pods
+```
+
+```text
+NAME                                            READY   STATUS      RESTARTS   AGE
+rook-ceph-mon-a-6c8fd9d7b8-x4k2p                1/1     Running     0          5m
+rook-ceph-mon-b-7d9f4c6f9-9pl3q                 1/1     Running     0          4m
+rook-ceph-mon-c-5f8b7d6c4-mz7rn                 1/1     Running     0          4m
+rook-ceph-mgr-a-6b7d8f9c5-tk4wj                 1/1     Running     0          3m
+rook-ceph-mgr-b-5c9d7e8f4-hb2xn                 1/1     Running     0          3m
+rook-ceph-osd-0-7f8c9d6b5-qw3zk                 1/1     Running     0          2m
+rook-ceph-osd-1-6d7e8f9c4-lm5vp                 1/1     Running     0          2m
+rook-ceph-osd-2-8c9d7e6f5-nr8tj                 1/1     Running     0          2m
+rook-ceph-osd-prepare-kind-worker-abc12         0/1     Completed   0          3m
+csi-rbdplugin-provisioner-6f8c...               6/6     Running     0          4m
+csi-cephfsplugin-provisioner-5d7...             6/6     Running     0          4m
+```
+
+```bash
+# Bước 4: deploy toolbox rồi kiểm sức khỏe cluster
+helm install rook-ceph-tools rook-release/rook-ceph-cluster \
+  --namespace rook-ceph --set toolbox.enabled=true \
+  --set cephClusterSpec.skipUpgradeChecks=true 2>/dev/null || \
+kubectl -n rook-ceph apply -f https://raw.githubusercontent.com/rook/rook/release-1.15/deploy/examples/toolbox.yaml
+
+kubectl -n rook-ceph exec deploy/rook-ceph-tools -- ceph status
+```
+
+```text
+  cluster:
+    id:     8f2a1b3c-4d5e-6f7a-8b9c-0d1e2f3a4b5c
+    health: HEALTH_OK
+
+  services:
+    mon: 3 daemons, quorum a,b,c (age 5m)
+    mgr: a(active, since 3m), standbys: b
+    osd: 3 osds: 3 up (since 2m), 3 in (since 2m)
+
+  data:
+    pools:   1 pools, 1 pgs
+    objects: 2 objects, 449 KiB
+    usage:   80 MiB used, 30 GiB / 30 GiB avail
+    pgs:     1 active+clean
+```
+
+→ **Verify:** `health: HEALTH_OK`, `mon: 3 daemons, quorum a,b,c`, `osd: 3 osds: 3 up ... 3 in`. Xem cây OSD:
+
+```bash
+kubectl -n rook-ceph exec deploy/rook-ceph-tools -- ceph osd tree
+```
+
+```text
+ID  CLASS  WEIGHT   TYPE NAME                    STATUS  REWEIGHT
+-1         0.02939  root default
+-3         0.00980      host kind-control-plane
+ 2         0.00980          osd.2                    up   1.00000
+-5         0.00980      host kind-worker
+ 0         0.00980          osd.0                    up   1.00000
+-7         0.00980      host kind-worker2
+ 1         0.00980          osd.1                    up   1.00000
+```
+
+→ **Verify:** 3 OSD `up`, mỗi OSD nằm trên một **host** khác nhau → failure domain = host, CRUSH sẽ trải bản sao qua 3 node.
+
+---
+
+## 8. RBD block storage (RWO) — song song Longhorn
+
+**Chốt:** tạo **CephBlockPool** (replication `size: 3`) và StorageClass provisioner `rook-ceph.rbd.csi.ceph.com`; PVC từ SC này cấp **RBD image** — block volume **RWO** giống Longhorn, nhưng bản sao được CRUSH trải theo failure domain thay vì round-robin đơn giản.
+
+- **CephBlockPool** — pool RADOS dành cho RBD, `replicated.size: 3` = 3 bản mỗi object; `failureDomain: host` = 3 bản trên 3 host khác nhau.
+- **RBD image** — mỗi PVC là một image thin-provisioned trong pool; kernel `rbd` map image thành `/dev/rbdX` trên node rồi mount vào Pod.
+- **Access mode:** RBD filesystem chỉ **RWO** (giống Longhorn). RWX cần CephFS (mục 9).
+
+**Vì sao:** khi so trực tiếp block-vs-block, RBD hơn Longhorn ở CRUSH-aware placement (failure domain, erasure coding tùy chọn), snapshot/clone nhanh ở tầng RADOS, và mirror sang cluster khác (RBD mirroring) cho DR. Đổi lại phải nuôi cả Ceph cluster.
+
+**Cơ chế:** PVC bound → ceph-CSI provisioner gọi `rbd create` trong pool → tạo image. Khi Pod schedule, nodeplugin `rbd map` image → `/dev/rbd0`, format ext4/xfs, mount vào container. Ghi vào volume = ghi object vào pool, CRUSH phân tán 3 bản qua 3 OSD trên 3 host.
+
+> 💡 **Ẩn dụ:** RBD image như một ổ đĩa ảo cắm vào đúng một máy (RWO). Ceph âm thầm xé ổ đó thành các mảnh object, rải 3 bản qua 3 kho theo bản đồ CRUSH — máy dùng vẫn thấy một ổ liền mạch.
+
+**Làm:**
+
+```bash
+# Bước 1: tạo CephBlockPool + StorageClass RBD
+cat > /tmp/ceph-rbd-sc.yml <<'EOF'
+apiVersion: ceph.rook.io/v1
+kind: CephBlockPool
+metadata:
+  name: replicapool
+  namespace: rook-ceph
+spec:
+  failureDomain: host
+  replicated:
+    size: 3
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: ceph-rbd
+provisioner: rook-ceph.rbd.csi.ceph.com
+parameters:
+  clusterID: rook-ceph
+  pool: replicapool
+  imageFormat: "2"
+  imageFeatures: layering
+  csi.storage.k8s.io/fstype: ext4
+allowVolumeExpansion: true
+reclaimPolicy: Delete
+EOF
+kubectl apply -f /tmp/ceph-rbd-sc.yml
+kubectl get storageclass
+```
+
+```text
+cephblockpool.ceph.rook.io/replicapool created
+storageclass.storage.k8s.io/ceph-rbd created
+
+NAME                 PROVISIONER                     RECLAIMPOLICY   VOLUMEBINDINGMODE   ALLOWVOLUMEEXPANSION
+ceph-rbd             rook-ceph.rbd.csi.ceph.com      Delete          Immediate           true
+longhorn (default)   driver.longhorn.io              Delete          Immediate           true
+longhorn-cnpg        driver.longhorn.io              Delete          Immediate           true
+```
+
+```bash
+# Bước 2: PVC + Pod dùng ceph-rbd
+cat > /tmp/rbd-demo.yml <<'EOF'
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: rbd-pvc
+spec:
+  accessModes: [ReadWriteOnce]
+  storageClassName: ceph-rbd
+  resources:
+    requests:
+      storage: 2Gi
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: rbd-app
+spec:
+  containers:
+  - name: app
+    image: alpine
+    command: ["/bin/sh", "-c", "sleep 3600"]
+    volumeMounts:
+    - { name: data, mountPath: /data }
+  volumes:
+  - name: data
+    persistentVolumeClaim:
+      claimName: rbd-pvc
+EOF
+kubectl apply -f /tmp/rbd-demo.yml
+kubectl wait --for=condition=Ready pod/rbd-app --timeout=120s
+kubectl get pvc rbd-pvc
+```
+
+```text
+persistentvolumeclaim/rbd-pvc created
+pod/rbd-app created
+pod/rbd-app condition met
+
+NAME      STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE
+rbd-pvc   Bound    pvc-2a7c9e1f-3b4d-5c6e-7f8a-9b0c1d2e3f4a   2Gi        RWO            ceph-rbd       15s
+```
+
+```bash
+# Bước 3: xác nhận image nằm trong pool và replication size=3
+kubectl -n rook-ceph exec deploy/rook-ceph-tools -- rbd ls replicapool
+kubectl -n rook-ceph exec deploy/rook-ceph-tools -- ceph osd pool get replicapool size
+```
+
+```text
+csi-vol-2a7c9e1f-3b4d-5c6e-7f8a-9b0c1d2e3f4a
+size: 3
+```
+
+→ **Verify:** RBD image tồn tại trong `replicapool`, `size: 3` → mỗi block ghi 3 bản, CRUSH trải qua 3 host. Access mode `RWO` — đúng bản chất block.
+
+---
+
+## 9. CephFS — filesystem RWX (cái Longhorn không làm được)
+
+**Chốt:** tạo **CephFilesystem** (metadata pool + data pool + MDS) và StorageClass provisioner `rook-ceph.cephfs.csi.ceph.com`; PVC từ SC này cho volume **RWX** — **nhiều Pod trên nhiều node cùng mount đọc/ghi** một filesystem. Đây là năng lực Longhorn (chỉ RWO) không có.
+
+- **CephFilesystem** — khai báo một filesystem POSIX: 1 metadata pool (MDS quản lý cây thư mục) + ≥1 data pool (lưu nội dung file).
+- **RWX (ReadWriteMany)** — nhiều Pod ghi song song vào cùng volume, kể cả khác node. Hợp cho shared upload, web assets, CI artifact, WordPress `wp-content`.
+- **MDS** — điều phối lock metadata để nhiều client ghi không đạp nhau; data đi thẳng client ↔ OSD, MDS không nghẽn.
+
+**Vì sao:** rất nhiều workload cần shared filesystem: cụm web nhiều replica đọc/ghi chung thư mục media, pipeline ML chia sẻ dataset, Jenkins/GitLab artifact. Với Longhorn phải dựng thêm NFS server phía trên; Ceph có sẵn CephFS RWX native, nhất quán mạnh (không phải NFS eventual).
+
+**Cơ chế:** PVC RWX bound → ceph-CSI tạo một **subvolume** trong CephFS. Mỗi Pod mount volume qua kernel `ceph` client; MDS cấp capability (lock) cho từng inode để nhiều client ghi an toàn. Data ghi thành object vào data pool, CRUSH trải 3 bản như RBD.
+
+> 💡 **Ẩn dụ:** RBD như một ổ USB — chỉ cắm được vào một máy tại một thời điểm (RWO). CephFS như một ổ mạng phòng ban — cả team cùng mở, cùng lưu file vào (RWX), có "thủ thư" MDS điều phối để hai người sửa cùng thư mục không loạn.
+
+| | RBD (mục 8) | CephFS (mục 9) |
+|---|---|---|
+| Kiểu | Block device | POSIX filesystem |
+| Access mode | RWO | **RWX** (+ RWO/ROX) |
+| Daemon riêng | Không | Cần **MDS** |
+| Dùng cho | DB, volume 1-Pod | Shared media, artifact, nhiều Pod |
+| Tương đương Longhorn | Có (Longhorn = RWO) | **Longhorn không có** |
+
+**Làm:**
+
+```bash
+# Bước 1: tạo CephFilesystem + StorageClass CephFS
+cat > /tmp/cephfs-sc.yml <<'EOF'
+apiVersion: ceph.rook.io/v1
+kind: CephFilesystem
+metadata:
+  name: myfs
+  namespace: rook-ceph
+spec:
+  metadataPool:
+    replicated:
+      size: 3
+  dataPools:
+    - name: data0
+      replicated:
+        size: 3
+  metadataServer:
+    activeCount: 1
+    activeStandby: true
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: ceph-fs
+provisioner: rook-ceph.cephfs.csi.ceph.com
+parameters:
+  clusterID: rook-ceph
+  fsName: myfs
+  pool: myfs-data0
+reclaimPolicy: Delete
+allowVolumeExpansion: true
+EOF
+kubectl apply -f /tmp/cephfs-sc.yml
+kubectl -n rook-ceph get cephfilesystem
+```
+
+```text
+cephfilesystem.ceph.rook.io/myfs created
+storageclass.storage.k8s.io/ceph-fs created
+
+NAME   ACTIVEMDS   AGE   PHASE
+myfs   1           40s   Ready
+```
+
+```bash
+# Bước 2: một PVC RWX, hai Pod trên (khả năng) hai node cùng mount
+cat > /tmp/cephfs-rwx.yml <<'EOF'
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: shared-pvc
+spec:
+  accessModes: [ReadWriteMany]
+  storageClassName: ceph-fs
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shared-writer
+spec:
+  replicas: 2
+  selector:
+    matchLabels: { app: shared-writer }
+  template:
+    metadata:
+      labels: { app: shared-writer }
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                matchLabels: { app: shared-writer }
+              topologyKey: kubernetes.io/hostname
+      containers:
+      - name: w
+        image: alpine
+        command: ["/bin/sh","-c","while true; do echo \"$(hostname) $(date)\" >> /shared/log.txt; sleep 5; done"]
+        volumeMounts:
+        - { name: shared, mountPath: /shared }
+      volumes:
+      - name: shared
+        persistentVolumeClaim:
+          claimName: shared-pvc
+EOF
+kubectl apply -f /tmp/cephfs-rwx.yml
+kubectl rollout status deploy/shared-writer
+kubectl get pvc shared-pvc -o wide
+```
+
+```text
+persistentvolumeclaim/shared-pvc created
+deployment.apps/shared-writer created
+deployment "shared-writer" successfully rolled out
+
+NAME         STATUS   VOLUME         CAPACITY   ACCESS MODES   STORAGECLASS   AGE
+shared-pvc   Bound    pvc-...        1Gi        RWX            ceph-fs        25s
+```
+
+```bash
+# Bước 3: chứng minh RWX — hai Pod KHÁC NHAU cùng ghi vào một file
+kubectl exec deploy/shared-writer -- sh -c 'sort -u /shared/log.txt | cut -d" " -f1 | sort -u'
+```
+
+```text
+shared-writer-6c9d7f8b5-4k2xp
+shared-writer-6c9d7f8b5-9pl3q
+```
+
+→ **Verify:** file `/shared/log.txt` chứa dòng từ **cả hai** Pod (hai hostname khác nhau) → nhiều Pod trên nhiều node ghi đồng thời vào **một** volume. `ACCESS MODES = RWX`. Thử làm điều này với Longhorn sẽ fail ở bước mount thứ hai (`Multi-Attach error`).
+
+---
+
+## 10. Longhorn vs Rook-Ceph — chọn cái nào
+
+**Chốt:** không có cái "tốt hơn" tuyệt đối — **Longhorn tối ưu cho đơn giản + block RWO**; **Rook-Ceph tối ưu cho unified (block+file+object) + scale lớn**. Chọn theo nhu cầu thật, đừng theo hào quang.
+
+**Vì sao:** đây là quyết định kiến trúc tốn kém để đảo ngược (migrate storage backend = di chuyển toàn bộ data). Chọn sai về phía Ceph = gánh vận hành nặng không cần thiết; chọn sai về phía Longhorn = đụng trần khi cần RWX/object/scale rồi phải thay giữa chừng.
+
+| Tiêu chí | Longhorn | Rook-Ceph |
+|---|---|---|
+| Access mode | RWO (block) | RWO (RBD) + **RWX (CephFS)** + object (RGW S3) |
+| Disk yêu cầu | Filesystem có sẵn (`/var/lib/longhorn`) | **Raw block device** cho OSD (BlueStore) |
+| Data placement | Replica round-robin đơn giản | **CRUSH** — failure domain, erasure coding |
+| Overhead (RAM/CPU) | Nhẹ | Nặng (MON/MGR/OSD/MDS nhiều daemon) |
+| Scale thực dụng | ≤ ~20 node | Hàng trăm node, PB |
+| Object storage (S3) | Không | Có (RGW) |
+| Vận hành / học | Dễ, UI trực quan | Dốc, cần hiểu Ceph internals |
+| Snapshot/backup | Tích hợp, backup ra S3/NFS | RBD snapshot/clone, RBD mirror (DR) |
+| Phù hợp | Homelab, edge, cluster nhỏ-vừa | Enterprise, unified storage, đa dịch vụ |
+
+**Quy tắc quyết định nhanh:**
+
+- Chỉ cần **block RWO** cho vài stateful app, cluster nhỏ, muốn vận hành nhẹ → **Longhorn**.
+- Cần **RWX** (shared filesystem nhiều Pod) hoặc **S3 object** trong cùng cluster, hoặc scale lớn → **Rook-Ceph**.
+- Cần cả hai kiểu workload nhưng ngại nuôi Ceph → chạy **Longhorn cho block + MinIO cho object** (lab 21) là combo nhẹ, phổ biến ở cluster nhỏ-vừa.
+
+**Dùng/KHÔNG:** đừng chạy Rook-Ceph trên < 3 node có raw disk (mất HA, mất ý nghĩa CRUSH). **Phản đề:** đừng ép Longhorn làm RWX bằng cách chồng NFS server tự dựng cho workload production quan trọng — CephFS làm việc đó native và nhất quán mạnh hơn.
+
+> 💡 **Ẩn dụ:** Longhorn là xe bán tải — gọn, dễ lái, chở đủ việc nhà. Rook-Ceph là đoàn xe tải + kho logistics — chở được mọi loại hàng ở mọi quy mô, nhưng cần tài xế chuyên và chi phí vận hành. Nhà nhỏ mua đoàn xe tải là lãng phí; công ty logistics đi xe bán tải là nghẽn.
+
+---
+
 ## 🧹 Dọn dẹp
 
 ```bash
@@ -546,6 +1026,29 @@ kubectl -n longhorn-system delete recurringjob hourly-snapshot --ignore-not-foun
 # helm uninstall longhorn -n longhorn-system
 ```
 
+```bash
+# Rook-Ceph: xóa workload test trước
+kubectl delete pod rbd-app --ignore-not-found
+kubectl delete deploy shared-writer --ignore-not-found
+kubectl delete pvc rbd-pvc shared-pvc --ignore-not-found
+
+# xóa CephFilesystem, CephBlockPool rồi CephCluster (đúng thứ tự — CR phụ trước)
+kubectl -n rook-ceph delete cephfilesystem myfs --ignore-not-found
+kubectl -n rook-ceph delete cephblockpool replicapool --ignore-not-found
+kubectl -n rook-ceph delete cephcluster rook-ceph --ignore-not-found
+
+# gỡ operator + CRD (uninstall hẳn Rook)
+# helm uninstall rook-ceph-tools rook-ceph -n rook-ceph
+# kubectl delete ns rook-ceph
+
+# kind-only: tháo loop device đã gắn ở mục 7
+# for n in kind-control-plane kind-worker kind-worker2; do
+#   docker exec "$n" bash -c 'losetup -D; rm -f /var/lib/ceph-osd.img'
+# done
+```
+
+> ⚠ Xóa `CephCluster` không tự wipe raw device — nếu dựng lại Ceph trên cùng disk, phải `sgdisk --zap-all` device trước, nếu không OSD prepare sẽ bỏ qua "disk đã có dữ liệu Ceph".
+
 ---
 
 ## ✅ Đủ khi
@@ -555,6 +1058,10 @@ kubectl -n longhorn-system delete recurringjob hourly-snapshot --ignore-not-foun
 ③ Phân biệt `numberOfReplicas` và `dataLocality` (disabled / best-effort / strict-local) — khi nào dùng cái nào.
 ④ Tạo snapshot trong-cluster và giải thích snapshot khác backup ra S3 thế nào.
 ⑤ Giải thích GOLDEN LESSON double-replicate: CNPG 3 instance + Longhorn replica-3 = 9 bản, tại sao dùng replica-1 `strict-local` tốt hơn.
+⑥ Kể tên và vai trò các daemon Ceph (MON/MGR/OSD/MDS/RGW) và biết OSD cần raw block device, khác Longhorn dùng filesystem có sẵn.
+⑦ Cài Rook operator + CephCluster, đọc `ceph status`/`ceph osd tree` để xác nhận HEALTH_OK và OSD trải theo failure domain host.
+⑧ Tạo RBD StorageClass (RWO) và CephFS StorageClass (RWX); chứng minh nhiều Pod cùng ghi một CephFS volume — điều Longhorn không làm được.
+⑨ Ra quyết định Longhorn vs Rook-Ceph theo tiêu chí (access mode, disk, scale, overhead) thay vì theo cảm tính.
 
 ---
 
@@ -572,6 +1079,14 @@ Tự trả lời trước, cuộn xuống xem Đáp án sau.
 8. Tại sao CNPG 3 instance + Longhorn replica-3 tốn 9 bản copy?
 9. StorageClass `longhorn-cnpg` dùng `strict-local` — rủi ro gì nếu node chứa Pod hết dung lượng disk Longhorn?
 10. Longhorn có hỗ trợ `ReadWriteMany` (RWX) không? Thay thế bằng gì nếu cần RWX?
+11. RADOS là gì trong Ceph? Ba dịch vụ (block/file/object) quan hệ với nó thế nào?
+12. Vai trò MON, MGR, OSD, MDS khác nhau ra sao? MDS cần cho dịch vụ nào?
+13. Vì sao thường triển khai **3** MON (số lẻ)?
+14. OSD yêu cầu gì về disk mà Longhorn không cần? Vì sao (BlueStore)?
+15. CRUSH giải quyết vấn đề gì so với bảng lookup trung tâm? "Failure domain" nghĩa là gì?
+16. RBD và CephFS khác nhau ở access mode thế nào? Cái nào cho RWX?
+17. Provisioner của StorageClass RBD và CephFS trong Rook là gì?
+18. Khi nào chọn Longhorn, khi nào chọn Rook-Ceph? Combo nhẹ thay cho Ceph khi cần cả block lẫn object là gì?
 
 ### Đáp án
 
@@ -585,6 +1100,14 @@ Tự trả lời trước, cuộn xuống xem Đáp án sau.
 8. CNPG tạo 3 bản ở tầng Postgres (primary + 2 standby). Mỗi bản dùng PVC Longhorn replica-3 → mỗi bản Postgres có 3 bản Longhorn → tổng 3 × 3 = 9 bản trên disk.
 9. `strict-local` bắt buộc replica nằm cùng node với Pod → nếu node hết dung lượng disk Longhorn, volume không attach được, Pod không start — volume bị block. Giải pháp: monitor disk usage Longhorn, set resource request disk.
 10. Longhorn block volume chỉ hỗ trợ **RWO** (ReadWriteOnce). Cần RWX → dùng **CephFS** (Rook-Ceph) hoặc **NFS provisioner** hoặc **MinIO** (cho object storage, lab 21).
+11. **RADOS** (Reliable Autonomic Distributed Object Store) là lớp nền lưu mọi thứ dưới dạng object, không có single point of failure. RBD (block), CephFS (file), RGW (object S3) đều là các "mặt tiền" dựng **trên** RADOS.
+12. **MON** giữ cluster map + quorum (không lưu data). **MGR** lo metrics/dashboard/module. **OSD** lưu data thật (1/disk), xử lý replication/recovery. **MDS** giữ metadata filesystem — **chỉ cần cho CephFS**.
+13. Số lẻ để đạt **quorum** đa số (Paxos): 3 MON chịu được mất 1 mà vẫn > 50% đồng thuận. Số chẵn không tăng khả năng chịu lỗi mà còn dễ split-brain.
+14. OSD cần **raw block device chưa format**; Longhorn chỉ cần thư mục trên filesystem có sẵn. Vì **BlueStore** quản lý trực tiếp block device (bỏ lớp filesystem) để tối ưu I/O và checksum toàn phần.
+15. **CRUSH** cho client **tự tính** vị trí object từ crushmap, không cần tra bảng trung tâm → không nghẽn, không SPOF khi scale. **Failure domain** = mức cô lập lỗi (host/rack/row) mà CRUSH bảo đảm các bản sao không rơi cùng một điểm — ví dụ `failureDomain: host` = 3 bản trên 3 host khác nhau.
+16. **RBD** = block, chỉ **RWO** (như Longhorn). **CephFS** = POSIX filesystem, hỗ trợ **RWX** (nhiều Pod/nhiều node ghi cùng lúc). Cần RWX → CephFS.
+17. RBD: `rook-ceph.rbd.csi.ceph.com`. CephFS: `rook-ceph.cephfs.csi.ceph.com`.
+18. Longhorn khi chỉ cần block RWO, cluster nhỏ, vận hành nhẹ. Rook-Ceph khi cần RWX / object S3 / scale lớn / unified storage. Combo nhẹ khi cần cả block lẫn object mà ngại nuôi Ceph: **Longhorn (block) + MinIO (object S3, lab 21)**.
 
 ---
 
@@ -599,6 +1122,8 @@ Trên cluster thật bare-metal, Longhorn thường là default storage: PVC c�
 
 Snapshot trước mọi upgrade DB schema, backup ra S3 trước mọi maintenance cluster.
 
+Khi nào leo lên **Rook-Ceph**: khi một Longhorn không còn đủ — cần **RWX** cho nhiều Pod dùng chung filesystem (media, artifact, ML dataset), cần **object S3 nội bộ** đặt cạnh block/file trên cùng cluster, hoặc scale vượt ~20 node. Điều kiện tiên quyết trên bare-metal: mỗi node góp OSD phải có **raw disk riêng** (NVMe/SSD trống), tối thiểu 3 node để CRUSH failure-domain = host có nghĩa. Đổi lại phải nuôi đội daemon MON/MGR/OSD/MDS và có người hiểu Ceph để xử lý `HEALTH_WARN`, rebalance, near-full OSD. Nhiều team giữ **Longhorn cho block + MinIO cho object** để tránh gánh nặng Ceph khi chưa thật cần unified storage.
+
 ---
 
 ## 📎 Nguồn
@@ -607,3 +1132,6 @@ Snapshot trước mọi upgrade DB schema, backup ra S3 trước mọi maintenan
 - [Longhorn GitHub](https://github.com/longhorn/longhorn) — release notes, known issues.
 - [CNPG + Longhorn best practices](https://cloudnative-pg.io/documentation/) — xem mục Storage.
 - [CSI Spec](https://github.com/container-storage-interface/spec) — hiểu interface giữa K8s và storage plugin.
+- [Rook Documentation](https://rook.io/docs/rook/latest/) — operator, CephCluster, CephBlockPool, CephFilesystem, Ceph-CSI.
+- [Ceph Documentation](https://docs.ceph.com/en/latest/) — kiến trúc RADOS, CRUSH, BlueStore, MON/OSD/MDS.
+- [Rook examples (GitHub)](https://github.com/rook/rook/tree/master/deploy/examples) — `cluster.yaml`, `storageclass.yaml`, `filesystem.yaml`, `toolbox.yaml`.

@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1290" height="1125" viewBox="0 0 1290 1125"><rect width="1290" height="1125" fill="#ffffff"/>
+<rect x="50" y="80" width="1200" height="175" rx="12" fill="#dbe4ff" fill-opacity="0.3" stroke="#ced4da" stroke-width="1" stroke-opacity="0.3"/>
+<rect x="50" y="280" width="1200" height="200" rx="12" fill="#e5dbff" fill-opacity="0.3" stroke="#ced4da" stroke-width="1" stroke-opacity="0.3"/>
+<rect x="50" y="620" width="1200" height="210" rx="12" fill="#d3f9d8" fill-opacity="0.3" stroke="#ced4da" stroke-width="1" stroke-opacity="0.3"/>
+<rect x="50" y="850" width="1200" height="125" rx="12" fill="#f1f3f5" fill-opacity="0.4" stroke="#ced4da" stroke-width="1" stroke-opacity="0.4"/>
+<rect x="80" y="130" width="300" height="95" rx="12" fill="#d0bfff" fill-opacity="1.0" stroke="#7048e8" stroke-width="2" stroke-opacity="1.0"/>
+<rect x="430" y="130" width="240" height="95" rx="12" fill="#fff3bf" fill-opacity="1.0" stroke="#f59f00" stroke-width="2" stroke-opacity="1.0"/>
+<rect x="715" y="130" width="240" height="95" rx="12" fill="#fff3bf" fill-opacity="1.0" stroke="#f59f00" stroke-width="2" stroke-opacity="1.0"/>
+<rect x="1000" y="130" width="240" height="95" rx="12" fill="#fff3bf" fill-opacity="1.0" stroke="#f59f00" stroke-width="2" stroke-opacity="1.0"/>
+<rect x="80" y="325" width="235" height="100" rx="12" fill="#a5d8ff" fill-opacity="1.0" stroke="#1971c2" stroke-width="2" stroke-opacity="1.0"/>
+<rect x="382" y="325" width="235" height="100" rx="12" fill="#a5d8ff" fill-opacity="1.0" stroke="#1971c2" stroke-width="2" stroke-opacity="1.0"/>
+<rect x="684" y="325" width="235" height="100" rx="12" fill="#a5d8ff" fill-opacity="1.0" stroke="#1971c2" stroke-width="2" stroke-opacity="1.0"/>
+<rect x="986" y="325" width="235" height="100" rx="12" fill="#a5d8ff" fill-opacity="1.0" stroke="#1971c2" stroke-width="2" stroke-opacity="1.0"/>
+<rect x="80" y="510" width="1140" height="90" rx="12" fill="#c3fae8" fill-opacity="1.0" stroke="#0c8599" stroke-width="2" stroke-opacity="1.0"/>
+<rect x="80" y="665" width="350" height="110" rx="12" fill="#b2f2bb" fill-opacity="1.0" stroke="#2f9e44" stroke-width="2" stroke-opacity="1.0"/>
+<rect x="475" y="665" width="350" height="110" rx="12" fill="#eebefa" fill-opacity="1.0" stroke="#ae3ec9" stroke-width="2" stroke-opacity="1.0"/>
+<rect x="870" y="665" width="350" height="110" rx="12" fill="#ffd8a8" fill-opacity="1.0" stroke="#e8590c" stroke-width="2" stroke-opacity="1.0"/>
+<rect x="80" y="888" width="350" height="72" rx="12" fill="#e9ecef" fill-opacity="1.0" stroke="#868e96" stroke-width="2" stroke-opacity="1.0"/>
+<rect x="475" y="888" width="350" height="72" rx="12" fill="#e9ecef" fill-opacity="1.0" stroke="#868e96" stroke-width="2" stroke-opacity="1.0"/>
+<rect x="870" y="888" width="350" height="72" rx="12" fill="#e9ecef" fill-opacity="1.0" stroke="#868e96" stroke-width="2" stroke-opacity="1.0"/>
+<rect x="80" y="990" width="1140" height="95" rx="12" fill="#fff3bf" fill-opacity="1.0" stroke="#f59f00" stroke-width="2" stroke-opacity="1.0"/>
+<polyline points="380,177 430,177" fill="none" stroke="#94a3b8" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="430" y1="177" x2="417.9" y2="184.0" stroke="#94a3b8" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="430" y1="177" x2="417.9" y2="170.0" stroke="#94a3b8" stroke-width="2" stroke-opacity="1.0"/>
+<polyline points="550,227 550,322" fill="none" stroke="#94a3b8" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="550" y1="322" x2="543.0" y2="309.9" stroke="#94a3b8" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="550" y1="322" x2="557.0" y2="309.9" stroke="#94a3b8" stroke-width="2" stroke-opacity="1.0"/>
+<polyline points="300,470 300,508" fill="none" stroke="#94a3b8" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="300" y1="508" x2="293.0" y2="495.9" stroke="#94a3b8" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="300" y1="508" x2="307.0" y2="495.9" stroke="#94a3b8" stroke-width="2" stroke-opacity="1.0"/>
+<polyline points="650,470 650,508" fill="none" stroke="#94a3b8" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="650" y1="508" x2="643.0" y2="495.9" stroke="#94a3b8" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="650" y1="508" x2="657.0" y2="495.9" stroke="#94a3b8" stroke-width="2" stroke-opacity="1.0"/>
+<polyline points="1000,470 1000,508" fill="none" stroke="#94a3b8" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="1000" y1="508" x2="993.0" y2="495.9" stroke="#94a3b8" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="1000" y1="508" x2="1007.0" y2="495.9" stroke="#94a3b8" stroke-width="2" stroke-opacity="1.0"/>
+<polyline points="255,602 255,663" fill="none" stroke="#f59e0b" stroke-width="3" stroke-opacity="1.0"/>
+<line x1="255" y1="663" x2="248.0" y2="650.9" stroke="#f59e0b" stroke-width="3" stroke-opacity="1.0"/>
+<line x1="255" y1="663" x2="262.0" y2="650.9" stroke="#f59e0b" stroke-width="3" stroke-opacity="1.0"/>
+<polyline points="650,602 650,663" fill="none" stroke="#f59e0b" stroke-width="3" stroke-opacity="1.0"/>
+<line x1="650" y1="663" x2="643.0" y2="650.9" stroke="#f59e0b" stroke-width="3" stroke-opacity="1.0"/>
+<line x1="650" y1="663" x2="657.0" y2="650.9" stroke="#f59e0b" stroke-width="3" stroke-opacity="1.0"/>
+<polyline points="1045,602 1045,663" fill="none" stroke="#f59e0b" stroke-width="3" stroke-opacity="1.0"/>
+<line x1="1045" y1="663" x2="1038.0" y2="650.9" stroke="#f59e0b" stroke-width="3" stroke-opacity="1.0"/>
+<line x1="1045" y1="663" x2="1052.0" y2="650.9" stroke="#f59e0b" stroke-width="3" stroke-opacity="1.0"/>
+<polyline points="255,778 255,886" fill="none" stroke="#f59e0b" stroke-width="3" stroke-opacity="1.0"/>
+<line x1="255" y1="886" x2="248.0" y2="873.9" stroke="#f59e0b" stroke-width="3" stroke-opacity="1.0"/>
+<line x1="255" y1="886" x2="262.0" y2="873.9" stroke="#f59e0b" stroke-width="3" stroke-opacity="1.0"/>
+<polyline points="650,778 650,886" fill="none" stroke="#f59e0b" stroke-width="3" stroke-opacity="1.0"/>
+<line x1="650" y1="886" x2="643.0" y2="873.9" stroke="#f59e0b" stroke-width="3" stroke-opacity="1.0"/>
+<line x1="650" y1="886" x2="657.0" y2="873.9" stroke="#f59e0b" stroke-width="3" stroke-opacity="1.0"/>
+<polyline points="1045,778 1045,886" fill="none" stroke="#f59e0b" stroke-width="3" stroke-opacity="1.0"/>
+<line x1="1045" y1="886" x2="1038.0" y2="873.9" stroke="#f59e0b" stroke-width="3" stroke-opacity="1.0"/>
+<line x1="1045" y1="886" x2="1052.0" y2="873.9" stroke="#f59e0b" stroke-width="3" stroke-opacity="1.0"/>
+<text x="650.0" y="45.3" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="26" fill="#1e40af" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">Rook-Ceph — kiến trúc</text>
+<text x="70.0" y="103.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#1e40af" fill-opacity="1.0" text-anchor="start" xml:space="preserve">1 · Operator + CRD</text>
+<text x="98.0" y="156.8" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="18" fill="#5f3dc4" fill-opacity="1.0" text-anchor="start" xml:space="preserve">Rook Operator</text>
+<text x="98.0" y="185.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">Deployment · ns rook-ceph</text>
+<text x="98.0" y="205.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">watch các CRD</text>
+<text x="448.0" y="160.8" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="18" fill="#e67700" fill-opacity="1.0" text-anchor="start" xml:space="preserve">CephCluster</text>
+<text x="448.0" y="191.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">MON/MGR/OSD</text>
+<text x="733.0" y="160.8" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="18" fill="#e67700" fill-opacity="1.0" text-anchor="start" xml:space="preserve">CephBlockPool</text>
+<text x="733.0" y="191.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">→ RBD pool</text>
+<text x="1018.0" y="160.8" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="18" fill="#e67700" fill-opacity="1.0" text-anchor="start" xml:space="preserve">CephFilesystem</text>
+<text x="1018.0" y="191.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">→ CephFS + MDS</text>
+<text x="70.0" y="303.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#1e40af" fill-opacity="1.0" text-anchor="start" xml:space="preserve">2 · Ceph daemons (operator dựng)</text>
+<text x="98.0" y="351.8" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="18" fill="#1864ab" fill-opacity="1.0" text-anchor="start" xml:space="preserve">MON x3</text>
+<text x="98.0" y="381.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">quorum, cluster map</text>
+<text x="400.0" y="351.8" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="18" fill="#1864ab" fill-opacity="1.0" text-anchor="start" xml:space="preserve">MGR x2</text>
+<text x="400.0" y="381.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">dashboard, metrics</text>
+<text x="702.0" y="348.8" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="18" fill="#1864ab" fill-opacity="1.0" text-anchor="start" xml:space="preserve">OSD x3</text>
+<text x="702.0" y="375.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">1 OSD / raw disk</text>
+<text x="702.0" y="395.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">BlueStore</text>
+<text x="702.0" y="415.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">cần raw device</text>
+<text x="1004.0" y="351.8" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="18" fill="#1864ab" fill-opacity="1.0" text-anchor="start" xml:space="preserve">MDS</text>
+<text x="1004.0" y="377.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">metadata</text>
+<text x="1004.0" y="397.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">chỉ cho CephFS</text>
+<text x="655.0" y="542.4" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="20" fill="#0b7285" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">RADOS — object store phân tán (nền của mọi storage)</text>
+<text x="640.0" y="575.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#0c8599" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">CRUSH: trải bản sao theo failure domain = host</text>
+<text x="70.0" y="643.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#1e40af" fill-opacity="1.0" text-anchor="start" xml:space="preserve">3 · Ba mặt tiền: block / file / object</text>
+<text x="98.0" y="692.8" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="18" fill="#2b8a3e" fill-opacity="1.0" text-anchor="start" xml:space="preserve">RBD — block</text>
+<text x="98.0" y="725.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">access: RWO</text>
+<text x="98.0" y="745.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">rook-ceph.rbd.csi.ceph.com</text>
+<text x="493.0" y="692.8" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="18" fill="#9c36b5" fill-opacity="1.0" text-anchor="start" xml:space="preserve">CephFS — file</text>
+<text x="493.0" y="718.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">access: RWX</text>
+<text x="493.0" y="738.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">Longhorn KHÔNG có</text>
+<text x="493.0" y="758.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">rook-ceph.cephfs.csi.ceph.com</text>
+<text x="888.0" y="692.8" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="18" fill="#d9480f" fill-opacity="1.0" text-anchor="start" xml:space="preserve">RGW — object S3</text>
+<text x="888.0" y="725.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">S3-compatible gateway</text>
+<text x="888.0" y="745.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">thay được MinIO</text>
+<text x="70.0" y="871.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#1e40af" fill-opacity="1.0" text-anchor="start" xml:space="preserve">4 · Workload</text>
+<text x="98.0" y="911.9" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="17" fill="#495057" fill-opacity="1.0" text-anchor="start" xml:space="preserve">Pod (1)</text>
+<text x="98.0" y="938.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#495057" fill-opacity="1.0" text-anchor="start" xml:space="preserve">1 Pod mount (RWO)</text>
+<text x="493.0" y="911.9" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="17" fill="#495057" fill-opacity="1.0" text-anchor="start" xml:space="preserve">Nhiều Pod / nhiều node</text>
+<text x="493.0" y="938.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#495057" fill-opacity="1.0" text-anchor="start" xml:space="preserve">cùng ghi 1 volume (RWX)</text>
+<text x="888.0" y="911.9" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="17" fill="#495057" fill-opacity="1.0" text-anchor="start" xml:space="preserve">Client S3</text>
+<text x="888.0" y="938.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#495057" fill-opacity="1.0" text-anchor="start" xml:space="preserve">PUT / GET object</text>
+<text x="100.0" y="1013.9" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="17" fill="#92400e" fill-opacity="1.0" text-anchor="start" xml:space="preserve">Longhorn vs Rook-Ceph — chọn cái nào</text>
+<text x="100.0" y="1043.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#92400e" fill-opacity="1.0" text-anchor="start" xml:space="preserve">Longhorn: block RWO · disk = filesystem có sẵn · nhẹ</text>
+<text x="100.0" y="1069.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#92400e" fill-opacity="1.0" text-anchor="start" xml:space="preserve">Rook-Ceph: block + file + object · cần raw disk · nặng</text>
+<text x="560.0" y="273.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#3b82f6" fill-opacity="1.0" text-anchor="start" xml:space="preserve">dựng daemon</text>
+</svg>
