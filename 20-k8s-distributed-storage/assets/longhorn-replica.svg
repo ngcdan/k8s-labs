@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1370" height="860" viewBox="0 0 1370 860"><rect width="1370" height="860" fill="#ffffff"/>
+<text x="700.0" y="41.7" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="24" fill="#1e40af" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">Longhorn — Replica Architecture</text>
+<rect x="40" y="80" width="590" height="660" rx="12" fill="#dbe4ff" fill-opacity="0.3" stroke="#3b82f6" stroke-width="2" stroke-opacity="0.3"/>
+<text x="50.0" y="104.8" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="18" fill="#1e40af" fill-opacity="1.0" text-anchor="start" xml:space="preserve">Longhorn Volume: replica-3 (default)</text>
+<rect x="186" y="157" width="298" height="65" rx="12" fill="#94a3b8" fill-opacity="0.32" stroke="#94a3b8" stroke-width="1" stroke-opacity="0.32"/>
+<rect x="180" y="150" width="298" height="65" rx="12" fill="#a5d8ff" fill-opacity="1.0" stroke="#3b82f6" stroke-width="2" stroke-opacity="1.0"/>
+<text x="330.0" y="185.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#1e40af" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">PVC / Longhorn Volume</text>
+<polyline points="245,215 245,300" fill="none" stroke="#3b82f6" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="245" y1="300" x2="238.0" y2="287.9" stroke="#3b82f6" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="245" y1="300" x2="252.0" y2="287.9" stroke="#3b82f6" stroke-width="2" stroke-opacity="1.0"/>
+<polyline points="329,215 329,300" fill="none" stroke="#3b82f6" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="329" y1="300" x2="322.0" y2="287.9" stroke="#3b82f6" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="329" y1="300" x2="336.0" y2="287.9" stroke="#3b82f6" stroke-width="2" stroke-opacity="1.0"/>
+<polyline points="413,215 413,300" fill="none" stroke="#3b82f6" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="413" y1="300" x2="406.0" y2="287.9" stroke="#3b82f6" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="413" y1="300" x2="420.0" y2="287.9" stroke="#3b82f6" stroke-width="2" stroke-opacity="1.0"/>
+<rect x="56" y="307" width="170" height="155" rx="12" fill="#94a3b8" fill-opacity="0.32" stroke="#94a3b8" stroke-width="1" stroke-opacity="0.32"/>
+<rect x="50" y="300" width="170" height="155" rx="12" fill="#ffffff" fill-opacity="1.0" stroke="#374151" stroke-width="2" stroke-opacity="1.0"/>
+<text x="139.5" y="323.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">Node 1 (worker)</text>
+<rect x="70" y="360" width="130" height="75" rx="12" fill="#b2f2bb" fill-opacity="1.0" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<text x="135.0" y="391.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#15803d" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">Replica</text>
+<rect x="246" y="307" width="170" height="155" rx="12" fill="#94a3b8" fill-opacity="0.32" stroke="#94a3b8" stroke-width="1" stroke-opacity="0.32"/>
+<rect x="240" y="300" width="170" height="155" rx="12" fill="#ffffff" fill-opacity="1.0" stroke="#374151" stroke-width="2" stroke-opacity="1.0"/>
+<text x="333.0" y="323.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">Node 2 (worker2)</text>
+<rect x="260" y="360" width="130" height="75" rx="12" fill="#b2f2bb" fill-opacity="1.0" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<text x="325.0" y="391.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#15803d" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">Replica</text>
+<rect x="436" y="307" width="178" height="155" rx="12" fill="#94a3b8" fill-opacity="0.32" stroke="#94a3b8" stroke-width="1" stroke-opacity="0.32"/>
+<rect x="430" y="300" width="178" height="155" rx="12" fill="#ffffff" fill-opacity="1.0" stroke="#374151" stroke-width="2" stroke-opacity="1.0"/>
+<text x="549.0" y="323.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">Node 3 (control-plane)</text>
+<rect x="450" y="360" width="138" height="75" rx="12" fill="#b2f2bb" fill-opacity="1.0" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<text x="519.0" y="391.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#15803d" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">Replica</text>
+<text x="50.0" y="501.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">3 replica trải 3 node — chịu 2 node fault</text>
+<rect x="40" y="520" width="440" height="80" rx="12" fill="#ffc9c9" fill-opacity="1.0" stroke="#ef4444" stroke-width="2" stroke-opacity="1.0" stroke-dasharray="8 6"/>
+<text x="56.0" y="546.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#991b1b" fill-opacity="1.0" text-anchor="start" xml:space="preserve">CNPG 3 instance x Longhorn replica-3</text>
+<text x="56.0" y="564.0" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#991b1b" fill-opacity="1.0" text-anchor="start" xml:space="preserve">= 9 ban copy tren disk (lang phi!)</text>
+<rect x="670" y="80" width="660" height="660" rx="12" fill="#d3f9d8" fill-opacity="0.3" stroke="#15803d" stroke-width="2" stroke-opacity="0.3"/>
+<text x="680.0" y="104.8" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="18" fill="#15803d" fill-opacity="1.0" text-anchor="start" xml:space="preserve">Longhorn replica-1 + strict-local</text>
+<text x="680.0" y="127.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">(cho DB tu replicate — CNPG)</text>
+<rect x="686" y="177" width="235" height="80" rx="12" fill="#94a3b8" fill-opacity="0.32" stroke="#94a3b8" stroke-width="1" stroke-opacity="0.32"/>
+<rect x="680" y="170" width="235" height="80" rx="12" fill="#a5d8ff" fill-opacity="1.0" stroke="#3b82f6" stroke-width="2" stroke-opacity="1.0"/>
+<text x="800.0" y="196.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#1e40af" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">CNPG Primary</text>
+<text x="800.0" y="214.0" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#1e40af" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">(Node 1)</text>
+<rect x="686" y="327" width="235" height="80" rx="12" fill="#94a3b8" fill-opacity="0.32" stroke="#94a3b8" stroke-width="1" stroke-opacity="0.32"/>
+<rect x="680" y="320" width="235" height="80" rx="12" fill="#a5d8ff" fill-opacity="1.0" stroke="#3b82f6" stroke-width="2" stroke-opacity="1.0"/>
+<text x="800.0" y="346.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#1e40af" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">CNPG Standby</text>
+<text x="800.0" y="364.0" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#1e40af" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">(Node 2)</text>
+<rect x="686" y="477" width="235" height="80" rx="12" fill="#94a3b8" fill-opacity="0.32" stroke="#94a3b8" stroke-width="1" stroke-opacity="0.32"/>
+<rect x="680" y="470" width="235" height="80" rx="12" fill="#a5d8ff" fill-opacity="1.0" stroke="#3b82f6" stroke-width="2" stroke-opacity="1.0"/>
+<text x="800.0" y="496.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#1e40af" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">CNPG Standby</text>
+<text x="800.0" y="514.0" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#1e40af" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">(Node 3)</text>
+<polyline points="680,255 680,315" fill="none" stroke="#f59e0b" stroke-width="2" stroke-opacity="1.0" stroke-dasharray="8 6"/>
+<line x1="680" y1="315" x2="673.0" y2="302.9" stroke="#f59e0b" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="680" y1="315" x2="687.0" y2="302.9" stroke="#f59e0b" stroke-width="2" stroke-opacity="1.0"/>
+<text x="620.0" y="283.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#b45309" fill-opacity="1.0" text-anchor="start" xml:space="preserve">WAL streaming</text>
+<polyline points="680,405 680,465" fill="none" stroke="#f59e0b" stroke-width="2" stroke-opacity="1.0" stroke-dasharray="8 6"/>
+<line x1="680" y1="465" x2="673.0" y2="452.9" stroke="#f59e0b" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="680" y1="465" x2="687.0" y2="452.9" stroke="#f59e0b" stroke-width="2" stroke-opacity="1.0"/>
+<text x="620.0" y="433.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#b45309" fill-opacity="1.0" text-anchor="start" xml:space="preserve">WAL streaming</text>
+<rect x="966" y="177" width="178" height="80" rx="12" fill="#94a3b8" fill-opacity="0.32" stroke="#94a3b8" stroke-width="1" stroke-opacity="0.32"/>
+<rect x="960" y="170" width="178" height="80" rx="12" fill="#ffd8a8" fill-opacity="1.0" stroke="#c2410c" stroke-width="2" stroke-opacity="1.0"/>
+<text x="1050.0" y="196.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#7c2d12" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">Replica (local)</text>
+<text x="1050.0" y="214.0" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#7c2d12" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">Node 1</text>
+<rect x="966" y="327" width="178" height="80" rx="12" fill="#94a3b8" fill-opacity="0.32" stroke="#94a3b8" stroke-width="1" stroke-opacity="0.32"/>
+<rect x="960" y="320" width="178" height="80" rx="12" fill="#ffd8a8" fill-opacity="1.0" stroke="#c2410c" stroke-width="2" stroke-opacity="1.0"/>
+<text x="1050.0" y="346.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#7c2d12" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">Replica (local)</text>
+<text x="1050.0" y="364.0" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#7c2d12" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">Node 2</text>
+<rect x="966" y="477" width="178" height="80" rx="12" fill="#94a3b8" fill-opacity="0.32" stroke="#94a3b8" stroke-width="1" stroke-opacity="0.32"/>
+<rect x="960" y="470" width="178" height="80" rx="12" fill="#ffd8a8" fill-opacity="1.0" stroke="#c2410c" stroke-width="2" stroke-opacity="1.0"/>
+<text x="1050.0" y="496.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#7c2d12" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">Replica (local)</text>
+<text x="1050.0" y="514.0" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#7c2d12" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">Node 3</text>
+<polyline points="915,210 957,210" fill="none" stroke="#c2410c" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="957" y1="210" x2="944.9" y2="217.0" stroke="#c2410c" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="957" y1="210" x2="944.9" y2="203.0" stroke="#c2410c" stroke-width="2" stroke-opacity="1.0"/>
+<polyline points="915,360 957,360" fill="none" stroke="#c2410c" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="957" y1="360" x2="944.9" y2="367.0" stroke="#c2410c" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="957" y1="360" x2="944.9" y2="353.0" stroke="#c2410c" stroke-width="2" stroke-opacity="1.0"/>
+<polyline points="915,510 957,510" fill="none" stroke="#c2410c" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="957" y1="510" x2="944.9" y2="517.0" stroke="#c2410c" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="957" y1="510" x2="944.9" y2="503.0" stroke="#c2410c" stroke-width="2" stroke-opacity="1.0"/>
+<rect x="670" y="580" width="640" height="80" rx="12" fill="#b2f2bb" fill-opacity="1.0" stroke="#15803d" stroke-width="2" stroke-opacity="1.0" stroke-dasharray="8 6"/>
+<text x="686.0" y="606.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#15803d" fill-opacity="1.0" text-anchor="start" xml:space="preserve">3 ban Postgres + 3 ban Longhorn = 3 tong (khong phai 9)</text>
+<text x="686.0" y="624.0" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#15803d" fill-opacity="1.0" text-anchor="start" xml:space="preserve">CNPG tu replicate o tang app — Longhorn chi can luu 1 ban / node</text>
+<polyline points="655,80 655,740" fill="none" stroke="#94a3b8" stroke-width="2" stroke-opacity="1.0" stroke-dasharray="8 6"/>
+<rect x="40" y="760" width="1290" height="60" rx="12" fill="#fff3bf" fill-opacity="1.0" stroke="#374151" stroke-width="2" stroke-opacity="1.0"/>
+<text x="55.0" y="787.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">replica-3 mac dinh + CNPG: 9 ban copy  |  replica-1 strict-local + CNPG: 3 ban copy  (tiet kiem 3x disk, IOPS cao hon)</text>
+</svg>

@@ -101,7 +101,7 @@ pg-main     2d    3           3       Cluster in healthy state
 ```
 → **Verify:** Longhorn là default StorageClass; MinIO svc port 9000; CNPG cluster healthy với 3 instances. Thiếu bất kỳ điều kiện nào → hoàn thành lab tiên quyết trước.
 
-![[app-tier-wiring.excalidraw]]
+![Wiring app-tier: Longhorn + MinIO + CloudNativePG](assets/app-tier-wiring.png)
 
 ---
 

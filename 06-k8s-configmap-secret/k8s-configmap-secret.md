@@ -110,7 +110,7 @@ data:
 
 ## 3. Dùng ConfigMap — env var vs volume mount
 
-![[config-inject.excalidraw]]
+![ConfigMap/Secret inject vào Pod: env var vs volume mount](assets/config-inject.png)
 
 **Chốt:** hai kỹ thuật inject ConfigMap vào container — env var (bất biến sau khi Pod khởi động) và volume mount (tự cập nhật ~30–60s sau khi ConfigMap thay đổi); chọn theo nhu cầu hot-reload.
 

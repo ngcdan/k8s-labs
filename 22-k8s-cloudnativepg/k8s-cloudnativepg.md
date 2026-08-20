@@ -110,7 +110,7 @@ scheduledbackups.postgresql.cnpg.io           2026-08-11T02:00:01Z
 
 → **Verify:** 6 CRD `*.postgresql.cnpg.io` đăng ký thành công; `kubectl cnpg` plugin hoạt động (cài qua `kubectl krew install cnpg`).
 
-![[cnpg-ha.excalidraw]]
+![CloudNativePG HA: primary + replica, failover tự động](assets/cnpg-ha.png)
 
 ---
 

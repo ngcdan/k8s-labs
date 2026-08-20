@@ -51,7 +51,7 @@ $ docker exec nha2 cat /usr/share/nginx/html/index.html
 ```
 → **Verify:** nha1 đổi, nha2 + image không đổi. Dọn: `docker rm -f nha1 nha2`.
 
-![[image-vs-container.excalidraw]]
+![Image bất biến vs Container instance ghi được](assets/image-vs-container.png)
 
 ---
 
@@ -115,7 +115,7 @@ $ ls -a
 ```
 → **Verify:** đủ 4 file (`.dockerignore` ẩn — cần `ls -a`).
 
-![[layer-cache.excalidraw]]
+![Layer cache: thứ tự COPY ảnh hưởng cache hit](assets/layer-cache.png)
 
 ---
 

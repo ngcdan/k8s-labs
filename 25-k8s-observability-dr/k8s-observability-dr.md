@@ -39,7 +39,7 @@ kubectl config current-context    # kind-kind-lab
 
 ## 1. metrics-server + kubectl top
 
-![[observability-dr.excalidraw]]
+![Observability & DR: metrics, logging, backup/restore](assets/observability-dr.png)
 
 **Chốt:** metrics-server thu CPU/RAM realtime từ kubelet của mỗi node, phơi lên API `/apis/metrics.k8s.io/v1beta1` — đây là **nguồn dữ liệu của `kubectl top`**, HPA, VPA. Không có metrics-server, `kubectl top` báo lỗi và HPA không hoạt động.
 

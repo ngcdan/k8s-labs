@@ -69,7 +69,7 @@ kubectl config set-context --current --namespace=demo   # đặt default ns = de
 - Luôn bắt đầu từ Role + RoleBinding (namespaced) trừ khi cần cluster-scoped resource.
 - **Phản đề:** dùng ClusterRoleBinding cho workload chỉ cần đọc pod trong 1 namespace = over-permissive, sai về nguyên tắc. Dùng RoleBinding ref ClusterRole thay thế.
 
-![[rbac-chain.excalidraw]]
+![Chuỗi RBAC: Subject → RoleBinding → Role → verb/resource](assets/rbac-chain.png)
 
 **Làm:**
 ```bash

@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1262" height="583" viewBox="0 0 1262 583"><rect width="1262" height="583" fill="#ffffff"/>
+<text x="590.0" y="51.3" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="26" fill="#1e40af" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">GitOps: Git là nguồn sự thật</text>
+<rect x="30" y="200" width="220" height="80" rx="12" fill="#a5d8ff" fill-opacity="1.0" stroke="#1e40af" stroke-width="2" stroke-opacity="1.0"/>
+<text x="140.0" y="242.8" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="18" fill="#1e3a8a" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">Dev sửa manifest</text>
+<polyline points="252,240 320,240" fill="none" stroke="#374151" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="320" y1="240" x2="307.9" y2="247.0" stroke="#374151" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="320" y1="240" x2="307.9" y2="233.0" stroke="#374151" stroke-width="2" stroke-opacity="1.0"/>
+<rect x="322" y="200" width="140" height="80" rx="12" fill="#d0bfff" fill-opacity="1.0" stroke="#374151" stroke-width="2" stroke-opacity="1.0"/>
+<text x="394.5" y="242.8" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="18" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">git push</text>
+<polyline points="464,240 520,240" fill="none" stroke="#374151" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="520" y1="240" x2="507.9" y2="247.0" stroke="#374151" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="520" y1="240" x2="507.9" y2="233.0" stroke="#374151" stroke-width="2" stroke-opacity="1.0"/>
+<rect x="522" y="200" width="180" height="80" rx="12" fill="#b2f2bb" fill-opacity="1.0" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<text x="612.0" y="229.8" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="18" fill="#15803d" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">Forgejo</text>
+<text x="612.0" y="252.3" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="18" fill="#15803d" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">(Git repo)</text>
+<polyline points="704,240 760,240" fill="none" stroke="#374151" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="760" y1="240" x2="747.9" y2="247.0" stroke="#374151" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="760" y1="240" x2="747.9" y2="233.0" stroke="#374151" stroke-width="2" stroke-opacity="1.0"/>
+<rect x="762" y="200" width="200" height="80" rx="12" fill="#ffd8a8" fill-opacity="1.0" stroke="#b45309" stroke-width="2" stroke-opacity="1.0"/>
+<text x="862.0" y="229.8" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="18" fill="#92400e" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">Argo CD</text>
+<text x="862.0" y="252.3" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="18" fill="#92400e" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">(watch + sync)</text>
+<polyline points="964,240 1020,240" fill="none" stroke="#374151" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="1020" y1="240" x2="1007.9" y2="247.0" stroke="#374151" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="1020" y1="240" x2="1007.9" y2="233.0" stroke="#374151" stroke-width="2" stroke-opacity="1.0"/>
+<rect x="1022" y="200" width="200" height="80" rx="12" fill="#d0bfff" fill-opacity="1.0" stroke="#6b21a8" stroke-width="2" stroke-opacity="1.0"/>
+<text x="1122.0" y="229.8" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="18" fill="#581c87" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">K8s cluster</text>
+<text x="1122.0" y="252.3" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="18" fill="#581c87" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">(áp trạng thái)</text>
+<polyline points="1122,280 862,280 862,400 1122,400" fill="none" stroke="#dc2626" stroke-width="2" stroke-opacity="1.0" stroke-dasharray="8 6"/>
+<line x1="1122" y1="400" x2="1109.9" y2="407.0" stroke="#dc2626" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="1122" y1="400" x2="1109.9" y2="393.0" stroke="#dc2626" stroke-width="2" stroke-opacity="1.0"/>
+<text x="949.0" y="431.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#dc2626" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">selfHeal: drift → tự sync lại</text>
+<text x="590.0" y="533.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">không kubectl edit prod — mọi thay đổi qua Git</text>
+</svg>

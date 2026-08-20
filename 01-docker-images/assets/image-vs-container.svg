@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1110" height="575" viewBox="0 0 1110 575"><rect width="1110" height="575" fill="#ffffff"/>
+<text x="606.5" y="53.0" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="28" fill="#1e40af" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">Image vs Container — 1 khuôn, nhiều nhà</text>
+<rect x="396" y="107" width="420" height="90" rx="12" fill="#94a3b8" fill-opacity="0.32" stroke="#94a3b8" stroke-width="1" stroke-opacity="0.32"/>
+<rect x="390" y="100" width="420" height="90" rx="12" fill="#a5d8ff" fill-opacity="1.0" stroke="#1e40af" stroke-width="2" stroke-opacity="1.0"/>
+<text x="600.0" y="136.8" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="18" fill="#1e40af" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">IMAGE  nginx:alpine</text>
+<text x="600.0" y="159.3" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="18" fill="#1e40af" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">khuôn — read-only, bất biến</text>
+<polyline points="505,195 360,295" fill="none" stroke="#3b82f6" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="360" y1="295" x2="366.0" y2="282.4" stroke="#3b82f6" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="360" y1="295" x2="374.0" y2="293.9" stroke="#3b82f6" stroke-width="2" stroke-opacity="1.0"/>
+<polyline points="695,195 840,295" fill="none" stroke="#3b82f6" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="840" y1="295" x2="826.0" y2="293.9" stroke="#3b82f6" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="840" y1="295" x2="834.0" y2="282.4" stroke="#3b82f6" stroke-width="2" stroke-opacity="1.0"/>
+<text x="601.0" y="245.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#f59e0b" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">docker run</text>
+<rect x="166" y="307" width="380" height="150" rx="12" fill="#94a3b8" fill-opacity="0.32" stroke="#94a3b8" stroke-width="1" stroke-opacity="0.32"/>
+<rect x="160" y="300" width="380" height="150" rx="12" fill="#ffffff" fill-opacity="1.0" stroke="#374151" stroke-width="2" stroke-opacity="1.0"/>
+<text x="184.0" y="326.8" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="18" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">CONTAINER nha1</text>
+<rect x="176" y="344" width="348" height="36" rx="12" fill="#ffd8a8" fill-opacity="1.0" stroke="#d97706" stroke-width="2" stroke-opacity="1.0"/>
+<text x="350.0" y="365.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#b45309" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">lớp ghi-được riêng (writable)</text>
+<rect x="176" y="388" width="348" height="52" rx="12" fill="#a5d8ff" fill-opacity="1.0" stroke="#1e40af" stroke-width="2" stroke-opacity="1.0"/>
+<text x="350.0" y="408.3" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="15" fill="#1e40af" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">image layers (read-only)</text>
+<text x="350.0" y="427.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="15" fill="#1e40af" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">dùng chung mọi container</text>
+<rect x="666" y="307" width="380" height="150" rx="12" fill="#94a3b8" fill-opacity="0.32" stroke="#94a3b8" stroke-width="1" stroke-opacity="0.32"/>
+<rect x="660" y="300" width="380" height="150" rx="12" fill="#ffffff" fill-opacity="1.0" stroke="#374151" stroke-width="2" stroke-opacity="1.0"/>
+<text x="684.0" y="326.8" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="18" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">CONTAINER nha2</text>
+<rect x="676" y="344" width="348" height="36" rx="12" fill="#ffd8a8" fill-opacity="1.0" stroke="#d97706" stroke-width="2" stroke-opacity="1.0"/>
+<text x="850.0" y="365.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#b45309" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">lớp ghi-được riêng (writable)</text>
+<rect x="676" y="388" width="348" height="52" rx="12" fill="#a5d8ff" fill-opacity="1.0" stroke="#1e40af" stroke-width="2" stroke-opacity="1.0"/>
+<text x="850.0" y="408.3" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="15" fill="#1e40af" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">image layers (read-only)</text>
+<text x="850.0" y="427.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="15" fill="#1e40af" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">dùng chung mọi container</text>
+<text x="160.0" y="483.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#b45309" fill-opacity="1.0" text-anchor="start" xml:space="preserve">sửa index.html → chỉ đổi lớp writable nha1</text>
+<text x="160.0" y="524.8" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="18" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">1 image → N container độc lập; sửa 1 container không đụng image hay container khác.</text>
+</svg>

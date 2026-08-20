@@ -80,7 +80,7 @@ $ mc ls minio-demo/           # (sau khi cài xong mục 3-4)
 ```
 → **Verify:** `mc --version` trả release ≥ 2024; `mc ls` liệt kê bucket `demo` sau khi tạo ở mục 4.
 
-![[minio-erasure.excalidraw]]
+![MinIO erasure coding: data shard + parity shard](assets/minio-erasure.png)
 
 ---
 

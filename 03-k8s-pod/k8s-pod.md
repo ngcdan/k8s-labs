@@ -64,7 +64,7 @@ Events:
 
 > **Thực chạy — Events có TTL ~1h.** Nếu soi một Pod đã cũ (vd `AGE=15h` còn sót từ buổi trước), khối `Events:` sẽ hiện `<none>` — không phải lỗi, mà là các sự kiện khai sinh đã hết hạn và bị xoá khỏi etcd. `describe … Events` chỉ hữu ích cho sự kiện **gần đây**. Muốn thấy chuỗi `Scheduled→Pulled→Created→Started` phải soi Pod **mới tạo**.
 
-![[pod-anatomy.excalidraw]]
+![Giải phẫu Pod: container chia chung network namespace + volume](assets/pod-anatomy.png)
 
 ---
 

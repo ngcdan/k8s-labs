@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="1002" viewBox="0 0 1180 1002"><rect width="1180" height="1002" fill="#ffffff"/>
+<text x="605.5" y="30.0" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="22" fill="#1e40af" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">Cluster Upgrade Flow — kubeadm (v1.29 → v1.30)</text>
+<text x="820.0" y="66.3" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="15" fill="#f59e0b" fill-opacity="1.0" text-anchor="start" xml:space="preserve">Chỉ nâng 1 minor version mỗi lần</text>
+<rect x="416" y="86" width="380" height="64" rx="12" fill="#94a3b8" fill-opacity="0.32" stroke="#94a3b8" stroke-width="1" stroke-opacity="0.32"/>
+<rect x="410" y="80" width="380" height="64" rx="12" fill="#a5d8ff" fill-opacity="1.0" stroke="#1e40af" stroke-width="2" stroke-opacity="1.0"/>
+<text x="600.0" y="101.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#1e40af" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">1. Backup etcd (module 16)</text>
+<text x="600.0" y="121.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#1e40af" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">Trước bất kỳ upgrade nào</text>
+<polyline points="600,144 600,180" fill="none" stroke="#374151" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="600" y1="180" x2="593.0" y2="167.9" stroke="#374151" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="600" y1="180" x2="607.0" y2="167.9" stroke="#374151" stroke-width="2" stroke-opacity="1.0"/>
+<rect x="416" y="206" width="380" height="74" rx="12" fill="#94a3b8" fill-opacity="0.32" stroke="#94a3b8" stroke-width="1" stroke-opacity="0.32"/>
+<rect x="410" y="200" width="380" height="74" rx="12" fill="#dbe4ff" fill-opacity="1.0" stroke="#1d4ed8" stroke-width="2" stroke-opacity="1.0"/>
+<text x="600.0" y="221.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#1e40af" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">2. kubeadm upgrade plan</text>
+<text x="600.0" y="241.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#1e40af" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">Xem COMPONENT / CURRENT / TARGET</text>
+<polyline points="600,274 600,310" fill="none" stroke="#374151" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="600" y1="310" x2="593.0" y2="297.9" stroke="#374151" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="600" y1="310" x2="607.0" y2="297.9" stroke="#374151" stroke-width="2" stroke-opacity="1.0"/>
+<text x="820.0" y="302.3" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="15" fill="#f59e0b" fill-opacity="1.0" text-anchor="start" xml:space="preserve">Control plane phải nâng</text>
+<text x="820.0" y="321.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="15" fill="#f59e0b" fill-opacity="1.0" text-anchor="start" xml:space="preserve">TRUOC worker</text>
+<rect x="416" y="326" width="380" height="74" rx="12" fill="#94a3b8" fill-opacity="0.32" stroke="#94a3b8" stroke-width="1" stroke-opacity="0.32"/>
+<rect x="410" y="320" width="380" height="74" rx="12" fill="#d0bfff" fill-opacity="1.0" stroke="#7c3aed" stroke-width="2" stroke-opacity="1.0"/>
+<text x="600.0" y="341.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#4c1d95" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">3. kubeadm upgrade apply v1.30.x</text>
+<text x="600.0" y="361.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#4c1d95" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">(control plane master đầu tiên)</text>
+<polyline points="600,394 600,430" fill="none" stroke="#374151" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="600" y1="430" x2="593.0" y2="417.9" stroke="#374151" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="600" y1="430" x2="607.0" y2="417.9" stroke="#374151" stroke-width="2" stroke-opacity="1.0"/>
+<rect x="416" y="446" width="380" height="74" rx="12" fill="#94a3b8" fill-opacity="0.32" stroke="#94a3b8" stroke-width="1" stroke-opacity="0.32"/>
+<rect x="410" y="440" width="380" height="74" rx="12" fill="#e5dbff" fill-opacity="1.0" stroke="#7c3aed" stroke-width="2" stroke-opacity="1.0"/>
+<text x="627.0" y="460.3" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="15" fill="#4c1d95" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">4. nâng kubelet + kubectl trên master</text>
+<text x="627.0" y="479.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="15" fill="#4c1d95" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">apt-get install + systemctl restart kubelet</text>
+<polyline points="600,514 600,550" fill="none" stroke="#374151" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="600" y1="550" x2="593.0" y2="537.9" stroke="#374151" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="600" y1="550" x2="607.0" y2="537.9" stroke="#374151" stroke-width="2" stroke-opacity="1.0"/>
+<rect x="416" y="566" width="380" height="74" rx="12" fill="#94a3b8" fill-opacity="0.32" stroke="#94a3b8" stroke-width="1" stroke-opacity="0.32"/>
+<rect x="410" y="560" width="380" height="74" rx="12" fill="#e5dbff" fill-opacity="1.0" stroke="#7c3aed" stroke-width="2" stroke-opacity="1.0"/>
+<text x="601.5" y="581.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#4c1d95" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">5. kubeadm upgrade node (master2/3)</text>
+<text x="601.5" y="601.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#4c1d95" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">(nếu có — lặp mỗi master còn lại)</text>
+<polyline points="790,597 840,597" fill="none" stroke="#7c3aed" stroke-width="1" stroke-opacity="1.0" stroke-dasharray="8 6"/>
+<line x1="840" y1="597" x2="827.9" y2="604.0" stroke="#7c3aed" stroke-width="1" stroke-opacity="1.0"/>
+<line x1="840" y1="597" x2="827.9" y2="590.0" stroke="#7c3aed" stroke-width="1" stroke-opacity="1.0"/>
+<text x="846.0" y="599.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#7c3aed" fill-opacity="1.0" text-anchor="start" xml:space="preserve">lặp mỗi master</text>
+<polyline points="600,634 600,670" fill="none" stroke="#374151" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="600" y1="670" x2="593.0" y2="657.9" stroke="#374151" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="600" y1="670" x2="607.0" y2="657.9" stroke="#374151" stroke-width="2" stroke-opacity="1.0"/>
+<rect x="416" y="686" width="380" height="100" rx="12" fill="#94a3b8" fill-opacity="0.32" stroke="#94a3b8" stroke-width="1" stroke-opacity="0.32"/>
+<rect x="410" y="680" width="380" height="100" rx="12" fill="#ffd8a8" fill-opacity="1.0" stroke="#b45309" stroke-width="2" stroke-opacity="1.0"/>
+<text x="600.0" y="700.3" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="15" fill="#78350f" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">6. Nâng mỗi worker (lặp từng node):</text>
+<text x="600.0" y="719.0" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="15" fill="#78350f" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">kubectl drain &lt;worker&gt;</text>
+<text x="600.0" y="737.8" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="15" fill="#78350f" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">kubeadm upgrade node + nâng kubelet</text>
+<text x="600.0" y="756.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="15" fill="#78350f" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">kubectl uncordon &lt;worker&gt;</text>
+<text x="820.0" y="716.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#f59e0b" fill-opacity="1.0" text-anchor="start" xml:space="preserve">PDB bảo vệ HA khi drain</text>
+<text x="820.0" y="734.0" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#f59e0b" fill-opacity="1.0" text-anchor="start" xml:space="preserve">(chặn evict quá nhiều replica)</text>
+<polyline points="790,745 816,745" fill="none" stroke="#b45309" stroke-width="1" stroke-opacity="1.0" stroke-dasharray="8 6"/>
+<line x1="816" y1="745" x2="803.9" y2="752.0" stroke="#b45309" stroke-width="1" stroke-opacity="1.0"/>
+<line x1="816" y1="745" x2="803.9" y2="738.0" stroke="#b45309" stroke-width="1" stroke-opacity="1.0"/>
+<text x="820.0" y="763.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#b45309" fill-opacity="1.0" text-anchor="start" xml:space="preserve">lặp mỗi worker</text>
+<polyline points="600,780 600,816" fill="none" stroke="#374151" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="600" y1="816" x2="593.0" y2="803.9" stroke="#374151" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="600" y1="816" x2="607.0" y2="803.9" stroke="#374151" stroke-width="2" stroke-opacity="1.0"/>
+<rect x="416" y="832" width="380" height="64" rx="12" fill="#94a3b8" fill-opacity="0.32" stroke="#94a3b8" stroke-width="1" stroke-opacity="0.32"/>
+<rect x="410" y="826" width="380" height="64" rx="12" fill="#b2f2bb" fill-opacity="1.0" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<text x="600.0" y="847.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#14532d" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">7. kubectl get nodes</text>
+<text x="600.0" y="867.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#14532d" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">Tất cả VERSION = v1.30.x → Done</text>
+<ellipse cx="600.0" cy="940.0" rx="50.0" ry="22.0" fill="#b2f2bb" fill-opacity="1.0" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<text x="600.0" y="943.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#14532d" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">DONE</text>
+<polyline points="600,890 600,918" fill="none" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="600" y1="918" x2="593.0" y2="905.9" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="600" y1="918" x2="607.0" y2="905.9" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+</svg>

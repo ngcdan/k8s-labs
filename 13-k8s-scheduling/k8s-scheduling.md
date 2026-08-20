@@ -76,7 +76,7 @@ demo-sched    1/1     Running   0          12s   10.244.1.5   kind-lab-worker   
 
 → **Verify:** Events thấy `Scheduled … to kind-lab-worker`; cột NODE của `get pod -o wide` khớp.
 
-![[scheduling-filters.excalidraw]]
+![Scheduler: filter → score → bind](assets/scheduling-filters.png)
 
 ---
 

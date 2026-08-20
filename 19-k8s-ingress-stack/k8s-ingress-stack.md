@@ -148,7 +148,7 @@ test-lb   LoadBalancer   10.96.215.44    172.18.0.200    80:31442/TCP   8s
 
 → **Verify:** `EXTERNAL-IP` hiện IP từ pool `172.18.0.200-172.18.0.250` (không còn `<pending>`). Dọn test: `kubectl delete deployment test-lb && kubectl delete svc test-lb`.
 
-![[ingress-stack-flow.excalidraw]]
+![Ingress stack: MetalLB → Ingress Controller → Service](assets/ingress-stack-flow.png)
 
 ---
 

@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1087" height="560" viewBox="0 0 1087 560"><rect width="1087" height="560" fill="#ffffff"/>
+<text x="648.5" y="45.3" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="26" fill="#1e40af" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">Dockerfile → layers + cache: thứ tự = tốc độ build</text>
+<text x="120.0" y="98.8" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="18" fill="#3b82f6" fill-opacity="1.0" text-anchor="start" xml:space="preserve">Dòng Dockerfile (trên → dưới)</text>
+<text x="620.0" y="98.8" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="18" fill="#3b82f6" fill-opacity="1.0" text-anchor="start" xml:space="preserve">Layer tương ứng</text>
+<rect x="120" y="120" width="380" height="52" rx="12" fill="#b2f2bb" fill-opacity="1.0" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<text x="136.0" y="149.9" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="17" fill="#15803d" fill-opacity="1.0" text-anchor="start" xml:space="preserve">FROM node:22-alpine</text>
+<rect x="120" y="182" width="380" height="52" rx="12" fill="#b2f2bb" fill-opacity="1.0" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<text x="136.0" y="211.9" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="17" fill="#15803d" fill-opacity="1.0" text-anchor="start" xml:space="preserve">WORKDIR /app</text>
+<rect x="120" y="244" width="380" height="52" rx="12" fill="#b2f2bb" fill-opacity="1.0" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<text x="136.0" y="273.9" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="17" fill="#15803d" fill-opacity="1.0" text-anchor="start" xml:space="preserve">COPY package.json ./</text>
+<rect x="120" y="306" width="380" height="52" rx="12" fill="#b2f2bb" fill-opacity="1.0" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<text x="136.0" y="335.9" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="17" fill="#15803d" fill-opacity="1.0" text-anchor="start" xml:space="preserve">RUN npm install</text>
+<rect x="120" y="368" width="380" height="52" rx="12" fill="#ffd8a8" fill-opacity="1.0" stroke="#d97706" stroke-width="2" stroke-opacity="1.0"/>
+<text x="136.0" y="397.9" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="17" fill="#b45309" fill-opacity="1.0" text-anchor="start" xml:space="preserve">COPY . .   (source code)</text>
+<rect x="600" y="120" width="300" height="238" rx="12" fill="#d3f9d8" fill-opacity="1.0" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<text x="750.0" y="214.8" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="18" fill="#15803d" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">4 layer trên: CACHED</text>
+<text x="750.0" y="237.3" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="18" fill="#15803d" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">ít đổi → tái dùng</text>
+<text x="750.0" y="259.8" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="18" fill="#15803d" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">(build lần 2 bỏ qua)</text>
+<rect x="600" y="368" width="300" height="52" rx="12" fill="#ffd8a8" fill-opacity="1.0" stroke="#d97706" stroke-width="2" stroke-opacity="1.0"/>
+<text x="750.0" y="397.9" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="17" fill="#b45309" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">REBUILD — source hay đổi</text>
+<polyline points="505,146 595,206" fill="none" stroke="#94a3b8" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="595" y1="206" x2="581.0" y2="205.1" stroke="#94a3b8" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="595" y1="206" x2="588.8" y2="193.5" stroke="#94a3b8" stroke-width="2" stroke-opacity="1.0"/>
+<polyline points="505,394 595,394" fill="none" stroke="#94a3b8" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="595" y1="394" x2="582.9" y2="401.0" stroke="#94a3b8" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="595" y1="394" x2="582.9" y2="387.0" stroke="#94a3b8" stroke-width="2" stroke-opacity="1.0"/>
+<text x="120.0" y="484.8" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="18" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">Đổi 1 layer → mọi layer SAU nó phải build lại.</text>
+<text x="120.0" y="507.3" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="18" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">→ Đặt cái ÍT đổi (dependency) lên trên, cái HAY đổi (code) xuống dưới.</text>
+</svg>

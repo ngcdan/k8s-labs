@@ -544,7 +544,7 @@ Rollback was a success! Happy Helming!
 
 ## 7. Argo CD — GitOps: commit = deploy (bổ sung theo roadmap)
 
-![[gitops-flow.excalidraw]]
+![Luồng GitOps với Argo CD: commit = deploy](assets/gitops-flow.png)
 
 **Chốt:** Argo CD = GitOps controller trong cluster. Git repo là **source of truth** — commit YAML (hoặc Helm/Kustomize), Argo CD tự detect và sync vào cluster. Không ai `kubectl apply` tay lên production.
 

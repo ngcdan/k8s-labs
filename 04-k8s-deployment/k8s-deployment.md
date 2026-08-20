@@ -301,7 +301,7 @@ replicaset.apps/my-nginx-7d8f9c5b4    4         4         4
 
 ## 5. Rolling update & zero-downtime
 
-![[deploy-rollout.excalidraw]]
+![Rolling update: ReplicaSet cũ scale down, mới scale up](assets/deploy-rollout.png)
 
 **Chốt:** khi đổi image và `kubectl apply`, Deployment tạo ReplicaSet *mới* song song với ReplicaSet cũ, lần lượt chuyển Pod — không có khoảng trắng downtime vì lúc nào cũng có Pod đang phục vụ.
 

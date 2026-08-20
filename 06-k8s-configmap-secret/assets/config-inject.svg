@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1070" height="325" viewBox="0 0 1070 325"><rect width="1070" height="325" fill="#ffffff"/>
+<text x="556.0" y="51.3" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="26" fill="#1e40af" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">ConfigMap/Secret → container: env vs volume</text>
+<rect x="60" y="140" width="290" height="110" rx="12" fill="#a5d8ff" fill-opacity="1.0" stroke="#1e40af" stroke-width="2" stroke-opacity="1.0"/>
+<text x="205.0" y="189.8" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="18" fill="#1e40af" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">ConfigMap / Secret</text>
+<text x="205.0" y="212.3" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="18" fill="#1e40af" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">(trong etcd)</text>
+<rect x="760" y="140" width="270" height="110" rx="12" fill="#b2f2bb" fill-opacity="1.0" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<text x="895.0" y="197.8" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="18" fill="#15803d" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">Container trong Pod</text>
+<polyline points="352,175 758,175" fill="none" stroke="#374151" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="758" y1="175" x2="745.9" y2="182.0" stroke="#374151" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="758" y1="175" x2="745.9" y2="168.0" stroke="#374151" stroke-width="2" stroke-opacity="1.0"/>
+<text x="370.0" y="156.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">env var (valueFrom: configMapKeyRef)</text>
+<rect x="440" y="185" width="226" height="32" rx="12" fill="#ffd8a8" fill-opacity="1.0" stroke="#e67e22" stroke-width="2" stroke-opacity="1.0"/>
+<text x="553.0" y="204.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#e67e22" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">đổi phải RESTART Pod</text>
+<polyline points="352,220 758,220" fill="none" stroke="#374151" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="758" y1="220" x2="745.9" y2="227.0" stroke="#374151" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="758" y1="220" x2="745.9" y2="213.0" stroke="#374151" stroke-width="2" stroke-opacity="1.0"/>
+<text x="390.0" y="241.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">volume mount (mountPath)</text>
+<rect x="440" y="253" width="270" height="32" rx="12" fill="#a5d8ff" fill-opacity="1.0" stroke="#2980b9" stroke-width="2" stroke-opacity="1.0"/>
+<text x="580.0" y="272.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#2980b9" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">tự CẬP NHẬT (không restart)</text>
+</svg>

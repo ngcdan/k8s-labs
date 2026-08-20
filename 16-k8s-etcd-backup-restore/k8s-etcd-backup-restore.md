@@ -105,7 +105,7 @@ etcdctl get / --prefix --keys-only | head -20
 
 → **Verify:** thấy prefix `/registry/` với các sub-key theo kind (pods, secrets, namespaces…). Số lượng key phản ánh đúng số object đang có trong cụm (`kubectl get all -A` để đối chiếu).
 
-![[etcd-backup-restore.excalidraw]]
+![etcd snapshot: backup & restore](assets/etcd-backup-restore.png)
 
 ---
 

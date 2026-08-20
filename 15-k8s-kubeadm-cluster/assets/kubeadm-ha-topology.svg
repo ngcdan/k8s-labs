@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1150" height="905" viewBox="0 0 1150 905"><rect width="1150" height="905" fill="#ffffff"/>
+<text x="757.5" y="22.4" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="20" fill="#1e40af" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">kubeadm HA Cluster — 3 master + 3 worker (stacked etcd)</text>
+<rect x="36" y="387" width="180" height="80" rx="12" fill="#94a3b8" fill-opacity="0.32" stroke="#94a3b8" stroke-width="1" stroke-opacity="0.32"/>
+<rect x="30" y="380" width="180" height="80" rx="12" fill="#dbe4ff" fill-opacity="1.0" stroke="#1e40af" stroke-width="2" stroke-opacity="1.0"/>
+<text x="120.0" y="410.8" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="18" fill="#1e40af" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">kubectl</text>
+<text x="120.0" y="433.3" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="18" fill="#1e40af" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">client</text>
+<rect x="486" y="57" width="448" height="110" rx="12" fill="#94a3b8" fill-opacity="0.32" stroke="#94a3b8" stroke-width="1" stroke-opacity="0.32"/>
+<rect x="480" y="50" width="448" height="110" rx="12" fill="#fff3bf" fill-opacity="1.0" stroke="#f59e0b" stroke-width="2" stroke-opacity="1.0"/>
+<polyline points="504,88 904,88" fill="none" stroke="#f59e0b" stroke-width="2" stroke-opacity="1.0"/>
+<text x="704.0" y="72.8" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="18" fill="#92400e" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">VIP / Load Balancer</text>
+<text x="704.0" y="107.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">192.168.56.100:6443</text>
+<text x="704.0" y="127.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">control-plane-endpoint = VIP:6443</text>
+<rect x="350" y="175" width="390" height="690" rx="12" fill="#dbe4ff" fill-opacity="0.3" stroke="#3b82f6" stroke-width="1" stroke-opacity="0.3" stroke-dasharray="8 6"/>
+<text x="545.0" y="191.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#1e40af" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">Control Plane (3 node)</text>
+<rect x="376" y="217" width="340" height="185" rx="12" fill="#94a3b8" fill-opacity="0.32" stroke="#94a3b8" stroke-width="1" stroke-opacity="0.32"/>
+<rect x="370" y="210" width="340" height="185" rx="12" fill="#ffffff" fill-opacity="1.0" stroke="#1e40af" stroke-width="2" stroke-opacity="1.0"/>
+<polyline points="394,248 686,248" fill="none" stroke="#1e40af" stroke-width="2" stroke-opacity="1.0"/>
+<text x="556.0" y="232.8" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="18" fill="#1e40af" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">m1 — control-plane</text>
+<text x="386.0" y="267.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">kube-apiserver</text>
+<text x="386.0" y="285.0" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">kube-scheduler</text>
+<text x="386.0" y="302.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">kube-controller-manager</text>
+<rect x="386" y="324" width="308" height="56" rx="12" fill="#d3f9d8" fill-opacity="1.0" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<text x="540.0" y="347.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#15803d" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">etcd (member 1)</text>
+<rect x="376" y="437" width="340" height="185" rx="12" fill="#94a3b8" fill-opacity="0.32" stroke="#94a3b8" stroke-width="1" stroke-opacity="0.32"/>
+<rect x="370" y="430" width="340" height="185" rx="12" fill="#ffffff" fill-opacity="1.0" stroke="#1e40af" stroke-width="2" stroke-opacity="1.0"/>
+<polyline points="394,468 686,468" fill="none" stroke="#1e40af" stroke-width="2" stroke-opacity="1.0"/>
+<text x="556.0" y="452.8" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="18" fill="#1e40af" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">m2 — control-plane</text>
+<text x="386.0" y="487.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">kube-apiserver</text>
+<text x="386.0" y="505.0" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">kube-scheduler</text>
+<text x="386.0" y="522.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">kube-controller-manager</text>
+<rect x="386" y="544" width="308" height="56" rx="12" fill="#d3f9d8" fill-opacity="1.0" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<text x="540.0" y="567.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#15803d" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">etcd (member 2)</text>
+<rect x="376" y="657" width="340" height="185" rx="12" fill="#94a3b8" fill-opacity="0.32" stroke="#94a3b8" stroke-width="1" stroke-opacity="0.32"/>
+<rect x="370" y="650" width="340" height="185" rx="12" fill="#ffffff" fill-opacity="1.0" stroke="#1e40af" stroke-width="2" stroke-opacity="1.0"/>
+<polyline points="394,688 686,688" fill="none" stroke="#1e40af" stroke-width="2" stroke-opacity="1.0"/>
+<text x="556.0" y="672.8" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="18" fill="#1e40af" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">m3 — control-plane</text>
+<text x="386.0" y="707.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">kube-apiserver</text>
+<text x="386.0" y="725.0" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">kube-scheduler</text>
+<text x="386.0" y="742.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">kube-controller-manager</text>
+<rect x="386" y="764" width="308" height="56" rx="12" fill="#d3f9d8" fill-opacity="1.0" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<text x="540.0" y="787.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#15803d" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">etcd (member 3)</text>
+<rect x="800" y="175" width="310" height="570" rx="12" fill="#d3f9d8" fill-opacity="0.3" stroke="#15803d" stroke-width="1" stroke-opacity="0.3" stroke-dasharray="8 6"/>
+<text x="955.0" y="191.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#15803d" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">Worker (3 node)</text>
+<rect x="826" y="217" width="260" height="110" rx="12" fill="#94a3b8" fill-opacity="0.32" stroke="#94a3b8" stroke-width="1" stroke-opacity="0.32"/>
+<rect x="820" y="210" width="260" height="110" rx="12" fill="#ffffff" fill-opacity="1.0" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<polyline points="844,248 1056,248" fill="none" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<text x="950.0" y="232.8" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="18" fill="#15803d" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">w1 — worker</text>
+<text x="950.0" y="269.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">kubelet  kube-proxy</text>
+<text x="950.0" y="287.0" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">containerd</text>
+<rect x="826" y="387" width="260" height="110" rx="12" fill="#94a3b8" fill-opacity="0.32" stroke="#94a3b8" stroke-width="1" stroke-opacity="0.32"/>
+<rect x="820" y="380" width="260" height="110" rx="12" fill="#ffffff" fill-opacity="1.0" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<polyline points="844,418 1056,418" fill="none" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<text x="950.0" y="402.8" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="18" fill="#15803d" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">w2 — worker</text>
+<text x="950.0" y="439.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">kubelet  kube-proxy</text>
+<text x="950.0" y="457.0" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">containerd</text>
+<rect x="826" y="557" width="260" height="110" rx="12" fill="#94a3b8" fill-opacity="0.32" stroke="#94a3b8" stroke-width="1" stroke-opacity="0.32"/>
+<rect x="820" y="550" width="260" height="110" rx="12" fill="#ffffff" fill-opacity="1.0" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<polyline points="844,588 1056,588" fill="none" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<text x="950.0" y="572.8" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="18" fill="#15803d" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">w3 — worker</text>
+<text x="950.0" y="609.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">kubelet  kube-proxy</text>
+<text x="950.0" y="627.0" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">containerd</text>
+<polyline points="210,410 480,105" fill="none" stroke="#1e40af" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="480" y1="105" x2="477.2" y2="118.7" stroke="#1e40af" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="480" y1="105" x2="466.7" y2="109.4" stroke="#1e40af" stroke-width="2" stroke-opacity="1.0"/>
+<text x="230.0" y="301.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#1e40af" fill-opacity="1.0" text-anchor="start" xml:space="preserve">:6443 HTTPS</text>
+<polyline points="590,160 590,210" fill="none" stroke="#f59e0b" stroke-width="3" stroke-opacity="1.0"/>
+<line x1="590" y1="210" x2="583.0" y2="197.9" stroke="#f59e0b" stroke-width="3" stroke-opacity="1.0"/>
+<line x1="590" y1="210" x2="597.0" y2="197.9" stroke="#f59e0b" stroke-width="3" stroke-opacity="1.0"/>
+<polyline points="620,160 620,430" fill="none" stroke="#f59e0b" stroke-width="3" stroke-opacity="1.0" stroke-dasharray="8 6"/>
+<line x1="620" y1="430" x2="613.0" y2="417.9" stroke="#f59e0b" stroke-width="3" stroke-opacity="1.0"/>
+<line x1="620" y1="430" x2="627.0" y2="417.9" stroke="#f59e0b" stroke-width="3" stroke-opacity="1.0"/>
+<polyline points="650,160 650,650" fill="none" stroke="#f59e0b" stroke-width="3" stroke-opacity="1.0"/>
+<line x1="650" y1="650" x2="643.0" y2="637.9" stroke="#f59e0b" stroke-width="3" stroke-opacity="1.0"/>
+<line x1="650" y1="650" x2="657.0" y2="637.9" stroke="#f59e0b" stroke-width="3" stroke-opacity="1.0"/>
+<text x="660.0" y="179.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#92400e" fill-opacity="1.0" text-anchor="start" xml:space="preserve">kube-apiserver</text>
+<polyline points="356,352 356,544" fill="none" stroke="#15803d" stroke-width="2" stroke-opacity="1.0" stroke-dasharray="8 6"/>
+<line x1="356" y1="544" x2="349.0" y2="531.9" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="356" y1="544" x2="363.0" y2="531.9" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<polyline points="356,572 356,764" fill="none" stroke="#15803d" stroke-width="2" stroke-opacity="1.0" stroke-dasharray="8 6"/>
+<line x1="356" y1="764" x2="349.0" y2="751.9" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="356" y1="764" x2="363.0" y2="751.9" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<text x="315.0" y="466.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#15803d" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">etcd</text>
+<text x="315.0" y="484.0" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#15803d" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">peer</text>
+<polyline points="710,265 820,265" fill="none" stroke="#94a3b8" stroke-width="2" stroke-opacity="1.0" stroke-dasharray="8 6"/>
+<line x1="820" y1="265" x2="807.9" y2="272.0" stroke="#94a3b8" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="820" y1="265" x2="807.9" y2="258.0" stroke="#94a3b8" stroke-width="2" stroke-opacity="1.0"/>
+<polyline points="710,435 820,435" fill="none" stroke="#94a3b8" stroke-width="2" stroke-opacity="1.0" stroke-dasharray="8 6"/>
+<line x1="820" y1="435" x2="807.9" y2="442.0" stroke="#94a3b8" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="820" y1="435" x2="807.9" y2="428.0" stroke="#94a3b8" stroke-width="2" stroke-opacity="1.0"/>
+<polyline points="710,605 820,605" fill="none" stroke="#94a3b8" stroke-width="2" stroke-opacity="1.0" stroke-dasharray="8 6"/>
+<line x1="820" y1="605" x2="807.9" y2="612.0" stroke="#94a3b8" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="820" y1="605" x2="807.9" y2="598.0" stroke="#94a3b8" stroke-width="2" stroke-opacity="1.0"/>
+<text x="770.0" y="429.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">kubelet API</text>
+<rect x="30" y="500" width="302" height="80" rx="12" fill="#d3f9d8" fill-opacity="1.0" stroke="#15803d" stroke-width="1" stroke-opacity="1.0" stroke-dasharray="8 6"/>
+<text x="42.0" y="521.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#15803d" fill-opacity="1.0" text-anchor="start" xml:space="preserve">stacked etcd (3 member)</text>
+<text x="42.0" y="539.0" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#15803d" fill-opacity="1.0" text-anchor="start" xml:space="preserve">etcd quorum: chiu mat 1</text>
+<text x="42.0" y="556.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#15803d" fill-opacity="1.0" text-anchor="start" xml:space="preserve">(fault tolerance = 1)</text>
+<rect x="30" y="610" width="302" height="80" rx="12" fill="#dbe4ff" fill-opacity="1.0" stroke="#1e40af" stroke-width="1" stroke-opacity="1.0" stroke-dasharray="8 6"/>
+<text x="42.0" y="631.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#1e40af" fill-opacity="1.0" text-anchor="start" xml:space="preserve">VIP: 192.168.56.100</text>
+<text x="42.0" y="649.0" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#1e40af" fill-opacity="1.0" text-anchor="start" xml:space="preserve">kube-vip / keepalived</text>
+<text x="42.0" y="666.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#1e40af" fill-opacity="1.0" text-anchor="start" xml:space="preserve">floating IP tren 3 master</text>
+</svg>

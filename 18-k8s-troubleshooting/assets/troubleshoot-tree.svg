@@ -1,0 +1,124 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1390" height="914" viewBox="0 0 1390 914"><rect width="1390" height="914" fill="#ffffff"/>
+<rect x="526" y="27" width="248" height="52" rx="12" fill="#94a3b8" fill-opacity="0.32" stroke="#94a3b8" stroke-width="1" stroke-opacity="0.32"/>
+<rect x="520" y="20" width="248" height="52" rx="12" fill="#a5d8ff" fill-opacity="1.0" stroke="#1e40af" stroke-width="2" stroke-opacity="1.0"/>
+<text x="664.0" y="47.8" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="18" fill="#1e40af" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">Trieu chung quan sat</text>
+<polyline points="580,72 278,148" fill="none" stroke="#3b82f6" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="278" y1="148" x2="288.0" y2="138.3" stroke="#3b82f6" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="278" y1="148" x2="291.5" y2="151.8" stroke="#3b82f6" stroke-width="2" stroke-opacity="1.0"/>
+<polyline points="610,72 530,148" fill="none" stroke="#3b82f6" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="530" y1="148" x2="534.0" y2="134.6" stroke="#3b82f6" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="530" y1="148" x2="543.6" y2="144.7" stroke="#3b82f6" stroke-width="2" stroke-opacity="1.0"/>
+<polyline points="679,72 759,148" fill="none" stroke="#3b82f6" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="759" y1="148" x2="745.4" y2="144.7" stroke="#3b82f6" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="759" y1="148" x2="755.0" y2="134.6" stroke="#3b82f6" stroke-width="2" stroke-opacity="1.0"/>
+<polyline points="710,72 1020,148" fill="none" stroke="#3b82f6" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="1020" y1="148" x2="1006.6" y2="151.9" stroke="#3b82f6" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="1020" y1="148" x2="1009.9" y2="138.3" stroke="#3b82f6" stroke-width="2" stroke-opacity="1.0"/>
+<rect x="20" y="148" width="310" height="660" rx="12" fill="#dbe4ff" fill-opacity="0.3" stroke="#3b82f6" stroke-width="1" stroke-opacity="0.3"/>
+<rect x="350" y="148" width="280" height="660" rx="12" fill="#fff3bf" fill-opacity="0.3" stroke="#f59e0b" stroke-width="1" stroke-opacity="0.3"/>
+<rect x="650" y="148" width="310" height="660" rx="12" fill="#ffc9c9" fill-opacity="0.3" stroke="#dc2626" stroke-width="1" stroke-opacity="0.3"/>
+<rect x="980" y="148" width="370" height="660" rx="12" fill="#e5dbff" fill-opacity="0.3" stroke="#7c3aed" stroke-width="1" stroke-opacity="0.3"/>
+<rect x="40" y="151" width="258" height="50" rx="12" fill="#1e40af" fill-opacity="1.0" stroke="#1e40af" stroke-width="2" stroke-opacity="1.0"/>
+<text x="169.0" y="177.8" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="18" fill="#ffffff" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">Pod khong chay</text>
+<rect x="40" y="221" width="258" height="70" rx="12" fill="#ffffff" fill-opacity="1.0" stroke="#1e40af" stroke-width="2" stroke-opacity="1.0"/>
+<polyline points="52,251 286,251" fill="none" stroke="#1e40af" stroke-width="2" stroke-opacity="1.0"/>
+<text x="169.0" y="241.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#1e40af" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">CrashLoopBackOff</text>
+<text x="169.0" y="267.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">logs --previous</text>
+<rect x="40" y="311" width="258" height="70" rx="12" fill="#ffffff" fill-opacity="1.0" stroke="#1e40af" stroke-width="2" stroke-opacity="1.0"/>
+<polyline points="52,341 286,341" fill="none" stroke="#1e40af" stroke-width="2" stroke-opacity="1.0"/>
+<text x="169.0" y="331.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#1e40af" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">ImagePullBackOff</text>
+<text x="169.0" y="357.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">describe -&gt; Events</text>
+<rect x="40" y="401" width="258" height="70" rx="12" fill="#ffffff" fill-opacity="1.0" stroke="#1e40af" stroke-width="2" stroke-opacity="1.0"/>
+<polyline points="52,431 286,431" fill="none" stroke="#1e40af" stroke-width="2" stroke-opacity="1.0"/>
+<text x="177.5" y="419.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#1e40af" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">Pending (FailedScheduling)</text>
+<text x="169.0" y="447.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">describe -&gt; Events</text>
+<rect x="40" y="491" width="258" height="70" rx="12" fill="#ffffff" fill-opacity="1.0" stroke="#1e40af" stroke-width="2" stroke-opacity="1.0"/>
+<polyline points="52,521 286,521" fill="none" stroke="#1e40af" stroke-width="2" stroke-opacity="1.0"/>
+<text x="169.0" y="509.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#1e40af" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">CreateContainerConfigError</text>
+<text x="169.0" y="537.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">secret / ConfigMap thieu</text>
+<polyline points="169,201 169,221" fill="none" stroke="#3b82f6" stroke-width="1" stroke-opacity="1.0"/>
+<line x1="169" y1="221" x2="162.0" y2="208.9" stroke="#3b82f6" stroke-width="1" stroke-opacity="1.0"/>
+<line x1="169" y1="221" x2="176.0" y2="208.9" stroke="#3b82f6" stroke-width="1" stroke-opacity="1.0"/>
+<polyline points="169,291 169,311" fill="none" stroke="#3b82f6" stroke-width="1" stroke-opacity="1.0"/>
+<line x1="169" y1="311" x2="162.0" y2="298.9" stroke="#3b82f6" stroke-width="1" stroke-opacity="1.0"/>
+<line x1="169" y1="311" x2="176.0" y2="298.9" stroke="#3b82f6" stroke-width="1" stroke-opacity="1.0"/>
+<polyline points="169,381 169,401" fill="none" stroke="#3b82f6" stroke-width="1" stroke-opacity="1.0"/>
+<line x1="169" y1="401" x2="162.0" y2="388.9" stroke="#3b82f6" stroke-width="1" stroke-opacity="1.0"/>
+<line x1="169" y1="401" x2="176.0" y2="388.9" stroke="#3b82f6" stroke-width="1" stroke-opacity="1.0"/>
+<polyline points="169,471 169,491" fill="none" stroke="#3b82f6" stroke-width="1" stroke-opacity="1.0"/>
+<line x1="169" y1="491" x2="162.0" y2="478.9" stroke="#3b82f6" stroke-width="1" stroke-opacity="1.0"/>
+<line x1="169" y1="491" x2="176.0" y2="478.9" stroke="#3b82f6" stroke-width="1" stroke-opacity="1.0"/>
+<rect x="370" y="151" width="228" height="50" rx="12" fill="#b45309" fill-opacity="1.0" stroke="#b45309" stroke-width="2" stroke-opacity="1.0"/>
+<text x="484.0" y="177.8" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="18" fill="#ffffff" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">Node NotReady</text>
+<rect x="370" y="221" width="228" height="60" rx="12" fill="#ffffff" fill-opacity="1.0" stroke="#b45309" stroke-width="2" stroke-opacity="1.0"/>
+<text x="486.0" y="246.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">systemctl status kubelet</text>
+<rect x="370" y="311" width="228" height="60" rx="12" fill="#ffffff" fill-opacity="1.0" stroke="#b45309" stroke-width="2" stroke-opacity="1.0"/>
+<text x="484.0" y="336.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">journalctl -u kubelet</text>
+<rect x="370" y="401" width="228" height="80" rx="12" fill="#fff3bf" fill-opacity="1.0" stroke="#b45309" stroke-width="2" stroke-opacity="1.0" stroke-dasharray="8 6"/>
+<text x="511.0" y="424.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">cert het han?</text>
+<text x="511.0" y="442.0" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">kubeadm certs check-expiration</text>
+<rect x="370" y="511" width="228" height="60" rx="12" fill="#b2f2bb" fill-opacity="1.0" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<text x="484.0" y="536.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#15803d" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">systemctl start kubelet</text>
+<polyline points="484,201 484,221" fill="none" stroke="#b45309" stroke-width="1" stroke-opacity="1.0"/>
+<line x1="484" y1="221" x2="477.0" y2="208.9" stroke="#b45309" stroke-width="1" stroke-opacity="1.0"/>
+<line x1="484" y1="221" x2="491.0" y2="208.9" stroke="#b45309" stroke-width="1" stroke-opacity="1.0"/>
+<polyline points="484,281 484,311" fill="none" stroke="#b45309" stroke-width="1" stroke-opacity="1.0"/>
+<line x1="484" y1="311" x2="477.0" y2="298.9" stroke="#b45309" stroke-width="1" stroke-opacity="1.0"/>
+<line x1="484" y1="311" x2="491.0" y2="298.9" stroke="#b45309" stroke-width="1" stroke-opacity="1.0"/>
+<polyline points="484,371 484,401" fill="none" stroke="#b45309" stroke-width="1" stroke-opacity="1.0"/>
+<line x1="484" y1="401" x2="477.0" y2="388.9" stroke="#b45309" stroke-width="1" stroke-opacity="1.0"/>
+<line x1="484" y1="401" x2="491.0" y2="388.9" stroke="#b45309" stroke-width="1" stroke-opacity="1.0"/>
+<polyline points="484,481 484,511" fill="none" stroke="#b45309" stroke-width="1" stroke-opacity="1.0"/>
+<line x1="484" y1="511" x2="477.0" y2="498.9" stroke="#b45309" stroke-width="1" stroke-opacity="1.0"/>
+<line x1="484" y1="511" x2="491.0" y2="498.9" stroke="#b45309" stroke-width="1" stroke-opacity="1.0"/>
+<rect x="670" y="151" width="258" height="50" rx="12" fill="#991b1b" fill-opacity="1.0" stroke="#991b1b" stroke-width="2" stroke-opacity="1.0"/>
+<text x="799.0" y="170.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#ffffff" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">kubectl treo</text>
+<text x="799.0" y="190.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#ffffff" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">connection refused</text>
+<rect x="670" y="221" width="258" height="60" rx="12" fill="#ffffff" fill-opacity="1.0" stroke="#991b1b" stroke-width="2" stroke-opacity="1.0"/>
+<text x="799.0" y="246.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">SSH vao master node</text>
+<rect x="670" y="311" width="258" height="60" rx="12" fill="#ffffff" fill-opacity="1.0" stroke="#991b1b" stroke-width="2" stroke-opacity="1.0"/>
+<text x="807.0" y="336.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">crictl ps -a | grep apiserver</text>
+<rect x="670" y="401" width="258" height="60" rx="12" fill="#ffffff" fill-opacity="1.0" stroke="#991b1b" stroke-width="2" stroke-opacity="1.0"/>
+<text x="799.0" y="426.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">xem /var/log/pods</text>
+<rect x="670" y="491" width="258" height="80" rx="12" fill="#b2f2bb" fill-opacity="1.0" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<text x="799.0" y="514.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#15803d" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">sua manifest</text>
+<text x="799.0" y="532.0" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#15803d" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">/etc/kubernetes/manifests/</text>
+<text x="799.0" y="549.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#15803d" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">kubelet tu dung lai</text>
+<polyline points="799,201 799,221" fill="none" stroke="#991b1b" stroke-width="1" stroke-opacity="1.0"/>
+<line x1="799" y1="221" x2="792.0" y2="208.9" stroke="#991b1b" stroke-width="1" stroke-opacity="1.0"/>
+<line x1="799" y1="221" x2="806.0" y2="208.9" stroke="#991b1b" stroke-width="1" stroke-opacity="1.0"/>
+<polyline points="799,281 799,311" fill="none" stroke="#991b1b" stroke-width="1" stroke-opacity="1.0"/>
+<line x1="799" y1="311" x2="792.0" y2="298.9" stroke="#991b1b" stroke-width="1" stroke-opacity="1.0"/>
+<line x1="799" y1="311" x2="806.0" y2="298.9" stroke="#991b1b" stroke-width="1" stroke-opacity="1.0"/>
+<polyline points="799,371 799,401" fill="none" stroke="#991b1b" stroke-width="1" stroke-opacity="1.0"/>
+<line x1="799" y1="401" x2="792.0" y2="388.9" stroke="#991b1b" stroke-width="1" stroke-opacity="1.0"/>
+<line x1="799" y1="401" x2="806.0" y2="388.9" stroke="#991b1b" stroke-width="1" stroke-opacity="1.0"/>
+<polyline points="799,461 799,491" fill="none" stroke="#991b1b" stroke-width="1" stroke-opacity="1.0"/>
+<line x1="799" y1="491" x2="792.0" y2="478.9" stroke="#991b1b" stroke-width="1" stroke-opacity="1.0"/>
+<line x1="799" y1="491" x2="806.0" y2="478.9" stroke="#991b1b" stroke-width="1" stroke-opacity="1.0"/>
+<rect x="1000" y="151" width="318" height="50" rx="12" fill="#5b21b6" fill-opacity="1.0" stroke="#5b21b6" stroke-width="2" stroke-opacity="1.0"/>
+<text x="1159.0" y="177.8" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="18" fill="#ffffff" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">Service khong reach</text>
+<rect x="1000" y="221" width="318" height="70" rx="12" fill="#ffffff" fill-opacity="1.0" stroke="#5b21b6" stroke-width="2" stroke-opacity="1.0"/>
+<polyline points="1012,251 1306,251" fill="none" stroke="#5b21b6" stroke-width="2" stroke-opacity="1.0"/>
+<text x="1159.0" y="239.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#5b21b6" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">kubectl get endpoints &lt;svc&gt;</text>
+<text x="1159.0" y="267.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">rong? -&gt; sua selector</text>
+<rect x="1000" y="311" width="318" height="70" rx="12" fill="#ffffff" fill-opacity="1.0" stroke="#5b21b6" stroke-width="2" stroke-opacity="1.0"/>
+<polyline points="1012,341 1306,341" fill="none" stroke="#5b21b6" stroke-width="2" stroke-opacity="1.0"/>
+<text x="1159.0" y="329.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#5b21b6" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">nslookup trong pod tam</text>
+<text x="1159.0" y="357.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">fail? -&gt; check CoreDNS</text>
+<rect x="1000" y="401" width="318" height="70" rx="12" fill="#ffffff" fill-opacity="1.0" stroke="#5b21b6" stroke-width="2" stroke-opacity="1.0"/>
+<polyline points="1012,431 1306,431" fill="none" stroke="#5b21b6" stroke-width="2" stroke-opacity="1.0"/>
+<text x="1159.0" y="419.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#5b21b6" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">ping ok nhung bi chan?</text>
+<text x="1159.0" y="447.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">kubectl get networkpolicy</text>
+<polyline points="1159,201 1159,221" fill="none" stroke="#5b21b6" stroke-width="1" stroke-opacity="1.0"/>
+<line x1="1159" y1="221" x2="1152.0" y2="208.9" stroke="#5b21b6" stroke-width="1" stroke-opacity="1.0"/>
+<line x1="1159" y1="221" x2="1166.0" y2="208.9" stroke="#5b21b6" stroke-width="1" stroke-opacity="1.0"/>
+<polyline points="1159,291 1159,311" fill="none" stroke="#5b21b6" stroke-width="1" stroke-opacity="1.0"/>
+<line x1="1159" y1="311" x2="1152.0" y2="298.9" stroke="#5b21b6" stroke-width="1" stroke-opacity="1.0"/>
+<line x1="1159" y1="311" x2="1166.0" y2="298.9" stroke="#5b21b6" stroke-width="1" stroke-opacity="1.0"/>
+<polyline points="1159,381 1159,401" fill="none" stroke="#5b21b6" stroke-width="1" stroke-opacity="1.0"/>
+<line x1="1159" y1="401" x2="1152.0" y2="388.9" stroke="#5b21b6" stroke-width="1" stroke-opacity="1.0"/>
+<line x1="1159" y1="401" x2="1166.0" y2="388.9" stroke="#5b21b6" stroke-width="1" stroke-opacity="1.0"/>
+<rect x="20" y="830" width="630" height="44" rx="12" fill="#f8fafc" fill-opacity="1.0" stroke="#374151" stroke-width="1" stroke-opacity="1.0"/>
+<text x="32.0" y="851.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">Xanh la = fix OK  |  Vien dut = buoc kiem tra dieu kien  |  -&gt; = chan doan tiep theo</text>
+</svg>

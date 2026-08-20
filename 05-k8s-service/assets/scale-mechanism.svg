@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1122" height="829" viewBox="0 0 1122 829"><rect width="1122" height="829" fill="#ffffff"/>
+<text x="600.0" y="42.0" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="22" fill="#1e40af" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">Cơ chế scale Deployment — reconcile current vs desired</text>
+<rect x="380.0" y="80" width="440" height="54" rx="12" fill="#fff3bf" fill-opacity="1.0" stroke="#f59e0b" stroke-width="2" stroke-opacity="1.0"/>
+<text x="600.0" y="110.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">kubectl scale deployment/web --replicas=3</text>
+<polyline points="600,134 600,168" fill="none" stroke="#3b82f6" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="600" y1="168" x2="593.0" y2="155.9" stroke="#3b82f6" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="600" y1="168" x2="607.0" y2="155.9" stroke="#3b82f6" stroke-width="2" stroke-opacity="1.0"/>
+<rect x="380.0" y="168" width="440" height="54" rx="12" fill="#a5d8ff" fill-opacity="1.0" stroke="#1e40af" stroke-width="2" stroke-opacity="1.0"/>
+<text x="600.0" y="198.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">API Server — ghi spec.replicas=3 vào etcd</text>
+<polyline points="600,222 600,256" fill="none" stroke="#3b82f6" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="600" y1="256" x2="593.0" y2="243.9" stroke="#3b82f6" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="600" y1="256" x2="607.0" y2="243.9" stroke="#3b82f6" stroke-width="2" stroke-opacity="1.0"/>
+<rect x="380.0" y="256" width="440" height="54" rx="12" fill="#d0bfff" fill-opacity="1.0" stroke="#7c3aed" stroke-width="2" stroke-opacity="1.0"/>
+<text x="600.0" y="286.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">Deployment controller</text>
+<polyline points="600,310 600,344" fill="none" stroke="#3b82f6" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="600" y1="344" x2="593.0" y2="331.9" stroke="#3b82f6" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="600" y1="344" x2="607.0" y2="331.9" stroke="#3b82f6" stroke-width="2" stroke-opacity="1.0"/>
+<rect x="365.0" y="344" width="470" height="64" rx="12" fill="#d0bfff" fill-opacity="1.0" stroke="#7c3aed" stroke-width="2" stroke-opacity="1.0"/>
+<text x="600.0" y="369.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">ReplicaSet controller — reconcile loop</text>
+<text x="600.0" y="389.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">so sánh current(2) vs desired(3)</text>
+<polyline points="510,408 330,470" fill="none" stroke="#16a34a" stroke-width="3" stroke-opacity="1.0"/>
+<line x1="330" y1="470" x2="339.2" y2="459.4" stroke="#16a34a" stroke-width="3" stroke-opacity="1.0"/>
+<line x1="330" y1="470" x2="343.7" y2="472.7" stroke="#16a34a" stroke-width="3" stroke-opacity="1.0"/>
+<polyline points="690,408 870,470" fill="none" stroke="#dc2626" stroke-width="3" stroke-opacity="1.0"/>
+<line x1="870" y1="470" x2="856.3" y2="472.7" stroke="#dc2626" stroke-width="3" stroke-opacity="1.0"/>
+<line x1="870" y1="470" x2="860.8" y2="459.4" stroke="#dc2626" stroke-width="3" stroke-opacity="1.0"/>
+<rect x="120.0" y="470" width="420" height="44" rx="12" fill="#b2f2bb" fill-opacity="1.0" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<text x="330.0" y="495.3" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="17" fill="#15803d" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">SCALE UP  (current &lt; desired)</text>
+<rect x="120.0" y="540" width="420" height="50" rx="12" fill="#ffffff" fill-opacity="1.0" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<text x="330.0" y="568.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">Tạo Pod mới từ Pod template</text>
+<polyline points="330,590 330,606" fill="none" stroke="#16a34a" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="330" y1="606" x2="323.0" y2="593.9" stroke="#16a34a" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="330" y1="606" x2="337.0" y2="593.9" stroke="#16a34a" stroke-width="2" stroke-opacity="1.0"/>
+<rect x="120.0" y="606" width="420" height="50" rx="12" fill="#ffffff" fill-opacity="1.0" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<text x="330.0" y="634.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">Pull image → qua readiness probe</text>
+<polyline points="330,656 330,672" fill="none" stroke="#16a34a" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="330" y1="672" x2="323.0" y2="659.9" stroke="#16a34a" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="330" y1="672" x2="337.0" y2="659.9" stroke="#16a34a" stroke-width="2" stroke-opacity="1.0"/>
+<rect x="120.0" y="672" width="420" height="50" rx="12" fill="#ffffff" fill-opacity="1.0" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<text x="330.0" y="700.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">Thêm IP vào EndpointSlice</text>
+<rect x="660.0" y="470" width="420" height="44" rx="12" fill="#ffc9c9" fill-opacity="1.0" stroke="#b91c1c" stroke-width="2" stroke-opacity="1.0"/>
+<text x="870.0" y="495.3" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="17" fill="#b91c1c" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">SCALE DOWN  (current &gt; desired)</text>
+<rect x="660.0" y="540" width="420" height="50" rx="12" fill="#ffffff" fill-opacity="1.0" stroke="#b91c1c" stroke-width="2" stroke-opacity="1.0"/>
+<text x="870.0" y="568.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">Chọn Pod: chưa Ready → trẻ hơn → node đông</text>
+<polyline points="870,590 870,606" fill="none" stroke="#dc2626" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="870" y1="606" x2="863.0" y2="593.9" stroke="#dc2626" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="870" y1="606" x2="877.0" y2="593.9" stroke="#dc2626" stroke-width="2" stroke-opacity="1.0"/>
+<rect x="660.0" y="606" width="420" height="50" rx="12" fill="#ffffff" fill-opacity="1.0" stroke="#b91c1c" stroke-width="2" stroke-opacity="1.0"/>
+<text x="870.0" y="634.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">Gỡ IP khỏi EndpointSlice NGAY</text>
+<polyline points="870,656 870,672" fill="none" stroke="#dc2626" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="870" y1="672" x2="863.0" y2="659.9" stroke="#dc2626" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="870" y1="672" x2="877.0" y2="659.9" stroke="#dc2626" stroke-width="2" stroke-opacity="1.0"/>
+<rect x="660.0" y="672" width="420" height="50" rx="12" fill="#ffffff" fill-opacity="1.0" stroke="#b91c1c" stroke-width="2" stroke-opacity="1.0"/>
+<text x="870.0" y="700.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">SIGTERM → chờ grace 30s → kill</text>
+<text x="605.5" y="782.3" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="15" fill="#f59e0b" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">reconcile = current vs desired  ·  UP = tạo Pod  ·  DOWN = gỡ endpoint TRƯỚC rồi mới kill (graceful)</text>
+</svg>

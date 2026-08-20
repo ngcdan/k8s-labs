@@ -1,0 +1,135 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1406" height="770" viewBox="0 0 1406 770"><rect width="1406" height="770" fill="#ffffff"/>
+<text x="690.0" y="35.7" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="24" fill="#1e40af" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">CloudNativePG — Postgres HA trên Kubernetes</text>
+<rect x="346" y="67" width="360" height="60" rx="12" fill="#94a3b8" fill-opacity="0.32" stroke="#94a3b8" stroke-width="1" stroke-opacity="0.32"/>
+<rect x="340" y="60" width="360" height="60" rx="12" fill="#ffffff" fill-opacity="1.0" stroke="#7c3aed" stroke-width="2" stroke-opacity="1.0"/>
+<text x="520.0" y="81.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#5b21b6" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">CNPG Operator</text>
+<text x="520.0" y="99.0" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#5b21b6" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">cnpg-system / reconcile loop</text>
+<rect x="270" y="155" width="520" height="440" rx="12" fill="#dbe4ff" fill-opacity="0.4" stroke="#1e40af" stroke-width="2" stroke-opacity="0.4"/>
+<text x="530.0" y="175.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#1e40af" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">Cluster: pg-ha  (namespace: postgres)</text>
+<rect x="296" y="207" width="230" height="85" rx="12" fill="#94a3b8" fill-opacity="0.32" stroke="#94a3b8" stroke-width="1" stroke-opacity="0.32"/>
+<rect x="290" y="200" width="230" height="85" rx="12" fill="#b2f2bb" fill-opacity="1.0" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<polyline points="302,232 508,232" fill="none" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<text x="405.0" y="220.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#15803d" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">pg-ha-1 (Primary)</text>
+<text x="405.0" y="251.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">node: kind-worker</text>
+<text x="405.0" y="269.0" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">read/write endpoint</text>
+<rect x="296" y="317" width="230" height="85" rx="12" fill="#94a3b8" fill-opacity="0.32" stroke="#94a3b8" stroke-width="1" stroke-opacity="0.32"/>
+<rect x="290" y="310" width="230" height="85" rx="12" fill="#a5d8ff" fill-opacity="1.0" stroke="#1d4ed8" stroke-width="2" stroke-opacity="1.0"/>
+<polyline points="302,342 508,342" fill="none" stroke="#1d4ed8" stroke-width="2" stroke-opacity="1.0"/>
+<text x="405.0" y="330.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#1d4ed8" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">pg-ha-2 (Replica)</text>
+<text x="405.0" y="361.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">node: kind-worker2</text>
+<text x="405.0" y="379.0" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">standby (async)</text>
+<rect x="296" y="427" width="230" height="85" rx="12" fill="#94a3b8" fill-opacity="0.32" stroke="#94a3b8" stroke-width="1" stroke-opacity="0.32"/>
+<rect x="290" y="420" width="230" height="85" rx="12" fill="#a5d8ff" fill-opacity="1.0" stroke="#1d4ed8" stroke-width="2" stroke-opacity="1.0"/>
+<polyline points="302,452 508,452" fill="none" stroke="#1d4ed8" stroke-width="2" stroke-opacity="1.0"/>
+<text x="405.0" y="440.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#1d4ed8" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">pg-ha-3 (Replica)</text>
+<text x="405.0" y="471.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">node: kind-control-plane</text>
+<text x="405.0" y="489.0" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">standby (async)</text>
+<polyline points="405,285 405,310" fill="none" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="405" y1="310" x2="398.0" y2="297.9" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="405" y1="310" x2="412.0" y2="297.9" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<text x="414.0" y="301.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#15803d" fill-opacity="1.0" text-anchor="start" xml:space="preserve">WAL streaming</text>
+<polyline points="375,285 375,420" fill="none" stroke="#15803d" stroke-width="2" stroke-opacity="1.0" stroke-dasharray="8 6"/>
+<line x1="375" y1="420" x2="368.0" y2="407.9" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="375" y1="420" x2="382.0" y2="407.9" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<polyline points="520,120 520,155" fill="none" stroke="#7c3aed" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="520" y1="155" x2="513.0" y2="142.9" stroke="#7c3aed" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="520" y1="155" x2="527.0" y2="142.9" stroke="#7c3aed" stroke-width="2" stroke-opacity="1.0"/>
+<text x="530.0" y="137.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#7c3aed" fill-opacity="1.0" text-anchor="start" xml:space="preserve">watch / reconcile</text>
+<polyline points="340,90 340,350" fill="none" stroke="#dc2626" stroke-width="2" stroke-opacity="1.0" stroke-dasharray="8 6"/>
+<line x1="340" y1="350" x2="333.0" y2="337.9" stroke="#dc2626" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="340" y1="350" x2="347.0" y2="337.9" stroke="#dc2626" stroke-width="2" stroke-opacity="1.0"/>
+<text x="284.0" y="191.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#dc2626" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">failover</text>
+<text x="284.0" y="209.0" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#dc2626" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">(elect replica)</text>
+<rect x="856" y="212" width="220" height="75" rx="12" fill="#94a3b8" fill-opacity="0.32" stroke="#94a3b8" stroke-width="1" stroke-opacity="0.32"/>
+<rect x="850" y="205" width="220" height="75" rx="12" fill="#ffffff" fill-opacity="1.0" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<text x="960.0" y="224.3" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="15" fill="#15803d" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">Service: pg-ha-rw</text>
+<text x="963.0" y="248.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">primary only (read/write)</text>
+<text x="963.0" y="266.0" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">:5432</text>
+<rect x="856" y="322" width="220" height="75" rx="12" fill="#94a3b8" fill-opacity="0.32" stroke="#94a3b8" stroke-width="1" stroke-opacity="0.32"/>
+<rect x="850" y="315" width="220" height="75" rx="12" fill="#ffffff" fill-opacity="1.0" stroke="#1d4ed8" stroke-width="2" stroke-opacity="1.0"/>
+<text x="960.0" y="334.3" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="15" fill="#1d4ed8" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">Service: pg-ha-ro</text>
+<text x="967.5" y="358.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">replica round-robin (read)</text>
+<text x="967.5" y="376.0" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">:5432</text>
+<rect x="856" y="432" width="220" height="75" rx="12" fill="#94a3b8" fill-opacity="0.32" stroke="#94a3b8" stroke-width="1" stroke-opacity="0.32"/>
+<rect x="850" y="425" width="220" height="75" rx="12" fill="#ffffff" fill-opacity="1.0" stroke="#6b7280" stroke-width="2" stroke-opacity="1.0"/>
+<text x="960.0" y="444.3" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="15" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">Service: pg-ha-r</text>
+<text x="960.0" y="468.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">all pods (read-only)</text>
+<text x="960.0" y="486.0" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">:5432</text>
+<polyline points="850,242 720,242" fill="none" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="720" y1="242" x2="732.1" y2="235.0" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="720" y1="242" x2="732.1" y2="249.0" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<polyline points="850,345 720,352" fill="none" stroke="#1d4ed8" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="720" y1="352" x2="731.7" y2="344.4" stroke="#1d4ed8" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="720" y1="352" x2="732.5" y2="358.3" stroke="#1d4ed8" stroke-width="2" stroke-opacity="1.0"/>
+<polyline points="850,365 720,457" fill="none" stroke="#1d4ed8" stroke-width="2" stroke-opacity="1.0" stroke-dasharray="8 6"/>
+<line x1="720" y1="457" x2="725.9" y2="444.3" stroke="#1d4ed8" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="720" y1="457" x2="733.9" y2="455.7" stroke="#1d4ed8" stroke-width="2" stroke-opacity="1.0"/>
+<polyline points="850,450 720,242" fill="none" stroke="#94a3b8" stroke-width="1" stroke-opacity="1.0"/>
+<line x1="720" y1="242" x2="732.4" y2="248.6" stroke="#94a3b8" stroke-width="1" stroke-opacity="1.0"/>
+<line x1="720" y1="242" x2="720.5" y2="256.0" stroke="#94a3b8" stroke-width="1" stroke-opacity="1.0"/>
+<polyline points="850,460 720,368" fill="none" stroke="#94a3b8" stroke-width="1" stroke-opacity="1.0"/>
+<line x1="720" y1="368" x2="733.9" y2="369.3" stroke="#94a3b8" stroke-width="1" stroke-opacity="1.0"/>
+<line x1="720" y1="368" x2="725.9" y2="380.7" stroke="#94a3b8" stroke-width="1" stroke-opacity="1.0"/>
+<polyline points="850,462 720,462" fill="none" stroke="#94a3b8" stroke-width="1" stroke-opacity="1.0"/>
+<line x1="720" y1="462" x2="732.1" y2="455.0" stroke="#94a3b8" stroke-width="1" stroke-opacity="1.0"/>
+<line x1="720" y1="462" x2="732.1" y2="469.0" stroke="#94a3b8" stroke-width="1" stroke-opacity="1.0"/>
+<rect x="26" y="217" width="220" height="80" rx="12" fill="#94a3b8" fill-opacity="0.32" stroke="#94a3b8" stroke-width="1" stroke-opacity="0.32"/>
+<rect x="20" y="210" width="220" height="80" rx="12" fill="#fff3bf" fill-opacity="1.0" stroke="#d97706" stroke-width="2" stroke-opacity="1.0"/>
+<text x="130.0" y="228.3" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="15" fill="#92400e" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">PgBouncer Pooler</text>
+<text x="130.0" y="253.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">mode: transaction</text>
+<text x="130.0" y="271.0" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">(Harbor / Argo CD)</text>
+<rect x="26" y="327" width="220" height="80" rx="12" fill="#94a3b8" fill-opacity="0.32" stroke="#94a3b8" stroke-width="1" stroke-opacity="0.32"/>
+<rect x="20" y="320" width="220" height="80" rx="12" fill="#d0bfff" fill-opacity="1.0" stroke="#6d28d9" stroke-width="2" stroke-opacity="1.0"/>
+<text x="130.0" y="338.3" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="15" fill="#4c1d95" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">PgBouncer Pooler</text>
+<text x="130.0" y="363.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">mode: session</text>
+<text x="130.0" y="381.0" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">(SonarQube + HikariCP)</text>
+<polyline points="240,248 850,248" fill="none" stroke="#d97706" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="850" y1="248" x2="837.9" y2="255.0" stroke="#d97706" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="850" y1="248" x2="837.9" y2="241.0" stroke="#d97706" stroke-width="2" stroke-opacity="1.0"/>
+<polyline points="240,358 850,358" fill="none" stroke="#6d28d9" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="850" y1="358" x2="837.9" y2="365.0" stroke="#6d28d9" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="850" y1="358" x2="837.9" y2="351.0" stroke="#6d28d9" stroke-width="2" stroke-opacity="1.0"/>
+<rect x="270" y="625" width="520" height="105" rx="12" fill="#c3fae8" fill-opacity="0.5" stroke="#0891b2" stroke-width="2" stroke-opacity="0.5" stroke-dasharray="8 6"/>
+<text x="604.5" y="639.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#0891b2" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">StorageClass: longhorn-cnpg  (numberOfReplicas=1, dataLocality=strict-local)</text>
+<rect x="285" y="652" width="150" height="62" rx="12" fill="#ffffff" fill-opacity="1.0" stroke="#0891b2" stroke-width="2" stroke-opacity="1.0"/>
+<text x="360.0" y="678.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">PVC pg-ha-1</text>
+<text x="360.0" y="696.0" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">10Gi</text>
+<rect x="455" y="652" width="150" height="62" rx="12" fill="#ffffff" fill-opacity="1.0" stroke="#0891b2" stroke-width="2" stroke-opacity="1.0"/>
+<text x="530.0" y="678.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">PVC pg-ha-2</text>
+<text x="530.0" y="696.0" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">10Gi</text>
+<rect x="625" y="652" width="150" height="62" rx="12" fill="#ffffff" fill-opacity="1.0" stroke="#0891b2" stroke-width="2" stroke-opacity="1.0"/>
+<text x="700.0" y="678.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">PVC pg-ha-3</text>
+<text x="700.0" y="696.0" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">10Gi</text>
+<polyline points="405,285 405,652" fill="none" stroke="#0891b2" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="405" y1="652" x2="398.0" y2="639.9" stroke="#0891b2" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="405" y1="652" x2="412.0" y2="639.9" stroke="#0891b2" stroke-width="2" stroke-opacity="1.0"/>
+<polyline points="530,395 530,652" fill="none" stroke="#0891b2" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="530" y1="652" x2="523.0" y2="639.9" stroke="#0891b2" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="530" y1="652" x2="537.0" y2="639.9" stroke="#0891b2" stroke-width="2" stroke-opacity="1.0"/>
+<polyline points="700,505 700,652" fill="none" stroke="#0891b2" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="700" y1="652" x2="693.0" y2="639.9" stroke="#0891b2" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="700" y1="652" x2="707.0" y2="639.9" stroke="#0891b2" stroke-width="2" stroke-opacity="1.0"/>
+<rect x="1106" y="187" width="260" height="170" rx="12" fill="#94a3b8" fill-opacity="0.32" stroke="#94a3b8" stroke-width="1" stroke-opacity="0.32"/>
+<rect x="1100" y="180" width="260" height="170" rx="12" fill="#ffffff" fill-opacity="1.0" stroke="#c2410c" stroke-width="2" stroke-opacity="1.0"/>
+<polyline points="1112,214 1348,214" fill="none" stroke="#c2410c" stroke-width="2" stroke-opacity="1.0"/>
+<text x="1230.0" y="198.3" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="15" fill="#c2410c" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">MinIO: pg-backups bucket</text>
+<text x="1230.0" y="235.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">WAL archive</text>
+<text x="1230.0" y="253.0" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">(barman-cloud, lien tuc)</text>
+<text x="1230.0" y="270.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve"></text>
+<text x="1230.0" y="288.0" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">Base backup</text>
+<text x="1230.0" y="305.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">(ScheduledBackup, 2h daily)</text>
+<text x="1230.0" y="323.0" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve"></text>
+<text x="1230.0" y="340.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">PITR: recoveryTarget</text>
+<polyline points="520,243 1100,258" fill="none" stroke="#c2410c" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="1100" y1="258" x2="1087.7" y2="264.7" stroke="#c2410c" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="1100" y1="258" x2="1088.1" y2="250.7" stroke="#c2410c" stroke-width="2" stroke-opacity="1.0"/>
+<text x="740.0" y="233.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#c2410c" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">WAL + base backup (S3)</text>
+<rect x="20" y="440" width="220" height="155" rx="12" fill="#ffffff" fill-opacity="1.0" stroke="#6b7280" stroke-width="1" stroke-opacity="1.0" stroke-dasharray="8 6"/>
+<text x="130.0" y="458.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">Chu giai (Legend)</text>
+<text x="28.0" y="481.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">--- WAL streaming (solid)</text>
+<text x="28.0" y="499.0" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">... WAL streaming (dashed)</text>
+<text x="28.0" y="516.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">-rw  primary endpoint</text>
+<text x="28.0" y="534.0" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">-ro  replica endpoint</text>
+<text x="28.0" y="551.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">-r   all pods endpoint</text>
+<text x="28.0" y="569.0" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">PVC  PersistentVolumeClaim</text>
+</svg>

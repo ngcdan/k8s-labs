@@ -179,7 +179,7 @@ docker rmi cachedemo
 
 **Cơ chế:** Docker đọc toàn bộ Dockerfile, dựng DAG các stage và dependency `COPY --from`. BuildKit chạy song song các stage không phụ thuộc nhau. Stage cuối (không có stage nào `COPY --from` nó nữa, hoặc stage được chỉ định cuối cùng) là image output. Mọi layer của stage builder không đưa vào image — chỉ file được `COPY --from` mang sang.
 
-![[multistage.excalidraw]]
+![Multi-stage build: stage builder không vào image cuối](assets/multistage.png)
 
 > **Ẩn dụ:** xưởng đúc (builder stage) cần lò luyện kim, khuôn, dụng cụ nặng → đúc ra cái chìa khoá (binary). Giao cho khách chỉ cần cái chìa khoá — không giao cả lò luyện kim.
 

@@ -110,7 +110,7 @@ starting
 
 → **Verify:** `CrashLoopBackOff` + `BackOff` event + `--previous` thấy "starting" (log lần crash trước). Container chết ngay sau 5 giây do `exit 1`.
 
-![[troubleshoot-tree.excalidraw]]
+![Cây chẩn đoán sự cố Pod/Node](assets/troubleshoot-tree.png)
 
 ---
 

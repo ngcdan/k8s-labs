@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1194" height="326" viewBox="0 0 1194 326"><rect width="1194" height="326" fill="#ffffff"/>
+<text x="586.0" y="43.7" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="24" fill="#1e40af" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">4 Service type</text>
+<rect x="40" y="72" width="250" height="168" rx="12" fill="#a5d8ff" fill-opacity="1.0" stroke="#1e40af" stroke-width="2" stroke-opacity="1.0"/>
+<text x="165.0" y="98.8" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="18" fill="#1e40af" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">ClusterIP</text>
+<polyline points="52,114 278,114" fill="none" stroke="#1e40af" stroke-width="1" stroke-opacity="0.6"/>
+<text x="52.0" y="135.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">IP ảo nội bộ cluster</text>
+<text x="52.0" y="155.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">mặc định</text>
+<text x="52.0" y="175.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">chỉ trong cụm gọi</text>
+<rect x="320" y="72" width="250" height="168" rx="12" fill="#b2f2bb" fill-opacity="1.0" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<text x="445.0" y="98.8" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="18" fill="#15803d" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">NodePort</text>
+<polyline points="332,114 558,114" fill="none" stroke="#15803d" stroke-width="1" stroke-opacity="0.6"/>
+<text x="332.0" y="135.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">mở port tĩnh trên</text>
+<text x="332.0" y="155.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">MỌI node</text>
+<text x="332.0" y="175.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">gọi từ ngoài qua node:port</text>
+<rect x="600" y="72" width="250" height="168" rx="12" fill="#ffd8a8" fill-opacity="1.0" stroke="#b45309" stroke-width="2" stroke-opacity="1.0"/>
+<text x="725.0" y="98.8" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="18" fill="#b45309" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">LoadBalancer</text>
+<polyline points="612,114 838,114" fill="none" stroke="#b45309" stroke-width="1" stroke-opacity="0.6"/>
+<text x="612.0" y="135.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">xin IP ngoài từ</text>
+<text x="612.0" y="155.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">cloud/MetalLB</text>
+<text x="612.0" y="175.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">1 entrypoint</text>
+<rect x="880" y="72" width="250" height="168" rx="12" fill="#d0bfff" fill-opacity="1.0" stroke="#6d28d9" stroke-width="2" stroke-opacity="1.0"/>
+<text x="1005.0" y="98.8" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="18" fill="#6d28d9" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">ExternalName</text>
+<polyline points="892,114 1118,114" fill="none" stroke="#6d28d9" stroke-width="1" stroke-opacity="0.6"/>
+<text x="892.0" y="135.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">alias DNS → tên miền ngoài</text>
+<text x="892.0" y="155.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">không proxy</text>
+<text x="585.0" y="279.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">cả 3 loại đầu chọn Pod qua label selector</text>
+</svg>

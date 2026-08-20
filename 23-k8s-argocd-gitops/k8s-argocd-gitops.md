@@ -87,7 +87,7 @@ NAME     STATUS   AGE
 argocd   Active   2m
 ```
 
-![[argocd-gitops.excalidraw]]
+![Argo CD GitOps: Git là source of truth, tự sync](assets/argocd-gitops.png)
 
 → **Verify:** namespace `argocd` Active. Diagram trên hiển thị vòng GitOps: commit → Argo CD detect → reconcile → cluster.
 

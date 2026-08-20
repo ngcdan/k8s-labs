@@ -1,0 +1,150 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1410" height="980" viewBox="0 0 1410 980"><rect width="1410" height="980" fill="#ffffff"/>
+<text x="726.5" y="37.7" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="24" fill="#1e40af" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">Argo CD / GitOps — Vòng reconcile &amp; App-of-Apps</text>
+<rect x="30" y="60" width="1340" height="390" rx="12" fill="#dbe4ff" fill-opacity="0.3" stroke="#93c5fd" stroke-width="1" stroke-opacity="0.3"/>
+<text x="50.0" y="81.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#1e40af" fill-opacity="1.0" text-anchor="start" xml:space="preserve">Phần 1 — Vòng GitOps (reconcile loop)</text>
+<rect x="76" y="127" width="220" height="130" rx="12" fill="#94a3b8" fill-opacity="0.32" stroke="#94a3b8" stroke-width="1" stroke-opacity="0.32"/>
+<rect x="70" y="120" width="220" height="130" rx="12" fill="#ffffff" fill-opacity="1.0" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<polyline points="82,158 278,158" fill="none" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<text x="82.0" y="142.8" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="18" fill="#15803d" fill-opacity="1.0" text-anchor="start" xml:space="preserve">Git Repository</text>
+<text x="82.0" y="177.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">Desired state (YAML)</text>
+<text x="82.0" y="195.0" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">Deployment / Service</text>
+<text x="82.0" y="212.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">HelmRelease / App</text>
+<rect x="76" y="307" width="220" height="100" rx="12" fill="#94a3b8" fill-opacity="0.32" stroke="#94a3b8" stroke-width="1" stroke-opacity="0.32"/>
+<rect x="70" y="300" width="220" height="100" rx="12" fill="#b2f2bb" fill-opacity="1.0" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<text x="185.0" y="339.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#15803d" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">Developer</text>
+<text x="185.0" y="359.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#15803d" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">git commit + push</text>
+<polyline points="180,298 180,246" fill="none" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="180" y1="246" x2="187.0" y2="258.1" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="180" y1="246" x2="173.0" y2="258.1" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<text x="192.0" y="273.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#15803d" fill-opacity="1.0" text-anchor="start" xml:space="preserve">git push</text>
+<rect x="486" y="107" width="380" height="260" rx="12" fill="#94a3b8" fill-opacity="0.32" stroke="#94a3b8" stroke-width="1" stroke-opacity="0.32"/>
+<rect x="480" y="100" width="380" height="260" rx="12" fill="#ffffff" fill-opacity="1.0" stroke="#c2410c" stroke-width="2" stroke-opacity="1.0"/>
+<polyline points="494,138 846,138" fill="none" stroke="#c2410c" stroke-width="2" stroke-opacity="1.0"/>
+<text x="494.0" y="122.8" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="18" fill="#c2410c" fill-opacity="1.0" text-anchor="start" xml:space="preserve">Argo CD</text>
+<rect x="502" y="155" width="158" height="90" rx="12" fill="#94a3b8" fill-opacity="0.32" stroke="#94a3b8" stroke-width="1" stroke-opacity="0.32"/>
+<rect x="496" y="148" width="158" height="90" rx="12" fill="#ffd8a8" fill-opacity="1.0" stroke="#c2410c" stroke-width="2" stroke-opacity="1.0"/>
+<text x="583.0" y="171.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#7c2d12" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">argocd-repo-server</text>
+<text x="583.0" y="189.0" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#7c2d12" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">clone Git</text>
+<text x="583.0" y="206.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#7c2d12" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">render manifest</text>
+<rect x="688" y="155" width="162" height="90" rx="12" fill="#94a3b8" fill-opacity="0.32" stroke="#94a3b8" stroke-width="1" stroke-opacity="0.32"/>
+<rect x="682" y="148" width="162" height="90" rx="12" fill="#ffd8a8" fill-opacity="1.0" stroke="#c2410c" stroke-width="2" stroke-opacity="1.0"/>
+<text x="785.5" y="171.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#7c2d12" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">application-controller</text>
+<text x="785.5" y="189.0" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#7c2d12" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">diff Git vs cluster</text>
+<text x="785.5" y="206.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#7c2d12" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">trigger sync</text>
+<text x="492.0" y="267.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">SyncStatus: Synced | OutOfSync</text>
+<text x="492.0" y="285.0" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">HealthStatus: Healthy | Degraded</text>
+<text x="492.0" y="302.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">Poll interval: 3 phút (hoặc webhook)</text>
+<rect x="1006" y="107" width="330" height="200" rx="12" fill="#94a3b8" fill-opacity="0.32" stroke="#94a3b8" stroke-width="1" stroke-opacity="0.32"/>
+<rect x="1000" y="100" width="330" height="200" rx="12" fill="#ffffff" fill-opacity="1.0" stroke="#1d4ed8" stroke-width="2" stroke-opacity="1.0"/>
+<polyline points="1014,138 1316,138" fill="none" stroke="#1d4ed8" stroke-width="2" stroke-opacity="1.0"/>
+<text x="1014.0" y="122.8" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="18" fill="#1d4ed8" fill-opacity="1.0" text-anchor="start" xml:space="preserve">Kubernetes Cluster</text>
+<text x="1014.0" y="159.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">Actual state</text>
+<text x="1014.0" y="177.0" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">Deployment, Service, Pod</text>
+<text x="1014.0" y="194.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">ConfigMap, Secret</text>
+<text x="1014.0" y="212.0" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">(live objects in etcd)</text>
+<polyline points="292,185 478,185" fill="none" stroke="#f59e0b" stroke-width="3" stroke-opacity="1.0"/>
+<line x1="478" y1="185" x2="465.9" y2="192.0" stroke="#f59e0b" stroke-width="3" stroke-opacity="1.0"/>
+<line x1="478" y1="185" x2="465.9" y2="178.0" stroke="#f59e0b" stroke-width="3" stroke-opacity="1.0"/>
+<text x="385.0" y="173.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#b45309" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">webhook / poll</text>
+<polyline points="862,193 998,193" fill="none" stroke="#f59e0b" stroke-width="3" stroke-opacity="1.0"/>
+<line x1="998" y1="193" x2="985.9" y2="200.0" stroke="#f59e0b" stroke-width="3" stroke-opacity="1.0"/>
+<line x1="998" y1="193" x2="985.9" y2="186.0" stroke="#f59e0b" stroke-width="3" stroke-opacity="1.0"/>
+<text x="928.0" y="181.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#b45309" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">apply diff</text>
+<polyline points="1165,305 1165,385 675,385 675,287" fill="none" stroke="#3b82f6" stroke-width="2" stroke-opacity="1.0" stroke-dasharray="8 6"/>
+<line x1="675" y1="287" x2="682.0" y2="299.1" stroke="#3b82f6" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="675" y1="287" x2="668.0" y2="299.1" stroke="#3b82f6" stroke-width="2" stroke-opacity="1.0"/>
+<text x="915.0" y="409.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#1d4ed8" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">poll / compare state</text>
+<rect x="1006" y="323" width="330" height="105" rx="12" fill="#94a3b8" fill-opacity="0.32" stroke="#94a3b8" stroke-width="1" stroke-opacity="0.32"/>
+<rect x="1000" y="316" width="330" height="105" rx="12" fill="#ffc9c9" fill-opacity="1.0" stroke="#dc2626" stroke-width="2" stroke-opacity="1.0" stroke-dasharray="8 6"/>
+<text x="1012.0" y="337.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#991b1b" fill-opacity="1.0" text-anchor="start" xml:space="preserve">Drift: kubectl edit tay</text>
+<text x="1012.0" y="355.0" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#991b1b" fill-opacity="1.0" text-anchor="start" xml:space="preserve">→ OutOfSync detected</text>
+<text x="1012.0" y="372.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#991b1b" fill-opacity="1.0" text-anchor="start" xml:space="preserve">→ selfHeal: true</text>
+<text x="1012.0" y="390.0" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#991b1b" fill-opacity="1.0" text-anchor="start" xml:space="preserve">→ Argo CD ghi đè về Git</text>
+<polyline points="1080,314 1080,300" fill="none" stroke="#dc2626" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="1080" y1="300" x2="1087.0" y2="312.1" stroke="#dc2626" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="1080" y1="300" x2="1073.0" y2="312.1" stroke="#dc2626" stroke-width="2" stroke-opacity="1.0"/>
+<rect x="30" y="470" width="1340" height="470" rx="12" fill="#d3f9d8" fill-opacity="0.3" stroke="#a3e635" stroke-width="1" stroke-opacity="0.3"/>
+<text x="50.0" y="491.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#15803d" fill-opacity="1.0" text-anchor="start" xml:space="preserve">Phần 2 — App-of-Apps pattern</text>
+<rect x="76" y="527" width="250" height="180" rx="12" fill="#94a3b8" fill-opacity="0.32" stroke="#94a3b8" stroke-width="1" stroke-opacity="0.32"/>
+<rect x="70" y="520" width="250" height="180" rx="12" fill="#ffffff" fill-opacity="1.0" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<polyline points="82,558 308,558" fill="none" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<text x="82.0" y="541.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#15803d" fill-opacity="1.0" text-anchor="start" xml:space="preserve">Git repo (platform-gitops)</text>
+<text x="82.0" y="577.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">root-app.yaml</text>
+<text x="82.0" y="595.0" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">apps/</text>
+<text x="82.0" y="612.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">  monitoring.yaml</text>
+<text x="82.0" y="630.0" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">  ingress.yaml</text>
+<text x="82.0" y="647.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">  app-web.yaml</text>
+<text x="82.0" y="665.0" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="start" xml:space="preserve">  app-api.yaml</text>
+<rect x="406" y="577" width="210" height="100" rx="12" fill="#94a3b8" fill-opacity="0.32" stroke="#94a3b8" stroke-width="1" stroke-opacity="0.32"/>
+<rect x="400" y="570" width="210" height="100" rx="12" fill="#ffd8a8" fill-opacity="1.0" stroke="#c2410c" stroke-width="2" stroke-opacity="1.0"/>
+<text x="505.0" y="599.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#7c2d12" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">Root Application</text>
+<text x="505.0" y="619.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#7c2d12" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">(platform-root)</text>
+<text x="505.0" y="639.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#7c2d12" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">trỏ apps/</text>
+<polyline points="322,616 398,616" fill="none" stroke="#f59e0b" stroke-width="3" stroke-opacity="1.0"/>
+<line x1="398" y1="616" x2="385.9" y2="623.0" stroke="#f59e0b" stroke-width="3" stroke-opacity="1.0"/>
+<line x1="398" y1="616" x2="385.9" y2="609.0" stroke="#f59e0b" stroke-width="3" stroke-opacity="1.0"/>
+<text x="360.0" y="605.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#b45309" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">apply</text>
+<rect x="696" y="497" width="180" height="70" rx="12" fill="#94a3b8" fill-opacity="0.32" stroke="#94a3b8" stroke-width="1" stroke-opacity="0.32"/>
+<rect x="690" y="490" width="180" height="70" rx="12" fill="#ffd8a8" fill-opacity="1.0" stroke="#c2410c" stroke-width="2" stroke-opacity="1.0"/>
+<text x="780.0" y="516.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#7c2d12" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">App: monitoring</text>
+<text x="780.0" y="534.0" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#7c2d12" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">(kube-prometheus)</text>
+<rect x="696" y="587" width="180" height="70" rx="12" fill="#94a3b8" fill-opacity="0.32" stroke="#94a3b8" stroke-width="1" stroke-opacity="0.32"/>
+<rect x="690" y="580" width="180" height="70" rx="12" fill="#ffd8a8" fill-opacity="1.0" stroke="#c2410c" stroke-width="2" stroke-opacity="1.0"/>
+<text x="780.0" y="606.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#7c2d12" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">App: ingress</text>
+<text x="780.0" y="624.0" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#7c2d12" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">(ingress-nginx)</text>
+<rect x="696" y="677" width="180" height="70" rx="12" fill="#94a3b8" fill-opacity="0.32" stroke="#94a3b8" stroke-width="1" stroke-opacity="0.32"/>
+<rect x="690" y="670" width="180" height="70" rx="12" fill="#ffd8a8" fill-opacity="1.0" stroke="#c2410c" stroke-width="2" stroke-opacity="1.0"/>
+<text x="780.0" y="696.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#7c2d12" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">App: app-web</text>
+<text x="780.0" y="714.0" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#7c2d12" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">(frontend)</text>
+<rect x="696" y="767" width="180" height="70" rx="12" fill="#94a3b8" fill-opacity="0.32" stroke="#94a3b8" stroke-width="1" stroke-opacity="0.32"/>
+<rect x="690" y="760" width="180" height="70" rx="12" fill="#ffd8a8" fill-opacity="1.0" stroke="#c2410c" stroke-width="2" stroke-opacity="1.0"/>
+<text x="780.0" y="786.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#7c2d12" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">App: app-api</text>
+<text x="780.0" y="804.0" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#7c2d12" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">(backend)</text>
+<polyline points="612,596 688,525" fill="none" stroke="#f59e0b" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="688" y1="525" x2="683.9" y2="538.4" stroke="#f59e0b" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="688" y1="525" x2="674.4" y2="528.2" stroke="#f59e0b" stroke-width="2" stroke-opacity="1.0"/>
+<polyline points="612,614 688,615" fill="none" stroke="#f59e0b" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="688" y1="615" x2="675.8" y2="621.8" stroke="#f59e0b" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="688" y1="615" x2="676.0" y2="607.8" stroke="#f59e0b" stroke-width="2" stroke-opacity="1.0"/>
+<polyline points="612,626 688,705" fill="none" stroke="#f59e0b" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="688" y1="705" x2="674.5" y2="701.1" stroke="#f59e0b" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="688" y1="705" x2="684.6" y2="691.4" stroke="#f59e0b" stroke-width="2" stroke-opacity="1.0"/>
+<polyline points="612,636 688,795" fill="none" stroke="#f59e0b" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="688" y1="795" x2="676.5" y2="787.1" stroke="#f59e0b" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="688" y1="795" x2="689.1" y2="781.0" stroke="#f59e0b" stroke-width="2" stroke-opacity="1.0"/>
+<text x="649.0" y="669.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#b45309" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">creates</text>
+<rect x="956" y="487" width="360" height="370" rx="12" fill="#94a3b8" fill-opacity="0.32" stroke="#94a3b8" stroke-width="1" stroke-opacity="0.32"/>
+<rect x="950" y="480" width="360" height="370" rx="12" fill="#ffffff" fill-opacity="1.0" stroke="#1d4ed8" stroke-width="2" stroke-opacity="1.0"/>
+<polyline points="964,516 1296,516" fill="none" stroke="#1d4ed8" stroke-width="2" stroke-opacity="1.0"/>
+<text x="964.0" y="501.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#1d4ed8" fill-opacity="1.0" text-anchor="start" xml:space="preserve">Cluster (namespaces)</text>
+<rect x="970" y="526" width="326" height="60" rx="12" fill="#dbe4ff" fill-opacity="0.6" stroke="#3b82f6" stroke-width="1" stroke-opacity="0.6"/>
+<text x="982.0" y="549.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#1e40af" fill-opacity="1.0" text-anchor="start" xml:space="preserve">ns: monitoring</text>
+<text x="982.0" y="567.0" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#1e40af" fill-opacity="1.0" text-anchor="start" xml:space="preserve">Prometheus, Grafana pods</text>
+<rect x="970" y="600" width="326" height="60" rx="12" fill="#dbe4ff" fill-opacity="0.6" stroke="#3b82f6" stroke-width="1" stroke-opacity="0.6"/>
+<text x="982.0" y="623.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#1e40af" fill-opacity="1.0" text-anchor="start" xml:space="preserve">ns: ingress-nginx</text>
+<text x="982.0" y="641.0" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#1e40af" fill-opacity="1.0" text-anchor="start" xml:space="preserve">nginx-controller pods</text>
+<rect x="970" y="674" width="326" height="60" rx="12" fill="#dbe4ff" fill-opacity="0.6" stroke="#3b82f6" stroke-width="1" stroke-opacity="0.6"/>
+<text x="982.0" y="697.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#1e40af" fill-opacity="1.0" text-anchor="start" xml:space="preserve">ns: app-web</text>
+<text x="982.0" y="715.0" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#1e40af" fill-opacity="1.0" text-anchor="start" xml:space="preserve">frontend Deployment + Service</text>
+<rect x="970" y="748" width="326" height="60" rx="12" fill="#dbe4ff" fill-opacity="0.6" stroke="#3b82f6" stroke-width="1" stroke-opacity="0.6"/>
+<text x="982.0" y="771.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#1e40af" fill-opacity="1.0" text-anchor="start" xml:space="preserve">ns: app-api</text>
+<text x="982.0" y="789.0" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#1e40af" fill-opacity="1.0" text-anchor="start" xml:space="preserve">backend Deployment + Service</text>
+<polyline points="872,525 968,556" fill="none" stroke="#1d4ed8" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="968" y1="556" x2="954.3" y2="558.9" stroke="#1d4ed8" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="968" y1="556" x2="958.6" y2="545.6" stroke="#1d4ed8" stroke-width="2" stroke-opacity="1.0"/>
+<polyline points="872,615 968,630" fill="none" stroke="#1d4ed8" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="968" y1="630" x2="954.9" y2="635.0" stroke="#1d4ed8" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="968" y1="630" x2="957.1" y2="621.2" stroke="#1d4ed8" stroke-width="2" stroke-opacity="1.0"/>
+<polyline points="872,705 968,704" fill="none" stroke="#1d4ed8" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="968" y1="704" x2="955.9" y2="711.1" stroke="#1d4ed8" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="968" y1="704" x2="955.8" y2="697.1" stroke="#1d4ed8" stroke-width="2" stroke-opacity="1.0"/>
+<polyline points="872,795 968,778" fill="none" stroke="#1d4ed8" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="968" y1="778" x2="957.3" y2="787.0" stroke="#1d4ed8" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="968" y1="778" x2="954.8" y2="773.2" stroke="#1d4ed8" stroke-width="2" stroke-opacity="1.0"/>
+<text x="916.0" y="673.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#1d4ed8" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">deploy</text>
+<rect x="70" y="728" width="590" height="92" rx="12" fill="#fff3bf" fill-opacity="1.0" stroke="#b45309" stroke-width="2" stroke-opacity="1.0"/>
+<text x="84.0" y="749.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#7c2d12" fill-opacity="1.0" text-anchor="start" xml:space="preserve">Bootstrap: kubectl apply -f root-app.yaml</text>
+<text x="84.0" y="767.0" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#7c2d12" fill-opacity="1.0" text-anchor="start" xml:space="preserve">→ Argo CD tạo 4 Application con</text>
+<text x="84.0" y="784.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#7c2d12" fill-opacity="1.0" text-anchor="start" xml:space="preserve">→ Mỗi con tự sync workload</text>
+<text x="84.0" y="802.0" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#7c2d12" fill-opacity="1.0" text-anchor="start" xml:space="preserve">→ Toàn bộ platform up từ 1 lệnh</text>
+</svg>

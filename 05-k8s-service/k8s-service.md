@@ -98,13 +98,15 @@ web-svc   10.42.0.12:80,10.42.0.14:80    5s   ← 2 IP Pod đang chạy
 ```
 → **Verify:** Endpoints có đúng 2 IP khớp `kubectl get pods -o wide`.
 
+![Nhiều resource trong 1 file YAML: phân biệt qua kind/name, match qua label/selector](assets/yaml-multi-resource.png)
+
 ---
 
 ## 3. 4 loại Service — ClusterIP, NodePort, LoadBalancer, ExternalName
 
 **Chốt:** 4 `type` Service mở rộng phạm vi tiếp cận theo tầng — ClusterIP (nội bộ cluster) → NodePort (host/mạng LAN) → LoadBalancer (external IP thật) → ExternalName (alias DNS ra ngoài cluster).
 
-![[service-types.excalidraw]]
+![4 loại Service: ClusterIP → NodePort → LoadBalancer → ExternalName](assets/service-types.png)
 
 - **ClusterIP** (mặc định): chỉ có IP nội bộ cluster — Pod trong cluster gọi được, bên ngoài không. Phổ biến nhất cho giao tiếp pod-to-pod.
 - **NodePort**: mở thêm một static port (dải 30000–32767) trên **mọi node**. Caller ngoài gọi `<NodeIP>:<nodePort>` → node proxy vào ClusterIP → Pod. Dưới NodePort luôn có ClusterIP.
@@ -272,6 +274,8 @@ web-clusterip  10.42.0.12:80,10.42.0.14:80,10.42.0.15:80       35s   ← 3 IP
 → **Verify:** curl trong Pod tạm thành công dùng tên Service; scale lên 3 → Endpoints có 3 IP.
 
 > **Thực chạy — `Endpoints` deprecated ở v1.33+, dùng `EndpointSlice`.** Trên cụm v1.34, `kubectl get endpoints` in cảnh báo `v1 Endpoints is deprecated in v1.33+; use discovery.k8s.io/v1 EndpointSlice`. Object `Endpoints` cũ gom TẤT CẢ IP vào 1 object → phình to gây tải khi Service có hàng nghìn Pod; `EndpointSlice` chia thành nhiều slice (~100 IP/slice). Xem bản mới: `kubectl get endpointslice -l kubernetes.io/service-name=<svc>`. Lab thật: scale 2→3 → slice thêm IP thứ 3 (`.27`) tự động, không đụng Service.
+
+![Cơ chế scale Deployment: reconcile current vs desired; scale-up tạo Pod rồi thêm endpoint, scale-down gỡ endpoint trước rồi mới kill](assets/scale-mechanism.png)
 
 ---
 

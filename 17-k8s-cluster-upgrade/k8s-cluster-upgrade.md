@@ -84,7 +84,7 @@ Server Version: v1.29.3
 ```
 → **Verify:** tất cả 3 node đang ở v1.29.x, apiserver đồng phiên bản với kubelet trên các node.
 
-![[cluster-upgrade-flow.excalidraw]]
+![Luồng nâng cấp cluster: control-plane trước, worker sau](assets/cluster-upgrade-flow.png)
 
 ---
 

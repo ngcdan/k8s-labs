@@ -90,7 +90,7 @@ web-svc      ClusterIP   10.96.87.204     <none>        80/TCP    8s
 - **Host-based routing:** rule `host: web.example.com` — dựa vào HTTP header `Host`.
 - **TLS:** khai báo `tls:` + Secret chứa cert/key → Ingress Controller terminate HTTPS.
 
-![[ingress-netpol.excalidraw]]
+![Ingress routing kết hợp NetworkPolicy](assets/ingress-netpol.png)
 
 **Vì sao:** tách biệt "khai báo routing" (developer làm) và "thực thi routing" (ops cài controller) — developer không cần biết nginx config, chỉ cần viết YAML Ingress chuẩn.
 

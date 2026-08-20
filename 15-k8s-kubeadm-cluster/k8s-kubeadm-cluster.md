@@ -144,7 +144,7 @@ w3         Running  192.168.56.23     Ubuntu 22.04 LTS
 
 → **Verify:** 6 dòng State=Running. Ghi lại IP của 3 master — dùng trong bước cấu hình VIP.
 
-![[kubeadm-ha-topology.excalidraw]]
+![Topology HA kubeadm: 3 control-plane + VIP + stacked etcd](assets/kubeadm-ha-topology.png)
 
 ---
 

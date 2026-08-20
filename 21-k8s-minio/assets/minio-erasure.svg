@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1076" height="694" viewBox="0 0 1076 694"><rect width="1076" height="694" fill="#ffffff"/>
+<text x="658.0" y="33.7" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="24" fill="#1e40af" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">MinIO Erasure Coding — Distributed Mode (4 Drive)</text>
+<rect x="36" y="286" width="170" height="80" rx="12" fill="#94a3b8" fill-opacity="0.32" stroke="#94a3b8" stroke-width="1" stroke-opacity="0.32"/>
+<rect x="30" y="280" width="170" height="80" rx="12" fill="#a5d8ff" fill-opacity="1.0" stroke="#1e40af" stroke-width="2" stroke-opacity="1.0"/>
+<text x="115.0" y="312.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#1e40af" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">Object</text>
+<text x="115.0" y="332.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">(100 GB input)</text>
+<polyline points="201,320 250,320" fill="none" stroke="#374151" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="250" y1="320" x2="237.9" y2="327.0" stroke="#374151" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="250" y1="320" x2="237.9" y2="313.0" stroke="#374151" stroke-width="2" stroke-opacity="1.0"/>
+<rect x="256" y="246" width="190" height="150" rx="12" fill="#94a3b8" fill-opacity="0.32" stroke="#94a3b8" stroke-width="1" stroke-opacity="0.32"/>
+<rect x="250" y="240" width="190" height="150" rx="12" fill="#ffd8a8" fill-opacity="1.0" stroke="#c2410c" stroke-width="2" stroke-opacity="1.0"/>
+<polyline points="262,278 428,278" fill="none" stroke="#c2410c" stroke-width="2" stroke-opacity="1.0"/>
+<text x="345.0" y="262.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#c2410c" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">MinIO Encode</text>
+<text x="345.0" y="299.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">Reed-Solomon</text>
+<text x="345.0" y="317.0" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">2 data shard</text>
+<text x="345.0" y="334.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">+ 2 parity shard</text>
+<text x="345.0" y="352.0" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">= 4 shard tổng</text>
+<rect x="506" y="96" width="230" height="54" rx="12" fill="#94a3b8" fill-opacity="0.32" stroke="#94a3b8" stroke-width="1" stroke-opacity="0.32"/>
+<rect x="500" y="90" width="230" height="54" rx="12" fill="#b2f2bb" fill-opacity="1.0" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<text x="615.0" y="113.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#15803d" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">Data shard 0 (50 GB)</text>
+<rect x="506" y="216" width="230" height="54" rx="12" fill="#94a3b8" fill-opacity="0.32" stroke="#94a3b8" stroke-width="1" stroke-opacity="0.32"/>
+<rect x="500" y="210" width="230" height="54" rx="12" fill="#b2f2bb" fill-opacity="1.0" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<text x="615.0" y="233.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#15803d" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">Data shard 1 (50 GB)</text>
+<rect x="506" y="346" width="230" height="54" rx="12" fill="#94a3b8" fill-opacity="0.32" stroke="#94a3b8" stroke-width="1" stroke-opacity="0.32"/>
+<rect x="500" y="340" width="230" height="54" rx="12" fill="#fff3bf" fill-opacity="1.0" stroke="#854d0e" stroke-width="2" stroke-opacity="1.0"/>
+<text x="621.0" y="363.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#854d0e" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">Parity shard 0 (50 GB)</text>
+<rect x="506" y="466" width="230" height="54" rx="12" fill="#94a3b8" fill-opacity="0.32" stroke="#94a3b8" stroke-width="1" stroke-opacity="0.32"/>
+<rect x="500" y="460" width="230" height="54" rx="12" fill="#fff3bf" fill-opacity="1.0" stroke="#854d0e" stroke-width="2" stroke-opacity="1.0"/>
+<text x="621.0" y="483.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#854d0e" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">Parity shard 1 (50 GB)</text>
+<polyline points="440,300 498,117" fill="none" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="498" y1="117" x2="501.0" y2="130.7" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="498" y1="117" x2="487.7" y2="126.4" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<polyline points="440,310 498,237" fill="none" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="498" y1="237" x2="495.9" y2="250.8" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="498" y1="237" x2="485.0" y2="242.1" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<polyline points="440,340 498,367" fill="none" stroke="#854d0e" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="498" y1="367" x2="484.1" y2="368.2" stroke="#854d0e" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="498" y1="367" x2="490.0" y2="355.5" stroke="#854d0e" stroke-width="2" stroke-opacity="1.0"/>
+<polyline points="440,350 498,487" fill="none" stroke="#854d0e" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="498" y1="487" x2="486.8" y2="478.6" stroke="#854d0e" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="498" y1="487" x2="499.7" y2="473.1" stroke="#854d0e" stroke-width="2" stroke-opacity="1.0"/>
+<rect x="796" y="88" width="240" height="84" rx="12" fill="#94a3b8" fill-opacity="0.32" stroke="#94a3b8" stroke-width="1" stroke-opacity="0.32"/>
+<rect x="790" y="82" width="240" height="84" rx="12" fill="#b2f2bb" fill-opacity="1.0" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<polyline points="802,122 1018,122" fill="none" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<text x="910.0" y="103.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#15803d" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">Node 1 / Drive 0</text>
+<text x="910.0" y="141.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">Data shard 0</text>
+<rect x="796" y="208" width="240" height="84" rx="12" fill="#94a3b8" fill-opacity="0.32" stroke="#94a3b8" stroke-width="1" stroke-opacity="0.32"/>
+<rect x="790" y="202" width="240" height="84" rx="12" fill="#b2f2bb" fill-opacity="1.0" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<polyline points="802,242 1018,242" fill="none" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<text x="910.0" y="223.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#15803d" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">Node 2 / Drive 1</text>
+<text x="910.0" y="261.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">Data shard 1</text>
+<rect x="796" y="338" width="240" height="84" rx="12" fill="#94a3b8" fill-opacity="0.32" stroke="#94a3b8" stroke-width="1" stroke-opacity="0.32"/>
+<rect x="790" y="332" width="240" height="84" rx="12" fill="#fff3bf" fill-opacity="1.0" stroke="#854d0e" stroke-width="2" stroke-opacity="1.0"/>
+<polyline points="802,372 1018,372" fill="none" stroke="#854d0e" stroke-width="2" stroke-opacity="1.0"/>
+<text x="910.0" y="353.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#854d0e" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">Node 3 / Drive 2</text>
+<text x="910.0" y="391.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">Parity shard 0</text>
+<rect x="796" y="468" width="240" height="84" rx="12" fill="#94a3b8" fill-opacity="0.32" stroke="#94a3b8" stroke-width="1" stroke-opacity="0.32"/>
+<rect x="790" y="462" width="240" height="84" rx="12" fill="#fff3bf" fill-opacity="1.0" stroke="#854d0e" stroke-width="2" stroke-opacity="1.0"/>
+<polyline points="802,502 1018,502" fill="none" stroke="#854d0e" stroke-width="2" stroke-opacity="1.0"/>
+<text x="910.0" y="483.1" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="16" fill="#854d0e" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">Node 4 / Drive 3</text>
+<text x="910.0" y="521.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#374151" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">Parity shard 1</text>
+<polyline points="730,117 790,124" fill="none" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="790" y1="124" x2="777.1" y2="129.5" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="790" y1="124" x2="778.8" y2="115.6" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<polyline points="730,237 790,244" fill="none" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="790" y1="244" x2="777.1" y2="249.5" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="790" y1="244" x2="778.8" y2="235.6" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<polyline points="730,367 790,374" fill="none" stroke="#854d0e" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="790" y1="374" x2="777.1" y2="379.5" stroke="#854d0e" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="790" y1="374" x2="778.8" y2="365.6" stroke="#854d0e" stroke-width="2" stroke-opacity="1.0"/>
+<polyline points="730,487 790,494" fill="none" stroke="#854d0e" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="790" y1="494" x2="777.1" y2="499.5" stroke="#854d0e" stroke-width="2" stroke-opacity="1.0"/>
+<line x1="790" y1="494" x2="778.8" y2="485.6" stroke="#854d0e" stroke-width="2" stroke-opacity="1.0"/>
+<rect x="30" y="588" width="400" height="66" rx="12" fill="#dbe4ff" fill-opacity="1.0" stroke="#1e40af" stroke-width="2" stroke-opacity="1.0"/>
+<text x="230.0" y="609.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#1e40af" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">Mat &lt;= 2 node van reconstruct duoc</text>
+<text x="230.0" y="627.0" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#1e40af" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">tu 2 shard con lai (Read quorum)</text>
+<rect x="450" y="588" width="310" height="66" rx="12" fill="#d3f9d8" fill-opacity="1.0" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<text x="605.0" y="609.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#15803d" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">Usable = 50% raw</text>
+<text x="605.0" y="627.0" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#15803d" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">(2 data / 4 total shard)</text>
+<rect x="780" y="588" width="252" height="66" rx="12" fill="#ffc9c9" fill-opacity="1.0" stroke="#9f1239" stroke-width="2" stroke-opacity="1.0"/>
+<text x="906.0" y="609.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#9f1239" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">KHONG dung Longhorn</text>
+<text x="906.0" y="627.0" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#9f1239" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">-&gt; double redundancy!</text>
+<rect x="250" y="58" width="120" height="26" rx="12" fill="#b2f2bb" fill-opacity="1.0" stroke="#15803d" stroke-width="2" stroke-opacity="1.0"/>
+<text x="310.0" y="73.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#15803d" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">Data shard</text>
+<rect x="390" y="58" width="130" height="26" rx="12" fill="#fff3bf" fill-opacity="1.0" stroke="#854d0e" stroke-width="2" stroke-opacity="1.0"/>
+<text x="455.0" y="73.5" font-family="'JetBrainsMono Nerd Font Mono', 'JetBrainsMono Nerd Font', Menlo, monospace" font-size="14" fill="#854d0e" fill-opacity="1.0" text-anchor="middle" xml:space="preserve">Parity shard</text>
+</svg>

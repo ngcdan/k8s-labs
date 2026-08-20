@@ -91,7 +91,7 @@ helm version
 
 **Phản đề:** Longhorn không phải Ceph — không hỗ trợ `ReadWriteMany` (RWX) cho block (chỉ RWO). Nếu nhiều Pod cần ghi đồng thời vào cùng volume → dùng CephFS hoặc MinIO (lab 21). Cluster lớn (>30 node, hàng trăm TB) → Rook-Ceph phù hợp hơn.
 
-![[longhorn-replica.excalidraw]]
+![Longhorn: volume chia thành replica trên nhiều node](assets/longhorn-replica.png)
 
 ---
 
@@ -568,7 +568,7 @@ pvc-9b3e7f2a-1d4c-5b8e-c3f2-0a7d8e9b1c2d-r-8f1e2a3b            kind-worker  runn
 
 **Dùng/KHÔNG:** chọn Rook-Ceph khi cần **unified storage** (block + file RWX + object) hoặc scale lớn (hàng trăm node, PB). **Phản đề:** cluster nhỏ chỉ cần block RWO cho vài stateful app → Longhorn nhẹ hơn, dễ vận hành hơn nhiều; đừng kéo cả Ceph vào homelab chỉ để chạy một Postgres.
 
-![[rook-ceph-arch.excalidraw]]
+![Kiến trúc Rook-Ceph: MON/OSD/MGR, unified storage](assets/rook-ceph-arch.png)
 
 ---
 
